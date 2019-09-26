@@ -1,0 +1,1080 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title> Wago Tango Class User&lsquo;s Guide </title>
+</head>
+<body text="Black" bgcolor="White" link="Blue" vlink="Purple" alink="Red">
+<table border="0" width="100%" cellspacing="0" cellpadding="0" >
+        <td align="center">
+            <a href="http://www.esrf.fr/" target=new>
+                <img src="http://www.esrf.fr/gifs/logo/80.gif" border=0 height="35"></a>
+        </td>
+        <td align="center">
+            <a href="http://www.elettra.trieste.it/" target=new>
+                <img src="http://www.esrf.fr/computing/cs/tango/elettra_logo.gif" border=0 height="35"></a>
+        </td>
+        <td align="center">
+            <a href="http://www.synchrotron-soleil.fr/" target=new>
+                <img src="http://www.esrf.fr/computing/cs/tango/soleil_logo.gif" border=0 height="35"></a>
+        </td>
+        <td align="center">
+            <a href="http://www.cells.es/" target=new>
+                <img src="http://www.esrf.fr/computing/cs/tango/alba.jpg" border=0 height="27"></a>
+        </td>
+        <td align="center">
+            <a href="http://www.tango-controls.org/" target="_top">
+               <img src="http://www.esrf.fr/computing/cs/tango/tango_logo.jpg" alt=""  height="40" /></a>
+        </td>
+        <td align="center">
+            <a href="http://www.desy.de/html/home/index_eng.html" target=new>
+                <img src="http://www.esrf.fr/computing/cs/tango/desy.gif" border=0 height="26"></a>
+        </td>
+        <td align="center">
+            <a href="http://www.maxlab.lu.se/maxlab/max4/index.html" target=new>
+                <img src="http://www.esrf.fr/computing/cs/tango/maxlab.gif" border=0 height="21"></a>
+        </td>
+        <td align="center">
+            <a href="http://www.frm2.tum.de/en/index.html" target=new>
+                <img src="http://www.esrf.fr/computing/cs/tango/frm-2.jpg" border=0 height="24"></a>
+        </td>
+         <td align="center">
+            <a href="http://www.synchrotron.uj.edu.pl/" target=new>
+                <img src="http://www.esrf.fr/computing/cs/tango/solaris_logo.gif" border=0 height="21"></a>
+        </td>
+         <td align="center">
+            <a href="http://www.anka.kit.edu/english/28.php" target=new>
+                <img src="http://www.esrf.fr/computing/cs/tango/anka_blau_rot.png" border=0 height="25"></a>
+        </td>
+         <td align="center">
+            <a href="http://www.eli-hu.hu/" target=new>
+                <img src="http://www.esrf.fr/computing/cs/tango/eli-alps.jpg" border=0 height="32"></a>
+        </td>
+   </table>
+<hr>
+<br>
+<center><h2><u><b> Wago Tango Cpp Class </b></u></h2></center>	<br><br>
+	<ul>
+		<font size="+1"><u><b> Contents : </b></u></font>
+		<ul>
+			<li> <a href="FullDocument.html#description">  Description  </a>
+			<li> <a href="FullDocument.html#properties">   Properties   </a>
+			<li> <a href="FullDocument.html#commands">     Commands     </a>
+			<ul>
+				<li> <a href="FullDocument.html#cmdState"> State </a>
+				<li> <a href="FullDocument.html#cmdStatus"> Status </a>
+				<li> <a href="FullDocument.html#cmdDevReadNoCachePhys"> DevReadNoCachePhys </a>
+				<li> <a href="FullDocument.html#cmdDevWritePhys"> DevWritePhys </a>
+				<li> <a href="FullDocument.html#cmdDevReadPhys"> DevReadPhys </a>
+				<li> <a href="FullDocument.html#cmdDevWriteDigi"> DevWriteDigi </a>
+				<li> <a href="FullDocument.html#cmdDevReadDigi"> DevReadDigi </a>
+				<li> <a href="FullDocument.html#cmdDevReadNoCacheDigi"> DevReadNoCacheDigi </a>
+				<li> <a href="FullDocument.html#cmdDevGetKeys"> DevGetKeys </a>
+				<li> <a href="FullDocument.html#cmdDevKey2Name"> DevKey2Name </a>
+				<li> <a href="FullDocument.html#cmdDevLog2Hard"> DevLog2Hard </a>
+				<li> <a href="FullDocument.html#cmdDevHard2Log"> DevHard2Log </a>
+				<li> <a href="FullDocument.html#cmdDevName2Key"> DevName2Key </a>
+				<li> <a href="FullDocument.html#cmdDevWcComm"> DevWcComm </a>
+			</ul>
+			<li> <a href="FullDocument.html#attributes">   Attributes   </a>
+			<ul>
+			</ul>
+			<li> <a href="FullDocument.html#states">       States       </a>
+		</ul>
+	</ul>
+	<hr>
+<br><br>
+<a name="description"> </a>
+<ul>
+	<br><br><br>
+	<table border="0" width="100%">
+		<Tr>
+			<td> <font size="+1"><u><b> Wago Class Identification : </b></u></font> </td>
+			<td> <font size="+1"><u><b> Wago Class Inheritance : </b></u></font> </td>
+		</tr>
+		<td><ul>
+			<table border="0">
+				<Tr>
+					<td> Contact </td><td> : at at esrf.fr - pawel.kowaliszyn</td>
+				</tr>
+				<tr>
+					<td> Class Family </td><td> : Controllers
+				</tr>
+				<tr>
+					<td> Platform </td><td> : All Platforms </td>
+				</tr>
+				<tr>
+					<td> Bus </td><td> : Modbus </td>
+				</tr>
+				<tr>
+					<td> Manufacturer </td><td> : none </td>
+				</tr>
+				<tr>
+					<td> Manufacturer ref.</td><td> :  </td>
+				</tr>
+			</Table>
+		</ul></td>
+		<td>
+			<ul><li> <a href="http://www.esrf.eu/computing/cs/tango/tango_doc/kernel_doc/cpp_doc/" target="new"> Tango::DeviceImpl</a></li>
+			<ul> <li> Wago</li>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		</td>
+	</Table>
+	<br><br><br>
+	<font size="+1"><u><b> Wago Class Description : </b></u></font>
+	<br><br>
+	<ul>
+		Device server for Wago 750 series Programable Fieldbus Controllers <Br>
+		and Fieldbus Couplers. The class supports reading and writing to a node<Br>
+		consisting of a number of Wago modules. It communicates with device over<Br>
+		Modbus TCP or RTU protocol by means of Modbus Tango class.
+		
+		<!---  /*PROTECTED REGION ID(FullDocument.html) ENABLED START*/  --->
+			<!--- Add your own documentation, pictures, links,.... --->
+			
+		<!---  /*PROTECTED REGION END*/  --->
+		
+	</ul>
+</ul>
+<br><br>
+<hr>
+<a name="properties"> </a>
+<br><br><br>
+<font size="+1"><u><b> Wago  Properties : </b></u></font>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=4> <font size=+1> <center><b> Class Properties </b></font></center></td>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+		<td> <center><b> Name </b></center> </td>
+		<td> <center><b> Description </b></center> </td>
+		<td> <center><b> Type </b></center> </td>
+		<td> <center><b> Default Value </b></center> </td>
+	</tr>
+	<tr>
+		<td> modulesCatalogue </td>
+		<td> List of know WAGO modules usable by the WAGO Device Server<Br>
+			SYNTAX: <Br>
+			   -the first item should be the date the list has been updated<Br>
+			   -then, for each module, you must supply:<Br>
+			          -module reference<Br>
+			          -number of digital  inputs<Br>
+			          -number of digital outputs<Br>
+			          -number of word     inputs<Br>
+			          -number of word    outputs<Br>
+			          -number of logical channels (typically SSI32bits==2 words)<Br>
+			          -string for special module  (``none``,``ssi``,``thc``,``thck``,etc)<Br>
+			          -string for description </td>
+		<td> String[] </td>
+		<td> none </td>
+	</tr>
+</table>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=4> <font size=+1> <center><b> Device Properties </b></font></center></td>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+		<td> <center><b> Name </b></center> </td>
+		<td> <center><b> Description </b></center> </td>
+		<td> <center><b> Type </b></center> </td>
+		<td> <center><b> Default Value </b></center> </td>
+	</tr>
+	<tr>
+		<td> modbusDevName </td>
+		<td> Name of Modbus tango device server used for communication with<Br>
+			 physical device. </td>
+		<td> String </td>
+		<td> none </td>
+	</tr>
+	<tr>
+		<td> config </td>
+		<td> Configuration of physical modules in device and its projection<Br>
+			 to LogicalDevices in server. </td>
+		<td> String[] </td>
+		<td> none </td>
+	</tr>
+	<tr>
+		<td> updatePeriod </td>
+		<td> Modbus process image cache update interval. </td>
+		<td> short </td>
+		<td> 1000 <br> </td>
+	</tr>
+</table>
+<br><br>
+<hr>
+<a name="commands"> </a>
+<br><br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=5> <font size=+1> <center><b> Wago Class Commands </b></font></center></td>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+		<td> <center><b> Name </b></center> </td>
+		<td> <center><b> Input type </b></center> </td>
+		<td> <center><b> Output type </b></center> </td>
+		<td> <center><b> Level </b></center> </td>
+		<td> <center><b> Description </b></center> </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdState.html"> State </a> </td>
+		<td> DEV_VOID </td>
+		<td> DEV_STATE </td>
+		<td> OPERATOR </td>
+		<td> This command gets the device state (stored in its device_state data member) and returns it to the caller. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdStatus.html"> Status </a> </td>
+		<td> DEV_VOID </td>
+		<td> CONST_DEV_STRING </td>
+		<td> OPERATOR </td>
+		<td> This command gets the device status (stored in its device_status data member) and returns it to the caller. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevReadNoCachePhys.html"> DevReadNoCachePhys </a> </td>
+		<td> DEV_SHORT </td>
+		<td> DEVVAR_FLOATARRAY </td>
+		<td> OPERATOR </td>
+		<td> Read all physical values of the specified logical device and <Br>
+			//              return the values as a float array. Physical value are<Br>
+			//              calculated from module registers according to a predefined<Br>
+			//              algorithm deduced from the module type in the catalogue.<Br>
+			//              Read registers from the cache.<Br>
+			//<Br>
+			//              Note: not all the channels of the logical device are<Br>
+			//              returned but only the ones on modules marked as specials<Br>
+			//              in the catalogue. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevWritePhys.html"> DevWritePhys </a> </td>
+		<td> DEVVAR_FLOATARRAY </td>
+		<td> DEV_VOID </td>
+		<td> OPERATOR </td>
+		<td> None. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevReadPhys.html"> DevReadPhys </a> </td>
+		<td> DEV_SHORT </td>
+		<td> DEVVAR_FLOATARRAY </td>
+		<td> OPERATOR </td>
+		<td> Read physical values of LD </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevWriteDigi.html"> DevWriteDigi </a> </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> DEV_VOID </td>
+		<td> OPERATOR </td>
+		<td> Write words and bits to output module registers. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevReadDigi.html"> DevReadDigi </a> </td>
+		<td> DEV_SHORT </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> OPERATOR </td>
+		<td> Read all input and output word and bits of the specified logical <Br>
+			device and return the values as a short array (short per bit). <Br>
+			Read from the cache. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevReadNoCacheDigi.html"> DevReadNoCacheDigi </a> </td>
+		<td> DEV_SHORT </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> OPERATOR </td>
+		<td> Read all input and output word and bits of the specified logical <Br>
+			device and return the values as a short array (short per bit). <Br>
+			Read from the cache. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevGetKeys.html"> DevGetKeys </a> </td>
+		<td> DEV_VOID </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> OPERATOR </td>
+		<td> Return all the numerical keys known by the server. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevKey2Name.html"> DevKey2Name </a> </td>
+		<td> DEV_SHORT </td>
+		<td> DEV_STRING </td>
+		<td> OPERATOR </td>
+		<td> Return the logical device name associated to a numerical keys <Br>
+			name. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevLog2Hard.html"> DevLog2Hard </a> </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> OPERATOR </td>
+		<td> Return hardware information of a logical device/logical channel. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevHard2Log.html"> DevHard2Log </a> </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> OPERATOR </td>
+		<td> Returns the logical device/logical channel of a memory location <Br>
+			on wago controller </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevName2Key.html"> DevName2Key </a> </td>
+		<td> DEV_STRING </td>
+		<td> DEV_SHORT </td>
+		<td> OPERATOR </td>
+		<td> Return the logical device name associated to a numerical keys name. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevWcComm.html"> DevWcComm </a> </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> OPERATOR </td>
+		<td> Executes a command in the wago controller programm. The communication is done using the ISG protocol. </td>
+	</tr>
+</table>
+<br><br><hr>
+<a name="cmdState"> </a>
+<br><br><br>
+<font size="+1"><u><b> Command State : </b></u></font>
+<ul>
+	This command gets the device state (stored in its device_state data member) and returns it to the caller.
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> State Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEV_VOID </td>
+		<td> none </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEV_STATE </td>
+		<td> Device state </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> true </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command allowed for </td>
+		<td> All states </td>
+		<td> .. </td>
+	</tr>
+</table>
+<br><br><hr>
+<a name="cmdStatus"> </a>
+<br><br><br>
+<font size="+1"><u><b> Command Status : </b></u></font>
+<ul>
+	This command gets the device status (stored in its device_status data member) and returns it to the caller.
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> Status Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEV_VOID </td>
+		<td> none </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::CONST_DEV_STRING </td>
+		<td> Device status </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> true </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command allowed for </td>
+		<td> All states </td>
+		<td> .. </td>
+	</tr>
+</table>
+<br><br><hr>
+<a name="cmdDevReadNoCachePhys"> </a>
+<br><br><br>
+<font size="+1"><u><b> Command DevReadNoCachePhys : </b></u></font>
+<ul>
+	Read all physical values of the specified logical device and <Br>
+	//              return the values as a float array. Physical value are<Br>
+	//              calculated from module registers according to a predefined<Br>
+	//              algorithm deduced from the module type in the catalogue.<Br>
+	//              Read registers from the cache.<Br>
+	//<Br>
+	//              Note: not all the channels of the logical device are<Br>
+	//              returned but only the ones on modules marked as specials<Br>
+	//              in the catalogue.
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> DevReadNoCachePhys Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEV_SHORT </td>
+		<td> Logical device index. </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEVVAR_FLOATARRAY </td>
+		<td> Array of values. </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command NOT allowed for </td>
+		<td> <font size="-1">  <li> INIT </li>  <li> FAULT </li> </font> </td>
+		<td> .. </td>
+	</tr>
+</table>
+<br><br><hr>
+<a name="cmdDevWritePhys"> </a>
+<br><br><br>
+<font size="+1"><u><b> Command DevWritePhys : </b></u></font>
+<ul>
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> DevWritePhys Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEVVAR_FLOATARRAY </td>
+		<td> Logical device key and values for write </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEV_VOID </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command NOT allowed for </td>
+		<td> <font size="-1">  <li> INIT </li>  <li> FAULT </li> </font> </td>
+		<td> .. </td>
+	</tr>
+</table>
+<br><br><hr>
+<a name="cmdDevReadPhys"> </a>
+<br><br><br>
+<font size="+1"><u><b> Command DevReadPhys : </b></u></font>
+<ul>
+	Read physical values of LD
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> DevReadPhys Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEV_SHORT </td>
+		<td> Logical device key </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEVVAR_FLOATARRAY </td>
+		<td> Placeholder for obtained values </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command NOT allowed for </td>
+		<td> <font size="-1">  <li> INIT </li>  <li> FAULT </li> </font> </td>
+		<td> .. </td>
+	</tr>
+</table>
+<br><br><hr>
+<a name="cmdDevWriteDigi"> </a>
+<br><br><br>
+<font size="+1"><u><b> Command DevWriteDigi : </b></u></font>
+<ul>
+	Write words and bits to output module registers.
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> DevWriteDigi Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEVVAR_SHORTARRAY </td>
+		<td> Logical device key, then pairs of channel,value. </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEV_VOID </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command NOT allowed for </td>
+		<td> <font size="-1">  <li> INIT </li>  <li> FAULT </li> </font> </td>
+		<td> .. </td>
+	</tr>
+</table>
+<br><br><hr>
+<a name="cmdDevReadDigi"> </a>
+<br><br><br>
+<font size="+1"><u><b> Command DevReadDigi : </b></u></font>
+<ul>
+	Read all input and output word and bits of the specified logical <Br>
+	device and return the values as a short array (short per bit). <Br>
+	Read from the cache.
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> DevReadDigi Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEV_SHORT </td>
+		<td> Logical device </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEVVAR_SHORTARRAY </td>
+		<td> Array of bit values </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command NOT allowed for </td>
+		<td> <font size="-1">  <li> INIT </li>  <li> FAULT </li> </font> </td>
+		<td> .. </td>
+	</tr>
+</table>
+<br><br><hr>
+<a name="cmdDevReadNoCacheDigi"> </a>
+<br><br><br>
+<font size="+1"><u><b> Command DevReadNoCacheDigi : </b></u></font>
+<ul>
+	Read all input and output word and bits of the specified logical <Br>
+	device and return the values as a short array (short per bit). <Br>
+	Read from the cache.
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> DevReadNoCacheDigi Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEV_SHORT </td>
+		<td> Logical device </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEVVAR_SHORTARRAY </td>
+		<td> Array of bit values </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command NOT allowed for </td>
+		<td> <font size="-1">  <li> INIT </li>  <li> FAULT </li> </font> </td>
+		<td> .. </td>
+	</tr>
+</table>
+<br><br><hr>
+<a name="cmdDevGetKeys"> </a>
+<br><br><br>
+<font size="+1"><u><b> Command DevGetKeys : </b></u></font>
+<ul>
+	Return all the numerical keys known by the server.
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> DevGetKeys Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEV_VOID </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEVVAR_SHORTARRAY </td>
+		<td> Numerical keys </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command NOT allowed for </td>
+		<td> <font size="-1">  <li> INIT </li>  <li> FAULT </li> </font> </td>
+		<td> .. </td>
+	</tr>
+</table>
+<br><br><hr>
+<a name="cmdDevKey2Name"> </a>
+<br><br><br>
+<font size="+1"><u><b> Command DevKey2Name : </b></u></font>
+<ul>
+	Return the logical device name associated to a numerical keys <Br>
+	name.
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> DevKey2Name Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEV_SHORT </td>
+		<td> Numerical key </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEV_STRING </td>
+		<td> Logical device name </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command NOT allowed for </td>
+		<td> <font size="-1">  <li> INIT </li>  <li> FAULT </li> </font> </td>
+		<td> .. </td>
+	</tr>
+</table>
+<br><br><hr>
+<a name="cmdDevLog2Hard"> </a>
+<br><br><br>
+<font size="+1"><u><b> Command DevLog2Hard : </b></u></font>
+<ul>
+	Return hardware information of a logical device/logical channel.
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> DevLog2Hard Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEVVAR_SHORTARRAY </td>
+		<td> [0] : logical device key<Br>
+[1] : logical channel </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEVVAR_SHORTARRAY </td>
+		<td> [0] : offset in wago controller memory (ex: 0x16)<Br>
+[1] : MSB=I/O LSB=Bit/Word (ex: 0x4957 = (`I`<<8)+`W`)<Br>
+[2] : module reference (ex: 469)<Br>
+[3] : module number (1st is 0)<Br>
+[4] : physical channel of the module (ex: 1 for the 2nd) </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command NOT allowed for </td>
+		<td> <font size="-1">  <li> INIT </li>  <li> FAULT </li> </font> </td>
+		<td> .. </td>
+	</tr>
+</table>
+<br><br><hr>
+<a name="cmdDevHard2Log"> </a>
+<br><br><br>
+<font size="+1"><u><b> Command DevHard2Log : </b></u></font>
+<ul>
+	Returns the logical device/logical channel of a memory location <Br>
+	on wago controller
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> DevHard2Log Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEVVAR_SHORTARRAY </td>
+		<td> [0] : MSB=I/O LSB=Bit/Word (ex: 0x4957 = (`I`<<8)+`W`)<Br>
+[1] : offset in wago controller memory (ex: 0x16) </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEVVAR_SHORTARRAY </td>
+		<td> [0] : logical device key<Br>
+[1] : logical channel </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command NOT allowed for </td>
+		<td> <font size="-1">  <li> INIT </li>  <li> FAULT </li> </font> </td>
+		<td> .. </td>
+	</tr>
+</table>
+<br><br><hr>
+<a name="cmdDevName2Key"> </a>
+<br><br><br>
+<font size="+1"><u><b> Command DevName2Key : </b></u></font>
+<ul>
+	Return the logical device name associated to a numerical keys name.
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> DevName2Key Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEV_STRING </td>
+		<td> Logical device name </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEV_SHORT </td>
+		<td> Numerical key </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command NOT allowed for </td>
+		<td> <font size="-1">  <li> INIT </li>  <li> FAULT </li> </font> </td>
+		<td> .. </td>
+	</tr>
+</table>
+<br><br><hr>
+<a name="cmdDevWcComm"> </a>
+<br><br><br>
+<font size="+1"><u><b> Command DevWcComm : </b></u></font>
+<ul>
+	Executes a command in the wago controller programm. The communication is done using the ISG protocol.
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> DevWcComm Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEVVAR_SHORTARRAY </td>
+		<td> [0] : code of command to execute (ex: 0x010c for ILCK_RESET)<Br>
+[1] : 1st parameter<Br>
+[2] : 2nd parameter<Br>
+etc </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEVVAR_SHORTARRAY </td>
+		<td> [0] : 1st argout or error code<Br>
+[1] : 2nd argout <Br>
+etc </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command NOT allowed for </td>
+		<td> <font size="-1">  <li> INIT </li>  <li> FAULT </li> </font> </td>
+		<td> .. </td>
+	</tr>
+</table>
+<br><br>
+<hr>
+<a name="attributes"> </a>
+<br><br><br><br>
+<font size="+1"><u><b> There is no attribute defined. </b></u></font>
+<br><br>
+<hr>
+<br><br>
+<font size="+1"><u><b> There is no dynamic attribute defined. </b></u></font>
+<br><br>
+<hr>
+<br><br>
+<hr>
+<a name="states"> </a>
+<br><br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=2> <font size=+1> <center><b> Wago Class States </b></font></center></td>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+		<td> <center><b> Name </b></center> </td>
+		<td> <center><b> Description </b></center> </td>
+	</tr>
+	<tr>
+		<td> INIT </td>
+		<td> Server startup is beeing performed. </td>
+	</tr>
+	<tr>
+		<td> ON </td>
+		<td> Server is operational and running. </td>
+	</tr>
+	<tr>
+		<td> FAULT </td>
+		<td> Invalid internal server state. Error in communication with device or invalid server configuration. </td>
+	</tr>
+</table>
+</body>
+</html>

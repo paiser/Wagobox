@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title> Wago Tango Class Command DevReadNoCachePhys </title>
+</head>
+<body text="Black" bgcolor="White" link="Blue" vlink="Purple" alink="Red">
+<br><br><br>
+<font size="+1"><u><b> Command DevReadNoCachePhys : </b></u></font>
+<ul>
+	Read all physical values of the specified logical device and <Br>
+	//              return the values as a float array. Physical value are<Br>
+	//              calculated from module registers according to a predefined<Br>
+	//              algorithm deduced from the module type in the catalogue.<Br>
+	//              Read registers from the cache.<Br>
+	//<Br>
+	//              Note: not all the channels of the logical device are<Br>
+	//              returned but only the ones on modules marked as specials<Br>
+	//              in the catalogue.
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> DevReadNoCachePhys Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEV_SHORT </td>
+		<td> Logical device index. </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEVVAR_FLOATARRAY </td>
+		<td> Array of values. </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command NOT allowed for </td>
+		<td> <font size="-1">  <li> INIT </li>  <li> FAULT </li> </font> </td>
+		<td> .. </td>
+	</tr>
+</table>
+</body>
+</html>

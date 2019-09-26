@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title> Wago Tango Class Commands </title>
+</head>
+<body text="Black" bgcolor="White" link="Blue" vlink="Purple" alink="Red">
+<br><br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=5> <font size=+1> <center><b> Wago Class Commands </b></font></center></td>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+		<td> <center><b> Name </b></center> </td>
+		<td> <center><b> Input type </b></center> </td>
+		<td> <center><b> Output type </b></center> </td>
+		<td> <center><b> Level </b></center> </td>
+		<td> <center><b> Description </b></center> </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdState.html"> State </a> </td>
+		<td> DEV_VOID </td>
+		<td> DEV_STATE </td>
+		<td> OPERATOR </td>
+		<td> This command gets the device state (stored in its device_state data member) and returns it to the caller. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdStatus.html"> Status </a> </td>
+		<td> DEV_VOID </td>
+		<td> CONST_DEV_STRING </td>
+		<td> OPERATOR </td>
+		<td> This command gets the device status (stored in its device_status data member) and returns it to the caller. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevReadNoCachePhys.html"> DevReadNoCachePhys </a> </td>
+		<td> DEV_SHORT </td>
+		<td> DEVVAR_FLOATARRAY </td>
+		<td> OPERATOR </td>
+		<td> Read all physical values of the specified logical device and <Br>
+			//              return the values as a float array. Physical value are<Br>
+			//              calculated from module registers according to a predefined<Br>
+			//              algorithm deduced from the module type in the catalogue.<Br>
+			//              Read registers from the cache.<Br>
+			//<Br>
+			//              Note: not all the channels of the logical device are<Br>
+			//              returned but only the ones on modules marked as specials<Br>
+			//              in the catalogue. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevWritePhys.html"> DevWritePhys </a> </td>
+		<td> DEVVAR_FLOATARRAY </td>
+		<td> DEV_VOID </td>
+		<td> OPERATOR </td>
+		<td> None. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevReadPhys.html"> DevReadPhys </a> </td>
+		<td> DEV_SHORT </td>
+		<td> DEVVAR_FLOATARRAY </td>
+		<td> OPERATOR </td>
+		<td> Read physical values of LD </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevWriteDigi.html"> DevWriteDigi </a> </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> DEV_VOID </td>
+		<td> OPERATOR </td>
+		<td> Write words and bits to output module registers. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevReadDigi.html"> DevReadDigi </a> </td>
+		<td> DEV_SHORT </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> OPERATOR </td>
+		<td> Read all input and output word and bits of the specified logical <Br>
+			device and return the values as a short array (short per bit). <Br>
+			Read from the cache. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevReadNoCacheDigi.html"> DevReadNoCacheDigi </a> </td>
+		<td> DEV_SHORT </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> OPERATOR </td>
+		<td> Read all input and output word and bits of the specified logical <Br>
+			device and return the values as a short array (short per bit). <Br>
+			Read from the cache. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevGetKeys.html"> DevGetKeys </a> </td>
+		<td> DEV_VOID </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> OPERATOR </td>
+		<td> Return all the numerical keys known by the server. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevKey2Name.html"> DevKey2Name </a> </td>
+		<td> DEV_SHORT </td>
+		<td> DEV_STRING </td>
+		<td> OPERATOR </td>
+		<td> Return the logical device name associated to a numerical keys <Br>
+			name. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevLog2Hard.html"> DevLog2Hard </a> </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> OPERATOR </td>
+		<td> Return hardware information of a logical device/logical channel. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevHard2Log.html"> DevHard2Log </a> </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> OPERATOR </td>
+		<td> Returns the logical device/logical channel of a memory location <Br>
+			on wago controller </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevName2Key.html"> DevName2Key </a> </td>
+		<td> DEV_STRING </td>
+		<td> DEV_SHORT </td>
+		<td> OPERATOR </td>
+		<td> Return the logical device name associated to a numerical keys name. </td>
+	</tr>
+	<tr>
+		<td> <a href="CmdDevWcComm.html"> DevWcComm </a> </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> DEVVAR_SHORTARRAY </td>
+		<td> OPERATOR </td>
+		<td> Executes a command in the wago controller programm. The communication is done using the ISG protocol. </td>
+	</tr>
+</table>
+</body>
+</html>

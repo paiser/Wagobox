@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title> Wago Tango Class Command DevLog2Hard </title>
+</head>
+<body text="Black" bgcolor="White" link="Blue" vlink="Purple" alink="Red">
+<br><br><br>
+<font size="+1"><u><b> Command DevLog2Hard : </b></u></font>
+<ul>
+	Return hardware information of a logical device/logical channel.
+</ul>
+<br><br><br>
+<Table Border=2 Cellpadding=3 CELLSPACING=0>
+	<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+	<td colspan=0> <font size=+1> <center><b> DevLog2Hard Definition </b></font></center></td>
+	</tr>
+	<tr>
+		<td> Input Argument </td>
+		<td> Tango::DEVVAR_SHORTARRAY </td>
+		<td> [0] : logical device key<Br>
+[1] : logical channel </td>
+	</tr>
+	<tr>
+		<td> Output Argument </td>
+		<td> Tango::DEVVAR_SHORTARRAY </td>
+		<td> [0] : offset in wago controller memory (ex: 0x16)<Br>
+[1] : MSB=I/O LSB=Bit/Word (ex: 0x4957 = (`I`<<8)+`W`)<Br>
+[2] : module reference (ex: 469)<Br>
+[3] : module number (1st is 0)<Br>
+[4] : physical channel of the module (ex: 1 for the 2nd) </td>
+	</tr>
+	<tr>
+		<td> DisplayLevel </td>
+		<td> OPERATOR </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Inherited </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Abstract </td>
+		<td> false </td>
+		<td> .. </td>
+	</tr>
+	<tr>
+		<td> Polling Period </td>
+		<td> Not polled </td>
+		<td> .. </td>
+	</tr>
+<Tr BGCOLOR="#CCCCFF"><Td><Hr></Td><Td><Hr></Td><Td><Hr></Td></Tr>
+	<tr>
+		<td> Command NOT allowed for </td>
+		<td> <font size="-1">  <li> INIT </li>  <li> FAULT </li> </font> </td>
+		<td> .. </td>
+	</tr>
+</table>
+</body>
+</html>

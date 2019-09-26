@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pogoDsl:PogoSystem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:pogoDsl="http://www.esrf.fr/tango/pogo/PogoDsl">
+  <multiClasses pogoRevision="9.6" name="WagoInterlock" sourcePath="/mntdirect/_segfs/tango/cppserver/instrumentation/Wago/WagoInterlock/Multiclass" description="Tango server for interlock devices based on wago 750 series controllers.&#xA;Modbus and Wago classes are included within this package." filestogenerate="XMI   file,Code files,Protected Regions">
+    <classes classname="WagoInterlock" sourcePath="..">
+      <inheritances classname="Device_Impl" sourcePath=""/>
+    </classes>
+    <classes classname="Wago" sourcePath="../..">
+      <inheritances classname="Device_Impl" sourcePath=""/>
+    </classes>
+    <classes classname="Modbus" sourcePath="../../../../protocols/Modbus/src">
+      <inheritances classname="Device_Impl" sourcePath=""/>
+      <additionalFiles name="ModbusCore" path="/mntdirect/_segfs/tango/cppserver/protocols/Modbus/src/ModbusCore.cpp"/>
+      <additionalFiles name="CacheThread" path="/mntdirect/_segfs/tango/cppserver/protocols/Modbus/src/CacheThread.cpp"/>
+    </classes>
+    <classes classname="Serial" sourcePath="../../../../protocols/SerialLine/src">
+      <inheritances classname="Device_4Impl" sourcePath=""/>
+    </classes>
+    <preferences makefileHome="/segfs/tango/cppserver/env"/>
+  </multiClasses>
+</pogoDsl:PogoSystem>
