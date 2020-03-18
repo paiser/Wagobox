@@ -57,7 +57,7 @@ OUTPUT_DIR = ./bin/$(BIN_DIR)
 # Tango Class list used by project
 #
 WAGOINTERLOCK_CLASS = WagoInterlock
-WAGOINTERLOCK_HOME  = /segfs/tango/cppserver/instrumentation/Wago/WagoInterlock
+WAGOINTERLOCK_HOME  = .
 
 WAGO_CLASS = Wago
 WAGO_HOME  = /segfs/tango/cppserver/instrumentation/Wago

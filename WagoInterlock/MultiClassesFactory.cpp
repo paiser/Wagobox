@@ -43,8 +43,8 @@
 
 void Tango::DServer::class_factory()
 {
-	add_class(WagoInterlock_ns::WagoInterlockClass::init("WagoInterlock"));
-	add_class(Wago_ns::WagoClass::init("Wago"));
-	add_class(Modbus_ns::ModbusClass::init("Modbus"));
 	add_class(Serial_ns::SerialClass::init("Serial"));
+	add_class(Modbus_ns::ModbusClass::init("Modbus"));
+	add_class(Wago_ns::WagoClass::init("Wago"));
+	add_class(WagoInterlock_ns::WagoInterlockClass::init("WagoInterlock"));
 }

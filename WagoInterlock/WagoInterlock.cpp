@@ -806,6 +806,7 @@ void WagoInterlock::upload_config()
 	}
 
 	lastException.errors.length(0);
+	PrepareWagoAttributeObjs();
 	//	Add your own code
 	
 	/*----- PROTECTED REGION END -----*/	//	WagoInterlock::upload_config
@@ -976,7 +977,7 @@ void WagoInterlock::ValidateIlckConfig(unsigned short &outChan, unsigned short &
 
 		this->configOK = false;
 		ERROR_STREAM << "Interlock::ValidateIlckConfig() Number of interlock channels des not match with device" << endl;
-		Tango::Except::throw_exception("Server config proprerty does not match to internal configuration",
+		Tango::Except::throw_exception("Config property != embedded configuration",
 				"Number of interlock channels des not match with device",
 				"Interlock::ValidateIlckConfig()");
 	}
@@ -1002,7 +1003,7 @@ void WagoInterlock::ValidateIlckConfig(unsigned short &outChan, unsigned short &
 		{
 			this->configOK = false;
 			ERROR_STREAM << "Interlock::ValidateIlckConfig " << processedConfiguration[i].attributeName  << " channel does not match" << endl;
-			Tango::Except::throw_exception("Server config proprerty does not match to internal configuration",
+			Tango::Except::throw_exception("Config property != embedded configuration",
 					processedConfiguration[i].attributeName + " channel does not match",
 					"Interlock::ValidateIlckConfig()");
 		}
@@ -1013,8 +1014,8 @@ void WagoInterlock::ValidateIlckConfig(unsigned short &outChan, unsigned short &
 			{
 				this->configOK = false;
 				ERROR_STREAM << "Interlock::ValidateIlckConfig " << processedConfiguration[i].attributeName  << " threshold low does not match" << endl;
-				Tango::Except::throw_exception("Server config proprerty does not match to internal configuration",
-						processedConfiguration[i].attributeName + " threshold low does not match",
+				Tango::Except::throw_exception("Config property != embedded configuration",
+						"Wrong "+ processedConfiguration[i].attributeName + " threshold low level",
 						"Interlock::ValidateIlckConfig()");
 			}
 
@@ -1022,8 +1023,8 @@ void WagoInterlock::ValidateIlckConfig(unsigned short &outChan, unsigned short &
 			{
 				this->configOK = false;
 				ERROR_STREAM << "Interlock::ValidateIlckConfig " << processedConfiguration[i].attributeName  << " threshold high does not match" << endl;
-				Tango::Except::throw_exception("Server config proprerty does not match to internal configuration",
-						processedConfiguration[i].attributeName + " threshold high does not match",
+				Tango::Except::throw_exception("Config property != embedded configuration",
+						"Wrong "+ processedConfiguration[i].attributeName + " threshold high level",
 						"Interlock::ValidateIlckConfig()");
 			}
 
@@ -1031,8 +1032,8 @@ void WagoInterlock::ValidateIlckConfig(unsigned short &outChan, unsigned short &
 			{
 				this->configOK = false;
 				ERROR_STREAM << "Interlock::ValidateIlckConfig " << processedConfiguration[i].attributeName  << " type does not match" << endl;
-				Tango::Except::throw_exception("Server config proprerty does not match to internal configuration",
-						processedConfiguration[i].attributeName + " type does not match",
+				Tango::Except::throw_exception("Config property != embedded configuration",
+						"Wrong "+ processedConfiguration[i].attributeName + " type",
 						"Interlock::ValidateIlckConfig()");
 
 			}
@@ -1238,7 +1239,7 @@ void WagoInterlock::ParseConfiguration()
  */
 void WagoInterlock::PrepareRelayOutput(string outRelayAttribName)
 {
-	Tango::AttributeInfoList *wAttrInfo = NULL;
+	Tango::AttributeInfoList *wAttrInfo;
 	vector<string> tmpNamList;
 
 	tmpNamList.push_back(outRelayAttribName);
@@ -1271,9 +1272,12 @@ void WagoInterlock::PrepareWagoAttributeObjs()
 	vector<string> *wAttrNameList = wagoDeviceProxyObj->get_attribute_list();
 	Tango::AttributeInfoList *wAttrInfo = wagoDeviceProxyObj->get_attribute_config(*wAttrNameList);
 
+	cout << " ProcessedConfiguration size: " << this->processedConfiguration.size() << endl;
 	for(unsigned int i = 0 ; i < this->processedConfiguration.size(); i++ )
 	{
 		DEBUG_STREAM << "Interlock::add_dynamic_attributes() searching for attribute named " << processedConfiguration[i].name << endl;
+//		cout << "Interlock::add_dynamic_attributes() searching for attribute named " << processedConfiguration[i].name << endl;
+
 		Tango::AttributeInfo *inf = NULL;
 
 		for(unsigned int j =0 ; j < wAttrInfo->size(); j++)
@@ -1302,7 +1306,6 @@ void WagoInterlock::PrepareWagoAttributeObjs()
 				break;
 			}
 		}
-
 		if(new_attr == NULL)
  		{
 			int dimension =   inf->max_dim_x;
@@ -1310,7 +1313,7 @@ void WagoInterlock::PrepareWagoAttributeObjs()
 			new_attr = new WagoAttribute(processedConfiguration[i].name, dimension);
 			channelAttributes.push_back(new_attr);
 		}
-
+		cout << " Create attribute " << new_attr->getName() << endl;
 		wagoAttrMapping_t attrMapBuf;
 		attrMapBuf.wAttr = new_attr;
 		attrMapBuf.position = processedConfiguration[i].logicalChannel;
@@ -1411,23 +1414,25 @@ void WagoInterlock::StatusUpdate()
 
 	}catch(Tango::DevFailed &ex)
 	{
-		lastException = AddToException(ex,"Error while device status update", "exception catched","Interlock::StatusUpdate()");
+		lastException = AddToException(ex,"Error while device status update", "Cannot initialize","Interlock::StatusUpdate()");
 		configOK = false;
 		ERROR_STREAM << "Interlock::dev_status() StatusUpdate catched exception" << endl;
 	}
 
 	if(lastException.errors.length() && (get_state() != Tango::ON))
 	{
-		ss << "Last Exception:\n";
+		ss << "configuration mismatch, try UploadConfig\n";
+		ss << "================================" << endl;
+		//ss << "Last Exception:\n";
 		for (unsigned short i = 0; i< lastException.errors.length(); i++)
 		{
-			ss << "\t" << lastException.errors[i].origin.in();
+			//ss << "\t" << lastException.errors[i].origin.in();
+			//ss << endl;
+			ss << lastException.errors[i].desc.in();
 			ss << endl;
-			ss << "\t" << lastException.errors[i].desc.in();
+			ss << lastException.errors[i].reason.in();
 			ss << endl;
-			ss << "\t" << lastException.errors[i].reason.in();
-			ss << endl;
-			ss << "==========================================================" << endl;
+			ss << "================================" << endl;
 		}
 		ss << "\n";
 	}
@@ -1498,6 +1503,13 @@ void WagoInterlock::read_attr(Tango::Attribute &att)
 		att.set_value((it->second).wAttr->at_ptr((it->second).position));
 		att.set_quality((it->second).wAttr->getQuality());
 	}
+	else
+	{
+	Tango::Except::throw_exception("Attribute not found" ,
+				"Could not find attribute " + att.get_name() + " in read attribute",
+				"WagoInterlock::read_attr()");
+	}
+	
 }
 
 /*----- PROTECTED REGION END -----*/	//	WagoInterlock::namespace_ending
