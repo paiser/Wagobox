@@ -71,7 +71,7 @@ int Hard2LogService::VisitModule(Module* md)
  *
  * \param wd	pointer to wago device object.
  */
-int Hard2LogService::VisitWagoDevice(WagoDevice* wd)
+void Hard2LogService::VisitWagoDevice(WagoDevice* wd)
 {
 	Module* md;
 	LogicalDevice *ld;
@@ -224,7 +224,7 @@ int Log2HardService::VisitModule(Module* md)
  *
  * \param wd	pointer to wago device object.
  */
-int Log2HardService::VisitWagoDevice(WagoDevice* wd)
+void Log2HardService::VisitWagoDevice(WagoDevice* wd)
 {
 
 	LogicalDevice* ld = wd->GetLd(lDeviceKey);
@@ -238,8 +238,6 @@ int Log2HardService::VisitWagoDevice(WagoDevice* wd)
 	VisitLogicalDevice(ld);
 
 	(*values)[3] = wd->GetModuleIndex(modulePtr);
-
-	return 0;
 }
 
 /*!The default constructor.
@@ -375,7 +373,7 @@ int StatusService::VisitLogicalDevice(LogicalDevice* ld)
  *
  * \param wd	pointer to wago device object.
  */
-int StatusService::VisitWagoDevice(WagoDevice *wagoDev)
+void StatusService::VisitWagoDevice(WagoDevice *wagoDev)
 {
 	configInfo cfg;
 	this->wd = wagoDev;
@@ -421,8 +419,6 @@ int StatusService::VisitWagoDevice(WagoDevice *wagoDev)
 	{
 		VisitLogicalDevice(ld);
 	}
-
-	return 0;
 }
 
 /*!The default constructor.
@@ -460,7 +456,7 @@ int WcCommService::VisitModule(Module* md)
  *
  * \param wd	pointer to wago device object.
  */
-int WcCommService::VisitWagoDevice(WagoDevice* wd)
+void WcCommService::VisitWagoDevice(WagoDevice* wd)
 {
 	ModbusAbstract* mbDev = wd->buffers.getModbusInterface();
 
@@ -475,14 +471,13 @@ int WcCommService::VisitWagoDevice(WagoDevice* wd)
 		throw;
 	}
 	mbDev->UnlockAccess();
-	return 0;
 }
 
 /*!Method executes service transactions with remote device.
  *
  * \param mba	pointer to modbus communication object.
  */
-int WcCommService::VisitModbusConnection(ModbusAbstract* mba)
+void WcCommService::VisitModbusConnection(ModbusAbstract* mba)
 {
 	vector<unsigned short> outbuff;
 	vector<unsigned short> inbuff;

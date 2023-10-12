@@ -63,20 +63,20 @@ namespace Wago_ns
 class DevReadNoCachePhysClass : public Tango::Command
 {
 public:
-	DevReadNoCachePhysClass(const char   *name,
+	DevReadNoCachePhysClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out,
 				   const char        *in_desc,
 				   const char        *out_desc,
 				   Tango::DispLevel  level)
-	:Command(name,in,out,in_desc,out_desc, level)	{};
+	:Command(cmd_name,in,out,in_desc,out_desc, level)	{};
 
-	DevReadNoCachePhysClass(const char   *name,
+	DevReadNoCachePhysClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out)
-	:Command(name,in,out)	{};
+	:Command(cmd_name,in,out)	{};
 	~DevReadNoCachePhysClass() {};
-	
+
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<Wago *>(dev))->is_DevReadNoCachePhys_allowed(any);}
@@ -86,20 +86,20 @@ public:
 class DevWritePhysClass : public Tango::Command
 {
 public:
-	DevWritePhysClass(const char   *name,
+	DevWritePhysClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out,
 				   const char        *in_desc,
 				   const char        *out_desc,
 				   Tango::DispLevel  level)
-	:Command(name,in,out,in_desc,out_desc, level)	{};
+	:Command(cmd_name,in,out,in_desc,out_desc, level)	{};
 
-	DevWritePhysClass(const char   *name,
+	DevWritePhysClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out)
-	:Command(name,in,out)	{};
+	:Command(cmd_name,in,out)	{};
 	~DevWritePhysClass() {};
-	
+
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<Wago *>(dev))->is_DevWritePhys_allowed(any);}
@@ -109,20 +109,20 @@ public:
 class DevReadPhysClass : public Tango::Command
 {
 public:
-	DevReadPhysClass(const char   *name,
+	DevReadPhysClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out,
 				   const char        *in_desc,
 				   const char        *out_desc,
 				   Tango::DispLevel  level)
-	:Command(name,in,out,in_desc,out_desc, level)	{};
+	:Command(cmd_name,in,out,in_desc,out_desc, level)	{};
 
-	DevReadPhysClass(const char   *name,
+	DevReadPhysClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out)
-	:Command(name,in,out)	{};
+	:Command(cmd_name,in,out)	{};
 	~DevReadPhysClass() {};
-	
+
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<Wago *>(dev))->is_DevReadPhys_allowed(any);}
@@ -132,20 +132,20 @@ public:
 class DevWriteDigiClass : public Tango::Command
 {
 public:
-	DevWriteDigiClass(const char   *name,
+	DevWriteDigiClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out,
 				   const char        *in_desc,
 				   const char        *out_desc,
 				   Tango::DispLevel  level)
-	:Command(name,in,out,in_desc,out_desc, level)	{};
+	:Command(cmd_name,in,out,in_desc,out_desc, level)	{};
 
-	DevWriteDigiClass(const char   *name,
+	DevWriteDigiClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out)
-	:Command(name,in,out)	{};
+	:Command(cmd_name,in,out)	{};
 	~DevWriteDigiClass() {};
-	
+
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<Wago *>(dev))->is_DevWriteDigi_allowed(any);}
@@ -155,20 +155,20 @@ public:
 class DevReadDigiClass : public Tango::Command
 {
 public:
-	DevReadDigiClass(const char   *name,
+	DevReadDigiClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out,
 				   const char        *in_desc,
 				   const char        *out_desc,
 				   Tango::DispLevel  level)
-	:Command(name,in,out,in_desc,out_desc, level)	{};
+	:Command(cmd_name,in,out,in_desc,out_desc, level)	{};
 
-	DevReadDigiClass(const char   *name,
+	DevReadDigiClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out)
-	:Command(name,in,out)	{};
+	:Command(cmd_name,in,out)	{};
 	~DevReadDigiClass() {};
-	
+
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<Wago *>(dev))->is_DevReadDigi_allowed(any);}
@@ -178,20 +178,20 @@ public:
 class DevReadNoCacheDigiClass : public Tango::Command
 {
 public:
-	DevReadNoCacheDigiClass(const char   *name,
+	DevReadNoCacheDigiClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out,
 				   const char        *in_desc,
 				   const char        *out_desc,
 				   Tango::DispLevel  level)
-	:Command(name,in,out,in_desc,out_desc, level)	{};
+	:Command(cmd_name,in,out,in_desc,out_desc, level)	{};
 
-	DevReadNoCacheDigiClass(const char   *name,
+	DevReadNoCacheDigiClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out)
-	:Command(name,in,out)	{};
+	:Command(cmd_name,in,out)	{};
 	~DevReadNoCacheDigiClass() {};
-	
+
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<Wago *>(dev))->is_DevReadNoCacheDigi_allowed(any);}
@@ -201,20 +201,20 @@ public:
 class DevGetKeysClass : public Tango::Command
 {
 public:
-	DevGetKeysClass(const char   *name,
+	DevGetKeysClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out,
 				   const char        *in_desc,
 				   const char        *out_desc,
 				   Tango::DispLevel  level)
-	:Command(name,in,out,in_desc,out_desc, level)	{};
+	:Command(cmd_name,in,out,in_desc,out_desc, level)	{};
 
-	DevGetKeysClass(const char   *name,
+	DevGetKeysClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out)
-	:Command(name,in,out)	{};
+	:Command(cmd_name,in,out)	{};
 	~DevGetKeysClass() {};
-	
+
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<Wago *>(dev))->is_DevGetKeys_allowed(any);}
@@ -224,20 +224,20 @@ public:
 class DevKey2NameClass : public Tango::Command
 {
 public:
-	DevKey2NameClass(const char   *name,
+	DevKey2NameClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out,
 				   const char        *in_desc,
 				   const char        *out_desc,
 				   Tango::DispLevel  level)
-	:Command(name,in,out,in_desc,out_desc, level)	{};
+	:Command(cmd_name,in,out,in_desc,out_desc, level)	{};
 
-	DevKey2NameClass(const char   *name,
+	DevKey2NameClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out)
-	:Command(name,in,out)	{};
+	:Command(cmd_name,in,out)	{};
 	~DevKey2NameClass() {};
-	
+
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<Wago *>(dev))->is_DevKey2Name_allowed(any);}
@@ -247,20 +247,20 @@ public:
 class DevLog2HardClass : public Tango::Command
 {
 public:
-	DevLog2HardClass(const char   *name,
+	DevLog2HardClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out,
 				   const char        *in_desc,
 				   const char        *out_desc,
 				   Tango::DispLevel  level)
-	:Command(name,in,out,in_desc,out_desc, level)	{};
+	:Command(cmd_name,in,out,in_desc,out_desc, level)	{};
 
-	DevLog2HardClass(const char   *name,
+	DevLog2HardClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out)
-	:Command(name,in,out)	{};
+	:Command(cmd_name,in,out)	{};
 	~DevLog2HardClass() {};
-	
+
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<Wago *>(dev))->is_DevLog2Hard_allowed(any);}
@@ -270,20 +270,20 @@ public:
 class DevHard2LogClass : public Tango::Command
 {
 public:
-	DevHard2LogClass(const char   *name,
+	DevHard2LogClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out,
 				   const char        *in_desc,
 				   const char        *out_desc,
 				   Tango::DispLevel  level)
-	:Command(name,in,out,in_desc,out_desc, level)	{};
+	:Command(cmd_name,in,out,in_desc,out_desc, level)	{};
 
-	DevHard2LogClass(const char   *name,
+	DevHard2LogClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out)
-	:Command(name,in,out)	{};
+	:Command(cmd_name,in,out)	{};
 	~DevHard2LogClass() {};
-	
+
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<Wago *>(dev))->is_DevHard2Log_allowed(any);}
@@ -293,20 +293,20 @@ public:
 class DevName2KeyClass : public Tango::Command
 {
 public:
-	DevName2KeyClass(const char   *name,
+	DevName2KeyClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out,
 				   const char        *in_desc,
 				   const char        *out_desc,
 				   Tango::DispLevel  level)
-	:Command(name,in,out,in_desc,out_desc, level)	{};
+	:Command(cmd_name,in,out,in_desc,out_desc, level)	{};
 
-	DevName2KeyClass(const char   *name,
+	DevName2KeyClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out)
-	:Command(name,in,out)	{};
+	:Command(cmd_name,in,out)	{};
 	~DevName2KeyClass() {};
-	
+
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<Wago *>(dev))->is_DevName2Key_allowed(any);}
@@ -316,20 +316,20 @@ public:
 class DevWcCommClass : public Tango::Command
 {
 public:
-	DevWcCommClass(const char   *name,
+	DevWcCommClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out,
 				   const char        *in_desc,
 				   const char        *out_desc,
 				   Tango::DispLevel  level)
-	:Command(name,in,out,in_desc,out_desc, level)	{};
+	:Command(cmd_name,in,out,in_desc,out_desc, level)	{};
 
-	DevWcCommClass(const char   *name,
+	DevWcCommClass(const char   *cmd_name,
 	               Tango::CmdArgType in,
 				   Tango::CmdArgType out)
-	:Command(name,in,out)	{};
+	:Command(cmd_name,in,out)	{};
 	~DevWcCommClass() {};
-	
+
 	virtual CORBA::Any *execute (Tango::DeviceImpl *dev, const CORBA::Any &any);
 	virtual bool is_allowed (Tango::DeviceImpl *dev, const CORBA::Any &any)
 	{return (static_cast<Wago *>(dev))->is_DevWcComm_allowed(any);}
@@ -346,13 +346,13 @@ class __declspec(dllexport)  WagoClass : public Tango::DeviceClass
 class WagoClass : public Tango::DeviceClass
 #endif
 {
-	/*----- PROTECTED REGION ID(WagoClass::Additionnal DServer data members) ENABLED START -----*/
+	/*----- PROTECTED REGION ID(WagoClass::Additional DServer data members) ENABLED START -----*/
 	
 	
-	/*----- PROTECTED REGION END -----*/	//	WagoClass::Additionnal DServer data members
+	/*----- PROTECTED REGION END -----*/	//	WagoClass::Additional DServer data members
 
-	//	Class properties data members
 	public:
+		//	Class properties data members
 		//	modulesCatalogue:	List of know WAGO modules usable by the WAGO Device Server
 		//  SYNTAX: 
 		//     -the first item should be the date the list has been updated
@@ -363,40 +363,39 @@ class WagoClass : public Tango::DeviceClass
 		//            -number of word     inputs
 		//            -number of word    outputs
 		//            -number of logical channels (typically SSI32bits==2 words)
-		//            -string for special module  (``none``,``ssi``,``thc``,``thck``,etc)
+		//            -string for special module  (``none``,``ssi``,``thc``,``thc100``,``thck``,etc)
 		//            -string for description
-		vector<string>	modulesCatalogue;
-	public:
+		std::vector<std::string>	modulesCatalogue;
 		//	write class properties data members
 		Tango::DbData	cl_prop;
 		Tango::DbData	cl_def_prop;
 		Tango::DbData	dev_def_prop;
-	
 		//	Method prototypes
 		static WagoClass *init(const char *);
 		static WagoClass *instance();
 		~WagoClass();
-		Tango::DbDatum	get_class_property(string &);
-		Tango::DbDatum	get_default_device_property(string &);
-		Tango::DbDatum	get_default_class_property(string &);
-	
+		Tango::DbDatum	get_class_property(std::string &);
+		Tango::DbDatum	get_default_device_property(std::string &);
+		Tango::DbDatum	get_default_class_property(std::string &);
+
 	protected:
-		WagoClass(string &);
+		WagoClass(std::string &);
 		static WagoClass *_instance;
 		void command_factory();
-		void attribute_factory(vector<Tango::Attr *> &);
+		void attribute_factory(std::vector<Tango::Attr *> &);
+		void pipe_factory();
 		void write_class_property();
 		void set_default_property();
 		void get_class_property();
-		string get_cvstag();
-		string get_cvsroot();
-	
+		std::string get_cvstag();
+		std::string get_cvsroot();
+
 	private:
-		void device_factory(const Tango::DevVarStringArray *);
-		void create_static_attribute_list(vector<Tango::Attr *> &);
-		void erase_dynamic_attributes(const Tango::DevVarStringArray *,vector<Tango::Attr *> &);
-		vector<string>	defaultAttList;
-		Tango::Attr *get_attr_object_by_name(vector<Tango::Attr *> &att_list, string attname);
+		void device_factory(TANGO_UNUSED(const Tango::DevVarStringArray *));
+		void create_static_attribute_list(std::vector<Tango::Attr *> &);
+		void erase_dynamic_attributes(const Tango::DevVarStringArray *,std::vector<Tango::Attr *> &);
+		std::vector<std::string>	defaultAttList;
+		Tango::Attr *get_attr_object_by_name(std::vector<Tango::Attr *> &att_list, std::string attname);
 };
 
 }	//	End of namespace

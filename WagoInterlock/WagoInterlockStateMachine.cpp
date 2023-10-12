@@ -54,14 +54,15 @@ namespace WagoInterlock_ns
 //		Attributes Allowed Methods
 //=================================================
 
+
 //=================================================
 //		Commands Allowed Methods
 //=================================================
 
 //--------------------------------------------------------
 /**
- *	Method      : WagoInterlock::is_UploadConfig_allowed()
- *	Description : Execution allowed for UploadConfig attribute
+ *	Method     : WagoInterlock::is_UploadConfig_allowed()
+ *	Description: Execution allowed for UploadConfig attribute
  */
 //--------------------------------------------------------
 bool WagoInterlock::is_UploadConfig_allowed(TANGO_UNUSED(const CORBA::Any &any))
@@ -75,8 +76,8 @@ bool WagoInterlock::is_UploadConfig_allowed(TANGO_UNUSED(const CORBA::Any &any))
 
 //--------------------------------------------------------
 /**
- *	Method      : WagoInterlock::is_Reset_allowed()
- *	Description : Execution allowed for Reset attribute
+ *	Method     : WagoInterlock::is_Reset_allowed()
+ *	Description: Execution allowed for Reset attribute
  */
 //--------------------------------------------------------
 bool WagoInterlock::is_Reset_allowed(TANGO_UNUSED(const CORBA::Any &any))
@@ -87,5 +88,12 @@ bool WagoInterlock::is_Reset_allowed(TANGO_UNUSED(const CORBA::Any &any))
 	/*----- PROTECTED REGION END -----*/	//	WagoInterlock::ResetStateAllowed
 	return true;
 }
+
+
+/*----- PROTECTED REGION ID(WagoInterlock::WagoInterlockStateAllowed.AdditionalMethods) ENABLED START -----*/
+
+//	Additional Methods
+
+/*----- PROTECTED REGION END -----*/	//	WagoInterlock::WagoInterlockStateAllowed.AdditionalMethods
 
 }	//	End of namespace

@@ -59,10 +59,21 @@ typedef struct channel_t{
 
 /*----- PROTECTED REGION END -----*/	//	WagoInterlock.h
 
+#ifdef TANGO_LOG
+	// cppTango after c934adea (Merge branch 'remove-cout-definition' into 'main', 2022-05-23)
+	// nothing to do
+#else
+	// cppTango 9.3-backports and older
+	#define TANGO_LOG       cout
+	#define TANGO_LOG_INFO  cout2
+	#define TANGO_LOG_DEBUG cout3
+#endif // TANGO_LOG
+
 /**
  *  WagoInterlock class description:
  *    Class representing interlocks implemented using Wago
  */
+
 
 namespace WagoInterlock_ns
 {
@@ -82,7 +93,7 @@ typedef struct wagoAttrMapping_t{
 
 /*----- PROTECTED REGION END -----*/	//	WagoInterlock::Additional Class Declarations
 
-class WagoInterlock : public Tango::Device_4Impl
+class WagoInterlock : public TANGO_BASE_CLASS
 {
 
 /*----- PROTECTED REGION ID(WagoInterlock::Data Members) ENABLED START -----*/
@@ -98,15 +109,15 @@ private:
 //	Device property data members
 public:
 	//	config:	Configuration of the interlock
-	vector<string>	config;
+	std::vector<std::string>	config;
 	//	name:	Interlock name
-	string	name;
+	std::string	name;
 	//	flags:	Interlock flags
-	string	flags;
+	std::string	flags;
 	//	outRelay:	output relay name
-	string	outRelay;
+	std::string	outRelay;
 	//	wagoDevice:	Corresponding wago device tango server name
-	string	wagoDevice;
+	std::string	wagoDevice;
 	//	DataPeriod:	Data refresh period
 	Tango::DevUShort	dataPeriod;
 	//	StatusPeriod:	Status refresh period
@@ -123,7 +134,7 @@ public:
 	 *	@param cl	Class.
 	 *	@param s 	Device Name
 	 */
-	WagoInterlock(Tango::DeviceClass *cl,string &s);
+	WagoInterlock(Tango::DeviceClass *cl,std::string &s);
 	/**
 	 * Constructs a newly device object.
 	 *
@@ -141,8 +152,8 @@ public:
 	WagoInterlock(Tango::DeviceClass *cl,const char *s,const char *d);
 	/**
 	 * The device object destructor.
-	 */	
-	~WagoInterlock() {delete_device();};
+	 */
+	~WagoInterlock();
 
 
 //	Miscellaneous methods
@@ -173,20 +184,21 @@ public:
 public:
 	//--------------------------------------------------------
 	/*
-	 *	Method      : WagoInterlock::read_attr_hardware()
-	 *	Description : Hardware acquisition for attributes.
+	 *	Method     : WagoInterlock::read_attr_hardware()
+	 *	Description: Hardware acquisition for attributes.
 	 */
 	//--------------------------------------------------------
-	virtual void read_attr_hardware(vector<long> &attr_list);
+	virtual void read_attr_hardware(std::vector<long> &attr_list);
 
 
 	//--------------------------------------------------------
 	/**
-	 *	Method      : WagoInterlock::add_dynamic_attributes()
-	 *	Description : Add dynamic attributes if any.
+	 *	Method     : WagoInterlock::add_dynamic_attributes()
+	 *	Description: Add dynamic attributes if any.
 	 */
 	//--------------------------------------------------------
 	void add_dynamic_attributes();
+
 
 
 
@@ -214,6 +226,14 @@ public:
 	virtual void reset();
 	virtual bool is_Reset_allowed(const CORBA::Any &any);
 
+
+	//--------------------------------------------------------
+	/**
+	 *	Method     : WagoInterlock::add_dynamic_commands()
+	 *	Description: Add dynamic commands if any.
+	 */
+	//--------------------------------------------------------
+	void add_dynamic_commands();
 
 /*----- PROTECTED REGION ID(WagoInterlock::Additional Method prototypes) ENABLED START -----*/
 	virtual void read_attr( Tango::Attribute &att);

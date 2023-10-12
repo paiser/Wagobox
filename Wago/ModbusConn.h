@@ -42,9 +42,9 @@ public:
 	virtual int ReadInputRegisters(unsigned int addr, unsigned int numOfRegisters, vector<unsigned short>& dataBuffer);
 	virtual int ReadHoldingRegisters(unsigned int addr, unsigned int numOfRegisters, vector<unsigned short>& dataBuffer);
 	virtual int ReadMultipleCoilsStatus(unsigned int addr,unsigned int numOfCoils, vector<unsigned short>& dataBuffer);
-	virtual int ForceMultipleCoils(unsigned int addr, vector<unsigned short>& values);
-	virtual int PresetSingleRegister(unsigned int addr, unsigned short value);
-	virtual int PresetMultipleRegisters(unsigned int addr, vector<unsigned short>& values);
+	virtual void ForceMultipleCoils(unsigned int addr, vector<unsigned short>& values);
+	virtual void PresetSingleRegister(unsigned int addr, unsigned short value);
+	virtual void PresetMultipleRegisters(unsigned int addr, vector<unsigned short>& values);
 	virtual bool ModbusStateCheck();
 	virtual void RaiseLastModbusException();
 	virtual void InconsistentImageFault(std::string desc);

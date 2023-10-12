@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pogoDsl:PogoSystem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pogoDsl="http://www.esrf.fr/tango/pogo/PogoDsl">
-  <classes name="Wago" pogoRevision="9.6">
-    <description description="Device server for Wago 750 series Programable Fieldbus Controllers &#xA;and Fieldbus Couplers. The class supports reading and writing to a node&#xA;consisting of a number of Wago modules. It communicates with device over&#xA;Modbus TCP or RTU protocol by means of Modbus Tango class." title="Wago interface" sourcePath="/mntdirect/_segfs/tango/cppserver/instrumentation/Wago" language="Cpp" filestogenerate="XMI   file,Protected Regions,html Pages" license="GPL" hasMandatoryProperty="false" hasConcreteProperty="true" hasAbstractCommand="false" hasAbstractAttribute="false" descriptionHtmlExists="false">
+  <classes name="Wago" pogoRevision="9.7">
+    <description description="Device server for Wago 750 series Programable Fieldbus Controllers &#xA;and Fieldbus Couplers. The class supports reading and writing to a node&#xA;consisting of a number of Wago modules. It communicates with device over&#xA;Modbus TCP or RTU protocol by means of Modbus Tango class." title="Wago interface" sourcePath="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago" language="Cpp" filestogenerate="XMI   file,Code files,Protected Regions,html Pages" license="GPL" hasMandatoryProperty="false" hasConcreteProperty="true" hasAbstractCommand="false" hasAbstractAttribute="false" descriptionHtmlExists="false">
       <inheritances classname="Device_Impl" sourcePath=""/>
       <identification contact="at at esrf.fr - pawel.kowaliszyn" author="pawel.kowaliszyn" emailDomain="at esrf.fr" classFamily="Controllers" siteSpecific="" platform="All Platforms" bus="Modbus" manufacturer="none" reference=""/>
     </description>
-    <classProperties name="modulesCatalogue" description="List of know WAGO modules usable by the WAGO Device Server&#xA;SYNTAX: &#xA;   -the first item should be the date the list has been updated&#xA;   -then, for each module, you must supply:&#xA;          -module reference&#xA;          -number of digital  inputs&#xA;          -number of digital outputs&#xA;          -number of word     inputs&#xA;          -number of word    outputs&#xA;          -number of logical channels (typically SSI32bits==2 words)&#xA;          -string for special module  (``none``,``ssi``,``thc``,``thck``,etc)&#xA;          -string for description">
+    <classProperties name="modulesCatalogue" description="List of know WAGO modules usable by the WAGO Device Server&#xA;SYNTAX: &#xA;   -the first item should be the date the list has been updated&#xA;   -then, for each module, you must supply:&#xA;          -module reference&#xA;          -number of digital  inputs&#xA;          -number of digital outputs&#xA;          -number of word     inputs&#xA;          -number of word    outputs&#xA;          -number of logical channels (typically SSI32bits==2 words)&#xA;          -string for special module  (``none``,``ssi``,``thc``,``thc100``,``thck``,etc)&#xA;          -string for description">
       <type xsi:type="pogoDsl:StringVectorType"/>
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
     </classProperties>
@@ -182,5 +182,15 @@
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
     </states>
     <preferences docHome="./doc_html" makefileHome="/segfs/tango/cppserver/env"/>
+    <additionalFiles name="ModbusConn" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/ModbusConn.cpp"/>
+    <additionalFiles name="BufferHolder" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/BufferHolder.cpp"/>
+    <additionalFiles name="Configurator" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/Configurator.cpp"/>
+    <additionalFiles name="LogicalDevice" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/LogicalDevice.cpp"/>
+    <additionalFiles name="Module" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/Module.cpp"/>
+    <additionalFiles name="ModuleDB" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/ModuleDB.cpp"/>
+    <additionalFiles name="PhysValueTransformer" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/PhysValueTransformer.cpp"/>
+    <additionalFiles name="Services" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/Services.cpp"/>
+    <additionalFiles name="Tools" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/Tools.cpp"/>
+    <additionalFiles name="WagoDevice" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/WagoDevice.cpp"/>
   </classes>
 </pogoDsl:PogoSystem>
