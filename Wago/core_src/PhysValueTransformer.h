@@ -102,6 +102,18 @@ public:
 	virtual void TransformOutputWrite(unsigned short* inputValue, float& transformedValue);
 };
 
+/*Transformer class for thermocouple modules
+ *
+ */
+class Thc100Transformer: public PhysValueTransformer
+{
+public:
+	Thc100Transformer();
+	virtual void TransformInput(unsigned short* inputValue, float& transformedValue);
+	virtual void TransformOutput(unsigned short* inputValue, float& transformedValue);
+	virtual void TransformOutputWrite(unsigned short* inputValue, float& transformedValue);
+};
+
 /*Transformer class for ssi encoder modules
  *
  */

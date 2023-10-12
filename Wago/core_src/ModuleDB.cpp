@@ -244,7 +244,12 @@ void ModuleDB::AttachPhysTransformer(wagoModuleDesc &modDesc)
 			DB_INFO_STREAM << "ModuleDB::AttachPhysTransformer() " << modDesc.name << " attaching FsTransformer" << endl;
 			modDesc.physTransformer = new FsTransformer();
 	}
-	else if(strncmp(modDesc.special.c_str(), THC_RES, strlen(THC_RES)) == 0)
+	else if(strncmp(modDesc.special.c_str(), THC_100_RES, strlen(THC_100_RES)) == 0)
+	{
+			DB_INFO_STREAM << "ModuleDB::AttachPhysTransformer() " << modDesc.name << " attaching Thc100Transformer" << endl;
+			modDesc.physTransformer = new Thc100Transformer();
+	}
+        else if(strncmp(modDesc.special.c_str(), THC_RES, strlen(THC_RES)) == 0)
 	{
 			DB_INFO_STREAM << "ModuleDB::AttachPhysTransformer() " << modDesc.name << " attaching ThcTransformer" << endl;
 			modDesc.physTransformer = new ThcTransformer();

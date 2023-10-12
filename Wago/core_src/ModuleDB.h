@@ -35,6 +35,7 @@ class PhysValueTransformer;
 
 #define NONE_RES      "none"
 #define SSI_RES       "ssi"
+#define THC_100_RES       "thc100"
 #define THC_RES       "thc"
 #define FS_RES        "fs"
 #define M637_RES      "637"
