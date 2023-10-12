@@ -461,6 +461,41 @@ void ThcTransformer::TransformOutputWrite(unsigned short* inputValue, float& tra
 /*!Default constructor
  *
  */
+Thc100Transformer::Thc100Transformer():
+PhysValueTransformer()
+{
+}
+
+/*!See PhysValueTransformer::TransformInput description
+ *
+ */
+void Thc100Transformer::TransformInput(unsigned short* inputValue, float& transformedValue)
+{
+	short signedValue = *(short*)inputValue;
+	transformedValue = ((float)signedValue) * 0.01f;
+}
+
+/*!See PhysValueTransformer::TransformOutput description
+ *
+ */
+void Thc100Transformer::TransformOutput(unsigned short* inputValue, float& transformedValue)
+{
+	short signedValue = *(short*)inputValue;
+	transformedValue = ((float)signedValue) * 0.01f;
+}
+
+/*!See PhysValueTransformer::TransformOutputWrite description
+ *
+ */
+void Thc100Transformer::TransformOutputWrite(unsigned short* inputValue, float& transformedValue)
+{
+	DB_DEBUG_STREAM << "ThcTransformer::TransformOutputWrite()" << endl;
+	*inputValue  = (unsigned short)(transformedValue*100.0f);
+}
+
+/*!Default constructor
+ *
+ */
 SSITransformer::SSITransformer():
 PhysValueTransformer(),
 bits(0)
