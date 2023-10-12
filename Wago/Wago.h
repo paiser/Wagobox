@@ -45,6 +45,16 @@
 
 /*----- PROTECTED REGION END -----*/	//	Wago.h
 
+#ifdef TANGO_LOG
+	// cppTango after c934adea (Merge branch 'remove-cout-definition' into 'main', 2022-05-23)
+	// nothing to do
+#else
+	// cppTango 9.3-backports and older
+	#define TANGO_LOG       cout
+	#define TANGO_LOG_INFO  cout2
+	#define TANGO_LOG_DEBUG cout3
+#endif // TANGO_LOG
+
 /**
  *  Wago class description:
  *    Device server for Wago 750 series Programable Fieldbus Controllers 
@@ -53,6 +63,7 @@
  *    Modbus TCP or RTU protocol by means of Modbus Tango class.
  */
 
+
 namespace Wago_ns
 {
 /*----- PROTECTED REGION ID(Wago::Additional Class Declarations) ENABLED START -----*/
@@ -60,7 +71,7 @@ namespace Wago_ns
 //	Additional Class Declarations
 /*----- PROTECTED REGION END -----*/	//	Wago::Additional Class Declarations
 
-class Wago : public Tango::Device_4Impl
+class Wago : public TANGO_BASE_CLASS
 {
 
 /*----- PROTECTED REGION ID(Wago::Data Members) ENABLED START -----*/
@@ -75,10 +86,10 @@ private:
 public:
 	//	modbusDevName:	Name of Modbus tango device server used for communication with
 	//   physical device.
-	string	modbusDevName;
+	std::string	modbusDevName;
 	//	config:	Configuration of physical modules in device and its projection
 	//   to LogicalDevices in server.
-	vector<string>	config;
+	std::vector<std::string>	config;
 	//	updatePeriod:	Modbus process image cache update interval.
 	Tango::DevUShort	updatePeriod;
 
@@ -91,7 +102,7 @@ public:
 	 *	@param cl	Class.
 	 *	@param s 	Device Name
 	 */
-	Wago(Tango::DeviceClass *cl,string &s);
+	Wago(Tango::DeviceClass *cl,std::string &s);
 	/**
 	 * Constructs a newly device object.
 	 *
@@ -109,8 +120,8 @@ public:
 	Wago(Tango::DeviceClass *cl,const char *s,const char *d);
 	/**
 	 * The device object destructor.
-	 */	
-	~Wago() {delete_device();};
+	 */
+	~Wago();
 
 
 //	Miscellaneous methods
@@ -137,20 +148,21 @@ public:
 public:
 	//--------------------------------------------------------
 	/*
-	 *	Method      : Wago::read_attr_hardware()
-	 *	Description : Hardware acquisition for attributes.
+	 *	Method     : Wago::read_attr_hardware()
+	 *	Description: Hardware acquisition for attributes.
 	 */
 	//--------------------------------------------------------
-	virtual void read_attr_hardware(vector<long> &attr_list);
+	virtual void read_attr_hardware(std::vector<long> &attr_list);
 
 
 	//--------------------------------------------------------
 	/**
-	 *	Method      : Wago::add_dynamic_attributes()
-	 *	Description : Add dynamic attributes if any.
+	 *	Method     : Wago::add_dynamic_attributes()
+	 *	Description: Add dynamic attributes if any.
 	 */
 	//--------------------------------------------------------
 	void add_dynamic_attributes();
+
 
 
 
@@ -189,7 +201,7 @@ public:
 	virtual bool is_DevReadNoCachePhys_allowed(const CORBA::Any &any);
 	/**
 	 *	Command DevWritePhys related method
-	 *	Description: 
+	 *
 	 *
 	 *	@param argin Logical device key and values for write
 	 */
@@ -257,12 +269,12 @@ public:
 	 *	Description: Return hardware information of a logical device/logical channel.
 	 *
 	 *	@param argin [0] : logical device key
-	 *               [1] : logical channel
+	 *	[1] : logical channel
 	 *	@returns [0] : offset in wago controller memory (ex: 0x16)
-	 *           [1] : MSB=I/O LSB=Bit/Word (ex: 0x4957 = (`I`<<8)+`W`)
-	 *           [2] : module reference (ex: 469)
-	 *           [3] : module number (1st is 0)
-	 *           [4] : physical channel of the module (ex: 1 for the 2nd)
+	 *	[1] : MSB=I/O LSB=Bit/Word (ex: 0x4957 = (`I`<<8)+`W`)
+	 *	[2] : module reference (ex: 469)
+	 *	[3] : module number (1st is 0)
+	 *	[4] : physical channel of the module (ex: 1 for the 2nd)
 	 */
 	virtual Tango::DevVarShortArray *dev_log2_hard(const Tango::DevVarShortArray *argin);
 	virtual bool is_DevLog2Hard_allowed(const CORBA::Any &any);
@@ -272,9 +284,9 @@ public:
 	 *               on wago controller
 	 *
 	 *	@param argin [0] : MSB=I/O LSB=Bit/Word (ex: 0x4957 = (`I`<<8)+`W`)
-	 *               [1] : offset in wago controller memory (ex: 0x16)
+	 *	[1] : offset in wago controller memory (ex: 0x16)
 	 *	@returns [0] : logical device key
-	 *           [1] : logical channel
+	 *	[1] : logical channel
 	 */
 	virtual Tango::DevVarShortArray *dev_hard2_log(const Tango::DevVarShortArray *argin);
 	virtual bool is_DevHard2Log_allowed(const CORBA::Any &any);
@@ -292,16 +304,24 @@ public:
 	 *	Description: Executes a command in the wago controller programm. The communication is done using the ISG protocol.
 	 *
 	 *	@param argin [0] : code of command to execute (ex: 0x010c for ILCK_RESET)
-	 *               [1] : 1st parameter
-	 *               [2] : 2nd parameter
-	 *               etc
+	 *	[1] : 1st parameter
+	 *	[2] : 2nd parameter
+	 *	etc
 	 *	@returns [0] : 1st argout or error code
-	 *           [1] : 2nd argout 
-	 *           etc
+	 *	[1] : 2nd argout 
+	 *	etc
 	 */
 	virtual Tango::DevVarShortArray *dev_wc_comm(const Tango::DevVarShortArray *argin);
 	virtual bool is_DevWcComm_allowed(const CORBA::Any &any);
 
+
+	//--------------------------------------------------------
+	/**
+	 *	Method     : Wago::add_dynamic_commands()
+	 *	Description: Add dynamic commands if any.
+	 */
+	//--------------------------------------------------------
+	void add_dynamic_commands();
 
 /*----- PROTECTED REGION ID(Wago::Additional Method prototypes) ENABLED START -----*/
 

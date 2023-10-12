@@ -18,7 +18,7 @@ class Visitor
 public:
 	virtual int VisitLogicalDevice(LogicalDevice* ld) = 0;
 	virtual int VisitModule(Module* md) = 0;
-	virtual int VisitWagoDevice(WagoDevice* wd)= 0;
+	virtual void VisitWagoDevice(WagoDevice* wd)= 0;
 
 	LOGGING_ADDONS;
 };
@@ -32,7 +32,7 @@ public:
 	Hard2LogService(unsigned short off, unsigned short type, vector<unsigned short>* vals);
 	virtual int VisitLogicalDevice(LogicalDevice* ld);
 	virtual int VisitModule(Module* md);
-	virtual int VisitWagoDevice(WagoDevice* wd);
+	virtual void VisitWagoDevice(WagoDevice* wd);
 
 private:
 	void GetAddr(BufferHolder& buffers);
@@ -55,7 +55,7 @@ public:
 	Log2HardService(unsigned short ldKey, unsigned int chan, vector<unsigned short>* val);
 	virtual int VisitLogicalDevice(LogicalDevice* ld);
 	virtual int VisitModule(Module* md);
-	virtual int VisitWagoDevice(WagoDevice* wd);
+	virtual void VisitWagoDevice(WagoDevice* wd);
 
 protected:
 	unsigned short lDeviceKey; //!Numeric key of logical device.
@@ -74,7 +74,7 @@ public:
 	StatusService(string* output);
 	virtual int VisitLogicalDevice(LogicalDevice* ld);
 	virtual int VisitModule(Module* md);
-	virtual int VisitWagoDevice(WagoDevice *wagoDev);
+	virtual void VisitWagoDevice(WagoDevice *wagoDev);
 
 protected:
 	int ParseConfig(configInfo &cfg);
@@ -124,8 +124,8 @@ public:
 	WcCommService(vector<unsigned short> *inArgs, vector<unsigned short> *outArgs);
 	virtual int VisitLogicalDevice(LogicalDevice* ld);
 	virtual int VisitModule(Module* md);
-	virtual int VisitWagoDevice(WagoDevice* wd);
-	virtual int VisitModbusConnection(ModbusAbstract* mba);
+	virtual void VisitWagoDevice(WagoDevice* wd);
+	virtual void VisitModbusConnection(ModbusAbstract* mba);
 private:
 	vector<unsigned short> *inargs; //! pointer to containter holding input arguments of service.
 	vector<unsigned short> *outargs; //! pointer to containter for storing output arguments of service.

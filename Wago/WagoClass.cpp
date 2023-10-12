@@ -74,17 +74,20 @@ namespace Wago_ns
 //===================================================================
 WagoClass *WagoClass::_instance = NULL;
 
+//===================================================================
+//	Class constants
+//===================================================================
 //--------------------------------------------------------
 /**
- * method : 		WagoClass::WagoClass(string &s)
+ * method : 		WagoClass::WagoClass(std::string &s)
  * description : 	constructor for the WagoClass
  *
  * @param s	The class name
  */
 //--------------------------------------------------------
-WagoClass::WagoClass(string &s):Tango::DeviceClass(s)
+WagoClass::WagoClass(std::string &s):Tango::DeviceClass(s)
 {
-	cout2 << "Entering WagoClass constructor" << endl;
+	TANGO_LOG_INFO << "Entering WagoClass constructor" << std::endl;
 	set_default_property();
 	get_class_property();
 	write_class_property();
@@ -93,7 +96,7 @@ WagoClass::WagoClass(string &s):Tango::DeviceClass(s)
 	ModuleDB::Instance()->ParseCatalogue(modulesCatalogue);
 	/*----- PROTECTED REGION END -----*/	//	WagoClass::constructor
 
-	cout2 << "Leaving WagoClass constructor" << endl;
+	TANGO_LOG_INFO << "Leaving WagoClass constructor" << std::endl;
 }
 
 //--------------------------------------------------------
@@ -127,14 +130,14 @@ WagoClass *WagoClass::init(const char *name)
 	{
 		try
 		{
-			string s(name);
+			std::string s(name);
 			_instance = new WagoClass(s);
 		}
-		catch (bad_alloc &)
+		catch (std::bad_alloc &)
 		{
 			throw;
-		}		
-	}		
+		}
+	}
 	return _instance;
 }
 
@@ -149,7 +152,7 @@ WagoClass *WagoClass::instance()
 {
 	if (_instance == NULL)
 	{
-		cerr << "Class is not initialised !!" << endl;
+		std::cerr << "Class is not initialized !!" << std::endl;
 		exit(-1);
 	}
 	return _instance;
@@ -173,7 +176,7 @@ WagoClass *WagoClass::instance()
 //--------------------------------------------------------
 CORBA::Any *DevReadNoCachePhysClass::execute(Tango::DeviceImpl *device, const CORBA::Any &in_any)
 {
-	cout2 << "DevReadNoCachePhysClass::execute(): arrived" << endl;
+	TANGO_LOG_INFO << "DevReadNoCachePhysClass::execute(): arrived" << std::endl;
 	Tango::DevShort argin;
 	extract(in_any, argin);
 	return insert((static_cast<Wago *>(device))->dev_read_no_cache_phys(argin));
@@ -192,7 +195,7 @@ CORBA::Any *DevReadNoCachePhysClass::execute(Tango::DeviceImpl *device, const CO
 //--------------------------------------------------------
 CORBA::Any *DevWritePhysClass::execute(Tango::DeviceImpl *device, const CORBA::Any &in_any)
 {
-	cout2 << "DevWritePhysClass::execute(): arrived" << endl;
+	TANGO_LOG_INFO << "DevWritePhysClass::execute(): arrived" << std::endl;
 	const Tango::DevVarFloatArray *argin;
 	extract(in_any, argin);
 	((static_cast<Wago *>(device))->dev_write_phys(argin));
@@ -212,7 +215,7 @@ CORBA::Any *DevWritePhysClass::execute(Tango::DeviceImpl *device, const CORBA::A
 //--------------------------------------------------------
 CORBA::Any *DevReadPhysClass::execute(Tango::DeviceImpl *device, const CORBA::Any &in_any)
 {
-	cout2 << "DevReadPhysClass::execute(): arrived" << endl;
+	TANGO_LOG_INFO << "DevReadPhysClass::execute(): arrived" << std::endl;
 	Tango::DevShort argin;
 	extract(in_any, argin);
 	return insert((static_cast<Wago *>(device))->dev_read_phys(argin));
@@ -231,7 +234,7 @@ CORBA::Any *DevReadPhysClass::execute(Tango::DeviceImpl *device, const CORBA::An
 //--------------------------------------------------------
 CORBA::Any *DevWriteDigiClass::execute(Tango::DeviceImpl *device, const CORBA::Any &in_any)
 {
-	cout2 << "DevWriteDigiClass::execute(): arrived" << endl;
+	TANGO_LOG_INFO << "DevWriteDigiClass::execute(): arrived" << std::endl;
 	const Tango::DevVarShortArray *argin;
 	extract(in_any, argin);
 	((static_cast<Wago *>(device))->dev_write_digi(argin));
@@ -251,7 +254,7 @@ CORBA::Any *DevWriteDigiClass::execute(Tango::DeviceImpl *device, const CORBA::A
 //--------------------------------------------------------
 CORBA::Any *DevReadDigiClass::execute(Tango::DeviceImpl *device, const CORBA::Any &in_any)
 {
-	cout2 << "DevReadDigiClass::execute(): arrived" << endl;
+	TANGO_LOG_INFO << "DevReadDigiClass::execute(): arrived" << std::endl;
 	Tango::DevShort argin;
 	extract(in_any, argin);
 	return insert((static_cast<Wago *>(device))->dev_read_digi(argin));
@@ -270,7 +273,7 @@ CORBA::Any *DevReadDigiClass::execute(Tango::DeviceImpl *device, const CORBA::An
 //--------------------------------------------------------
 CORBA::Any *DevReadNoCacheDigiClass::execute(Tango::DeviceImpl *device, const CORBA::Any &in_any)
 {
-	cout2 << "DevReadNoCacheDigiClass::execute(): arrived" << endl;
+	TANGO_LOG_INFO << "DevReadNoCacheDigiClass::execute(): arrived" << std::endl;
 	Tango::DevShort argin;
 	extract(in_any, argin);
 	return insert((static_cast<Wago *>(device))->dev_read_no_cache_digi(argin));
@@ -289,7 +292,7 @@ CORBA::Any *DevReadNoCacheDigiClass::execute(Tango::DeviceImpl *device, const CO
 //--------------------------------------------------------
 CORBA::Any *DevGetKeysClass::execute(Tango::DeviceImpl *device, TANGO_UNUSED(const CORBA::Any &in_any))
 {
-	cout2 << "DevGetKeysClass::execute(): arrived" << endl;
+	TANGO_LOG_INFO << "DevGetKeysClass::execute(): arrived" << std::endl;
 	return insert((static_cast<Wago *>(device))->dev_get_keys());
 }
 
@@ -306,7 +309,7 @@ CORBA::Any *DevGetKeysClass::execute(Tango::DeviceImpl *device, TANGO_UNUSED(con
 //--------------------------------------------------------
 CORBA::Any *DevKey2NameClass::execute(Tango::DeviceImpl *device, const CORBA::Any &in_any)
 {
-	cout2 << "DevKey2NameClass::execute(): arrived" << endl;
+	TANGO_LOG_INFO << "DevKey2NameClass::execute(): arrived" << std::endl;
 	Tango::DevShort argin;
 	extract(in_any, argin);
 	return insert((static_cast<Wago *>(device))->dev_key2_name(argin));
@@ -325,7 +328,7 @@ CORBA::Any *DevKey2NameClass::execute(Tango::DeviceImpl *device, const CORBA::An
 //--------------------------------------------------------
 CORBA::Any *DevLog2HardClass::execute(Tango::DeviceImpl *device, const CORBA::Any &in_any)
 {
-	cout2 << "DevLog2HardClass::execute(): arrived" << endl;
+	TANGO_LOG_INFO << "DevLog2HardClass::execute(): arrived" << std::endl;
 	const Tango::DevVarShortArray *argin;
 	extract(in_any, argin);
 	return insert((static_cast<Wago *>(device))->dev_log2_hard(argin));
@@ -344,7 +347,7 @@ CORBA::Any *DevLog2HardClass::execute(Tango::DeviceImpl *device, const CORBA::An
 //--------------------------------------------------------
 CORBA::Any *DevHard2LogClass::execute(Tango::DeviceImpl *device, const CORBA::Any &in_any)
 {
-	cout2 << "DevHard2LogClass::execute(): arrived" << endl;
+	TANGO_LOG_INFO << "DevHard2LogClass::execute(): arrived" << std::endl;
 	const Tango::DevVarShortArray *argin;
 	extract(in_any, argin);
 	return insert((static_cast<Wago *>(device))->dev_hard2_log(argin));
@@ -363,7 +366,7 @@ CORBA::Any *DevHard2LogClass::execute(Tango::DeviceImpl *device, const CORBA::An
 //--------------------------------------------------------
 CORBA::Any *DevName2KeyClass::execute(Tango::DeviceImpl *device, const CORBA::Any &in_any)
 {
-	cout2 << "DevName2KeyClass::execute(): arrived" << endl;
+	TANGO_LOG_INFO << "DevName2KeyClass::execute(): arrived" << std::endl;
 	Tango::DevString argin;
 	extract(in_any, argin);
 	return insert((static_cast<Wago *>(device))->dev_name2_key(argin));
@@ -382,7 +385,7 @@ CORBA::Any *DevName2KeyClass::execute(Tango::DeviceImpl *device, const CORBA::An
 //--------------------------------------------------------
 CORBA::Any *DevWcCommClass::execute(Tango::DeviceImpl *device, const CORBA::Any &in_any)
 {
-	cout2 << "DevWcCommClass::execute(): arrived" << endl;
+	TANGO_LOG_INFO << "DevWcCommClass::execute(): arrived" << std::endl;
 	const Tango::DevVarShortArray *argin;
 	extract(in_any, argin);
 	return insert((static_cast<Wago *>(device))->dev_wc_comm(argin));
@@ -394,11 +397,11 @@ CORBA::Any *DevWcCommClass::execute(Tango::DeviceImpl *device, const CORBA::Any 
 //===================================================================
 //--------------------------------------------------------
 /**
- *	Method      : WagoClass::get_class_property()
- *	Description : Get the class property for specified name.
+ *	Method     : WagoClass::get_class_property()
+ *	Description: Get the class property for specified name.
  */
 //--------------------------------------------------------
-Tango::DbDatum WagoClass::get_class_property(string &prop_name)
+Tango::DbDatum WagoClass::get_class_property(std::string &prop_name)
 {
 	for (unsigned int i=0 ; i<cl_prop.size() ; i++)
 		if (cl_prop[i].name == prop_name)
@@ -409,11 +412,11 @@ Tango::DbDatum WagoClass::get_class_property(string &prop_name)
 
 //--------------------------------------------------------
 /**
- *	Method      : WagoClass::get_default_device_property()
- *	Description : Return the default value for device property.
+ *	Method     : WagoClass::get_default_device_property()
+ *	Description: Return the default value for device property.
  */
 //--------------------------------------------------------
-Tango::DbDatum WagoClass::get_default_device_property(string &prop_name)
+Tango::DbDatum WagoClass::get_default_device_property(std::string &prop_name)
 {
 	for (unsigned int i=0 ; i<dev_def_prop.size() ; i++)
 		if (dev_def_prop[i].name == prop_name)
@@ -424,11 +427,11 @@ Tango::DbDatum WagoClass::get_default_device_property(string &prop_name)
 
 //--------------------------------------------------------
 /**
- *	Method      : WagoClass::get_default_class_property()
- *	Description : Return the default value for class property.
+ *	Method     : WagoClass::get_default_class_property()
+ *	Description: Return the default value for class property.
  */
 //--------------------------------------------------------
-Tango::DbDatum WagoClass::get_default_class_property(string &prop_name)
+Tango::DbDatum WagoClass::get_default_class_property(std::string &prop_name)
 {
 	for (unsigned int i=0 ; i<cl_def_prop.size() ; i++)
 		if (cl_def_prop[i].name == prop_name)
@@ -439,8 +442,8 @@ Tango::DbDatum WagoClass::get_default_class_property(string &prop_name)
 
 //--------------------------------------------------------
 /**
- *	Method      : WagoClass::get_class_property()
- *	Description : Read database to initialize class property data members.
+ *	Method     : WagoClass::get_class_property()
+ *	Description: Read database to initialize class property data members.
  */
 //--------------------------------------------------------
 void WagoClass::get_class_property()
@@ -452,7 +455,7 @@ void WagoClass::get_class_property()
 	/*----- PROTECTED REGION END -----*/	//	WagoClass::get_class_property_before
 	//	Read class properties from database.
 	cl_prop.push_back(Tango::DbDatum("modulesCatalogue"));
-	
+
 	//	Call database and extract values
 	if (Tango::Util::instance()->_UseDb==true)
 		get_db_class()->get_property(cl_prop);
@@ -481,8 +484,8 @@ void WagoClass::get_class_property()
 
 //--------------------------------------------------------
 /**
- *	Method      : WagoClass::set_default_property()
- *	Description : Set default property (class and device) for wizard.
+ *	Method     : WagoClass::set_default_property()
+ *	Description: Set default property (class and device) for wizard.
  *                For each property, add to wizard property name and description.
  *                If default value has been set, add it to wizard property and
  *                store it in a DbDatum.
@@ -490,14 +493,14 @@ void WagoClass::get_class_property()
 //--------------------------------------------------------
 void WagoClass::set_default_property()
 {
-	string	prop_name;
-	string	prop_desc;
-	string	prop_def;
-	vector<string>	vect_data;
+	std::string	prop_name;
+	std::string	prop_desc;
+	std::string	prop_def;
+	std::vector<std::string>	vect_data;
 
 	//	Set Default Class Properties
 	prop_name = "modulesCatalogue";
-	prop_desc = "List of know WAGO modules usable by the WAGO Device Server\nSYNTAX: \n   -the first item should be the date the list has been updated\n   -then, for each module, you must supply:\n          -module reference\n          -number of digital  inputs\n          -number of digital outputs\n          -number of word     inputs\n          -number of word    outputs\n          -number of logical channels (typically SSI32bits==2 words)\n          -string for special module  (``none``,``ssi``,``thc``,``thck``,etc)\n          -string for description";
+	prop_desc = "List of know WAGO modules usable by the WAGO Device Server\nSYNTAX: \n   -the first item should be the date the list has been updated\n   -then, for each module, you must supply:\n          -module reference\n          -number of digital  inputs\n          -number of digital outputs\n          -number of word     inputs\n          -number of word    outputs\n          -number of logical channels (typically SSI32bits==2 words)\n          -string for special module  (``none``,``ssi``,``thc``,``thc100``,``thck``,etc)\n          -string for description";
 	prop_def  = "";
 	vect_data.clear();
 	if (prop_def.length()>0)
@@ -555,8 +558,8 @@ void WagoClass::set_default_property()
 
 //--------------------------------------------------------
 /**
- *	Method      : WagoClass::write_class_property()
- *	Description : Set class description fields as property in database
+ *	Method     : WagoClass::write_class_property()
+ *	Description: Set class description fields as property in database
  */
 //--------------------------------------------------------
 void WagoClass::write_class_property()
@@ -566,19 +569,18 @@ void WagoClass::write_class_property()
 		return;
 
 	Tango::DbData	data;
-	string	classname = get_name();
-	string	header;
-	string::size_type	start, end;
+	std::string	classname = get_name();
+	std::string	header;
 
 	//	Put title
 	Tango::DbDatum	title("ProjectTitle");
-	string	str_title("Wago interface");
+	std::string	str_title("Wago interface");
 	title << str_title;
 	data.push_back(title);
 
 	//	Put Description
 	Tango::DbDatum	description("Description");
-	vector<string>	str_desc;
+	std::vector<std::string>	str_desc;
 	str_desc.push_back("Device server for Wago 750 series Programable Fieldbus Controllers ");
 	str_desc.push_back("and Fieldbus Couplers. The class supports reading and writing to a node");
 	str_desc.push_back("consisting of a number of Wago modules. It communicates with device over");
@@ -586,108 +588,10 @@ void WagoClass::write_class_property()
 	description << str_desc;
 	data.push_back(description);
 
-	//	put cvs or svn location
-	string	filename("Wago");
-	filename += "Class.cpp";
-
-	// check for cvs information
-	string	src_path(CvsPath);
-	start = src_path.find("/");
-	if (start!=string::npos)
-	{
-		end   = src_path.find(filename);
-		if (end>start)
-		{
-			string	strloc = src_path.substr(start, end-start);
-			//	Check if specific repository
-			start = strloc.find("/cvsroot/");
-			if (start!=string::npos && start>0)
-			{
-				string	repository = strloc.substr(0, start);
-				if (repository.find("/segfs/")!=string::npos)
-					strloc = "ESRF:" + strloc.substr(start, strloc.length()-start);
-			}
-			Tango::DbDatum	cvs_loc("cvs_location");
-			cvs_loc << strloc;
-			data.push_back(cvs_loc);
-		}
-	}
-
-	// check for svn information
-	else
-	{
-		string	src_path(SvnPath);
-		start = src_path.find("://");
-		if (start!=string::npos)
-		{
-			end = src_path.find(filename);
-			if (end>start)
-			{
-				header = "$HeadURL: ";
-				start = header.length();
-				string	strloc = src_path.substr(start, (end-start));
-				
-				Tango::DbDatum	svn_loc("svn_location");
-				svn_loc << strloc;
-				data.push_back(svn_loc);
-			}
-		}
-	}
-
-	//	Get CVS or SVN revision tag
-	
-	// CVS tag
-	string	tagname(TagName);
-	header = "$Name: ";
-	start = header.length();
-	string	endstr(" $");
-	
-	end   = tagname.find(endstr);
-	if (end!=string::npos && end>start)
-	{
-		string	strtag = tagname.substr(start, end-start);
-		Tango::DbDatum	cvs_tag("cvs_tag");
-		cvs_tag << strtag;
-		data.push_back(cvs_tag);
-	}
-	
-	// SVN tag
-	string	svnpath(SvnPath);
-	header = "$HeadURL: ";
-	start = header.length();
-	
-	end   = svnpath.find(endstr);
-	if (end!=string::npos && end>start)
-	{
-		string	strloc = svnpath.substr(start, end-start);
-		
-		string tagstr ("/tags/");
-		start = strloc.find(tagstr);
-		if ( start!=string::npos )
-		{
-			start = start + tagstr.length();
-			end   = strloc.find(filename);
-			string	strtag = strloc.substr(start, end-start-1);
-			
-			Tango::DbDatum	svn_tag("svn_tag");
-			svn_tag << strtag;
-			data.push_back(svn_tag);
-		}
-	}
-
-	//	Get URL location
-	string	httpServ(HttpServer);
-	if (httpServ.length()>0)
-	{
-		Tango::DbDatum	db_doc_url("doc_url");
-		db_doc_url << httpServ;
-		data.push_back(db_doc_url);
-	}
-
 	//  Put inheritance
 	Tango::DbDatum	inher_datum("InheritedFrom");
-	vector<string> inheritance;
-	inheritance.push_back("Tango::Device_4Impl");
+	std::vector<std::string> inheritance;
+	inheritance.push_back("TANGO_BASE_CLASS");
 	inher_datum << inheritance;
 	data.push_back(inher_datum);
 
@@ -701,8 +605,8 @@ void WagoClass::write_class_property()
 
 //--------------------------------------------------------
 /**
- *	Method      : WagoClass::device_factory()
- *	Description : Create the device object(s)
+ *	Method     : WagoClass::device_factory()
+ *	Description: Create the device object(s)
  *                and store them in the device list
  */
 //--------------------------------------------------------
@@ -720,8 +624,8 @@ void WagoClass::device_factory(const Tango::DevVarStringArray *devlist_ptr)
 	//	Create devices and add it into the device list
 	for (unsigned long i=0 ; i<devlist_ptr->length() ; i++)
 	{
-		cout4 << "Device name : " << (*devlist_ptr)[i].in() << endl;
-		device_list.push_back(new Wago(this, (*devlist_ptr)[i]));							 
+		TANGO_LOG_DEBUG << "Device name : " << (*devlist_ptr)[i].in() << std::endl;
+		device_list.push_back(new Wago(this, (*devlist_ptr)[i]));
 	}
 
 	//	Manage dynamic attributes if any
@@ -749,18 +653,19 @@ void WagoClass::device_factory(const Tango::DevVarStringArray *devlist_ptr)
 }
 //--------------------------------------------------------
 /**
- *	Method      : WagoClass::attribute_factory()
- *	Description : Create the attribute object(s)
+ *	Method     : WagoClass::attribute_factory()
+ *	Description: Create the attribute object(s)
  *                and store them in the attribute list
  */
 //--------------------------------------------------------
-void WagoClass::attribute_factory(vector<Tango::Attr *> &att_list)
+void WagoClass::attribute_factory(std::vector<Tango::Attr *> &att_list)
 {
 	/*----- PROTECTED REGION ID(WagoClass::attribute_factory_before) ENABLED START -----*/
 	
 	//	Add your own code
 	
 	/*----- PROTECTED REGION END -----*/	//	WagoClass::attribute_factory_before
+
 	//	Create a list of static attributes
 	create_static_attribute_list(get_class_attr()->get_attr_list());
 	/*----- PROTECTED REGION ID(WagoClass::attribute_factory_after) ENABLED START -----*/
@@ -771,8 +676,28 @@ void WagoClass::attribute_factory(vector<Tango::Attr *> &att_list)
 }
 //--------------------------------------------------------
 /**
- *	Method      : WagoClass::command_factory()
- *	Description : Create the command object(s)
+ *	Method     : WagoClass::pipe_factory()
+ *	Description: Create the pipe object(s)
+ *                and store them in the pipe list
+ */
+//--------------------------------------------------------
+void WagoClass::pipe_factory()
+{
+	/*----- PROTECTED REGION ID(WagoClass::pipe_factory_before) ENABLED START -----*/
+	/* clang-format on */
+	//	Add your own code
+	/* clang-format off */
+	/*----- PROTECTED REGION END -----*/	//	WagoClass::pipe_factory_before
+	/*----- PROTECTED REGION ID(WagoClass::pipe_factory_after) ENABLED START -----*/
+	/* clang-format on */
+	//	Add your own code
+	/* clang-format off */
+	/*----- PROTECTED REGION END -----*/	//	WagoClass::pipe_factory_after
+}
+//--------------------------------------------------------
+/**
+ *	Method     : WagoClass::command_factory()
+ *	Description: Create the command object(s)
  *                and store them in the command list
  */
 //--------------------------------------------------------
@@ -909,19 +834,19 @@ void WagoClass::command_factory()
  * method : 		WagoClass::create_static_attribute_list
  * description : 	Create the a list of static attributes
  *
- * @param	att_list	the ceated attribute list 
+ * @param	att_list	the created attribute list
  */
 //--------------------------------------------------------
-void WagoClass::create_static_attribute_list(vector<Tango::Attr *> &att_list)
+void WagoClass::create_static_attribute_list(std::vector<Tango::Attr *> &att_list)
 {
 	for (unsigned long i=0 ; i<att_list.size() ; i++)
 	{
-		string att_name(att_list[i]->get_name());
+		std::string att_name(att_list[i]->get_name());
 		transform(att_name.begin(), att_name.end(), att_name.begin(), ::tolower);
 		defaultAttList.push_back(att_name);
 	}
 
-	cout2 << defaultAttList.size() << " attributes in default list" << endl;
+	TANGO_LOG_INFO << defaultAttList.size() << " attributes in default list" << std::endl;
 
 	/*----- PROTECTED REGION ID(WagoClass::create_static_att_list) ENABLED START -----*/
 	
@@ -938,26 +863,26 @@ void WagoClass::create_static_attribute_list(vector<Tango::Attr *> &att_list)
  * @param	list of all attributes
  */
 //--------------------------------------------------------
-void WagoClass::erase_dynamic_attributes(const Tango::DevVarStringArray *devlist_ptr, vector<Tango::Attr *> &att_list)
+void WagoClass::erase_dynamic_attributes(const Tango::DevVarStringArray *devlist_ptr, std::vector<Tango::Attr *> &att_list)
 {
 	Tango::Util *tg = Tango::Util::instance();
 
 	for (unsigned long i=0 ; i<devlist_ptr->length() ; i++)
-	{	
-		Tango::DeviceImpl *dev_impl = tg->get_device_by_name(((string)(*devlist_ptr)[i]).c_str());
+	{
+		Tango::DeviceImpl *dev_impl = tg->get_device_by_name(((std::string)(*devlist_ptr)[i]).c_str());
 		Wago *dev = static_cast<Wago *> (dev_impl);
-		
-		vector<Tango::Attribute *> &dev_att_list = dev->get_device_attr()->get_attribute_list();
-		vector<Tango::Attribute *>::iterator ite_att;
+
+		std::vector<Tango::Attribute *> &dev_att_list = dev->get_device_attr()->get_attribute_list();
+		std::vector<Tango::Attribute *>::iterator ite_att;
 		for (ite_att=dev_att_list.begin() ; ite_att != dev_att_list.end() ; ++ite_att)
 		{
-			string att_name((*ite_att)->get_name_lower());
+			std::string att_name((*ite_att)->get_name_lower());
 			if ((att_name == "state") || (att_name == "status"))
 				continue;
-			vector<string>::iterator ite_str = find(defaultAttList.begin(), defaultAttList.end(), att_name);
+			std::vector<std::string>::iterator ite_str = find(defaultAttList.begin(), defaultAttList.end(), att_name);
 			if (ite_str == defaultAttList.end())
 			{
-				cout2 << att_name << " is a UNWANTED dynamic attribute for device " << (*devlist_ptr)[i] << endl;
+				TANGO_LOG_INFO << att_name << " is a UNWANTED dynamic attribute for device " << (*devlist_ptr)[i] << std::endl;
 				Tango::Attribute &att = dev->get_device_attr()->get_attr_by_name(att_name.c_str());
 				dev->remove_attribute(att_list[att.get_attr_idx()], true, false);
 				--ite_att;
@@ -971,14 +896,14 @@ void WagoClass::erase_dynamic_attributes(const Tango::DevVarStringArray *devlist
 
 //--------------------------------------------------------
 /**
- *	Method      : WagoClass::get_attr_by_name()
- *	Description : returns Tango::Attr * object found by name
+ *	Method     : WagoClass::get_attr_object_by_name()
+ *	Description: returns Tango::Attr * object found by name
  */
 //--------------------------------------------------------
-Tango::Attr *WagoClass::get_attr_object_by_name(vector<Tango::Attr *> &att_list, string attname)
+Tango::Attr *WagoClass::get_attr_object_by_name(std::vector<Tango::Attr *> &att_list, std::string attname)
 {
-	vector<Tango::Attr *>::iterator it;
-	for (it=att_list.begin() ; it<att_list.end() ; it++)
+	std::vector<Tango::Attr *>::iterator it;
+	for (it=att_list.begin() ; it<att_list.end() ; ++it)
 		if ((*it)->get_name()==attname)
 			return (*it);
 	//	Attr does not exist

@@ -71,7 +71,7 @@ public:
 	 *
 	 * \return service status;
 	 */
-	virtual int ForceMultipleCoils(unsigned int addr, std::vector<unsigned short>& values) = 0;
+	virtual void ForceMultipleCoils(unsigned int addr, std::vector<unsigned short>& values) = 0;
 
 	/*!Abstract method representing Write Multiple Registers modbus service.
 	 *
@@ -80,7 +80,7 @@ public:
 	 *
 	 * \return service status;
 	 */
-	virtual int PresetMultipleRegisters(unsigned int addr, std::vector<unsigned short>& values) = 0;
+	virtual void PresetMultipleRegisters(unsigned int addr, std::vector<unsigned short>& values) = 0;
 
 	/*!Abstract method representing Write single register modbus service.
 	 *
@@ -89,7 +89,7 @@ public:
 	 *
 	 * \return service status;
 	 */
-	virtual int PresetSingleRegister(unsigned int addr, unsigned short value) = 0;
+	virtual void PresetSingleRegister(unsigned int addr, unsigned short value) = 0;
 
 	/*!Abstract method for checking validity of of modbus connection.
 	 *

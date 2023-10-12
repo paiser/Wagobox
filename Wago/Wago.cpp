@@ -92,13 +92,13 @@ namespace Wago_ns
 
 //--------------------------------------------------------
 /**
- *	Method      : Wago::Wago()
- *	Description : Constructors for a Tango device
+ *	Method     : Wago::Wago()
+ *	Description: Constructors for a Tango device
  *                implementing the classWago
  */
 //--------------------------------------------------------
-Wago::Wago(Tango::DeviceClass *cl, string &s)
- : Tango::Device_4Impl(cl, s.c_str())
+Wago::Wago(Tango::DeviceClass *cl, std::string &s)
+ : TANGO_BASE_CLASS(cl, s.c_str())
 {
 	/*----- PROTECTED REGION ID(Wago::constructor_1) ENABLED START -----*/
 	init_device();
@@ -107,7 +107,7 @@ Wago::Wago(Tango::DeviceClass *cl, string &s)
 }
 //--------------------------------------------------------
 Wago::Wago(Tango::DeviceClass *cl, const char *s)
- : Tango::Device_4Impl(cl, s)
+ : TANGO_BASE_CLASS(cl, s)
 {
 	/*----- PROTECTED REGION ID(Wago::constructor_2) ENABLED START -----*/
 	init_device();
@@ -116,7 +116,7 @@ Wago::Wago(Tango::DeviceClass *cl, const char *s)
 }
 //--------------------------------------------------------
 Wago::Wago(Tango::DeviceClass *cl, const char *s, const char *d)
- : Tango::Device_4Impl(cl, s, d)
+ : TANGO_BASE_CLASS(cl, s, d)
 {
 	/*----- PROTECTED REGION ID(Wago::constructor_3) ENABLED START -----*/
 
@@ -124,16 +124,21 @@ Wago::Wago(Tango::DeviceClass *cl, const char *s, const char *d)
 	
 	/*----- PROTECTED REGION END -----*/	//	Wago::constructor_3
 }
+//--------------------------------------------------------
+Wago::~Wago()
+{
+	delete_device();
+}
 
 //--------------------------------------------------------
 /**
- *	Method      : Wago::delete_device()
- *	Description : will be called at device destruction or at init command
+ *	Method     : Wago::delete_device()
+ *	Description: will be called at device destruction or at init command
  */
 //--------------------------------------------------------
 void Wago::delete_device()
 {
-	DEBUG_STREAM << "Wago::delete_device() " << device_name << endl;
+	DEBUG_STREAM << "Wago::delete_device() " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::delete_device) ENABLED START -----*/
 	
 	//	Delete device allocated objects
@@ -154,13 +159,13 @@ void Wago::delete_device()
 
 //--------------------------------------------------------
 /**
- *	Method      : Wago::init_device()
- *	Description : will be called at device initialization.
+ *	Method     : Wago::init_device()
+ *	Description: will be called at device initialization.
  */
 //--------------------------------------------------------
 void Wago::init_device()
 {
-	DEBUG_STREAM << "Wago::init_device() create device " << device_name << endl;
+	DEBUG_STREAM << "Wago::init_device() create device " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::init_device_before) ENABLED START -----*/
 	//logInst = new Tango::LogAdapter(this); 
         //(setup logging for underlying layer. TODO this should be in constructor 
@@ -169,11 +174,10 @@ void Wago::init_device()
 	//	Initialization before get_device_property() call
 	
 	/*----- PROTECTED REGION END -----*/	//	Wago::init_device_before
-	
+
 
 	//	Get the device properties from database
 	get_device_property();
-	
 
 	/*----- PROTECTED REGION ID(Wago::init_device) ENABLED START -----*/
 	WagoClass	*ds_class =
@@ -221,8 +225,8 @@ void Wago::init_device()
 
 //--------------------------------------------------------
 /**
- *	Method      : Wago::get_device_property()
- *	Description : Read database to initialize property data members.
+ *	Method     : Wago::get_device_property()
+ *	Description: Read database to initialize property data members.
  */
 //--------------------------------------------------------
 void Wago::get_device_property()
@@ -246,7 +250,7 @@ void Wago::get_device_property()
 		//	Call database and extract values
 		if (Tango::Util::instance()->_UseDb==true)
 			get_db_device()->get_property(dev_prop);
-	
+
 		//	get instance on WagoClass to get class property
 		Tango::DbDatum	def_prop, cl_prop;
 		WagoClass	*ds_class =
@@ -297,13 +301,13 @@ void Wago::get_device_property()
 
 //--------------------------------------------------------
 /**
- *	Method      : Wago::always_executed_hook()
- *	Description : method always executed before any command is executed
+ *	Method     : Wago::always_executed_hook()
+ *	Description: method always executed before any command is executed
  */
 //--------------------------------------------------------
 void Wago::always_executed_hook()
 {
-	DEBUG_STREAM << "Wago::always_executed_hook()  " << device_name << endl;
+	DEBUG_STREAM << "Wago::always_executed_hook()  " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::always_executed_hook) ENABLED START -----*/
 	
 	//	code always executed before all requests
@@ -313,13 +317,13 @@ void Wago::always_executed_hook()
 
 //--------------------------------------------------------
 /**
- *	Method      : Wago::read_attr_hardware()
- *	Description : Hardware acquisition for attributes
+ *	Method     : Wago::read_attr_hardware()
+ *	Description: Hardware acquisition for attributes
  */
 //--------------------------------------------------------
-void Wago::read_attr_hardware(TANGO_UNUSED(vector<long> &attr_list))
+void Wago::read_attr_hardware(TANGO_UNUSED(std::vector<long> &attr_list))
 {
-	DEBUG_STREAM << "Wago::read_attr_hardware(vector<long> &attr_list) entering... " << endl;
+	DEBUG_STREAM << "Wago::read_attr_hardware(std::vector<long> &attr_list) entering... " << std::endl;
 	/*----- PROTECTED REGION ID(Wago::read_attr_hardware) ENABLED START -----*/
 	
 	//	Add your own code
@@ -330,8 +334,8 @@ void Wago::read_attr_hardware(TANGO_UNUSED(vector<long> &attr_list))
 
 //--------------------------------------------------------
 /**
- *	Method      : Wago::add_dynamic_attributes()
- *	Description : Create the dynamic attributes if any
+ *	Method     : Wago::add_dynamic_attributes()
+ *	Description: Create the dynamic attributes if any
  *                for specified device.
  */
 //--------------------------------------------------------
@@ -398,7 +402,7 @@ void Wago::add_dynamic_attributes()
 //--------------------------------------------------------
 Tango::DevState Wago::dev_state()
 {
-	DEBUG_STREAM << "Wago::State()  - " << device_name << endl;
+	DEBUG_STREAM << "Wago::State()  - " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::dev_state) ENABLED START -----*/
 	
 	Tango::DevState argout = mbDevState->GetState();
@@ -407,7 +411,7 @@ Tango::DevState Wago::dev_state()
 	/*----- PROTECTED REGION END -----*/	//	Wago::dev_state
 	set_state(argout);    // Give the state to Tango.
 	if (argout!=Tango::ALARM)
-		DeviceImpl::dev_state();
+		Tango::DeviceImpl::dev_state();
 	return get_state();  // Return it after Tango management.
 }
 //--------------------------------------------------------
@@ -420,7 +424,7 @@ Tango::DevState Wago::dev_state()
 //--------------------------------------------------------
 Tango::ConstDevString Wago::dev_status()
 {
-	DEBUG_STREAM << "Wago::Status()  - " << device_name << endl;
+	DEBUG_STREAM << "Wago::Status()  - " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::dev_status) ENABLED START -----*/
 	
 	//	Add your own code
@@ -445,7 +449,7 @@ Tango::ConstDevString Wago::dev_status()
 
 	/*----- PROTECTED REGION END -----*/	//	Wago::dev_status
 	set_status(status);               // Give the status to Tango.
-	return DeviceImpl::dev_status();  // Return it.
+	return Tango::DeviceImpl::dev_status();  // Return it.
 }
 //--------------------------------------------------------
 /**
@@ -467,7 +471,7 @@ Tango::ConstDevString Wago::dev_status()
 Tango::DevVarFloatArray *Wago::dev_read_no_cache_phys(Tango::DevShort argin)
 {
 	Tango::DevVarFloatArray *argout;
-	DEBUG_STREAM << "Wago::DevReadNoCachePhys()  - " << device_name << endl;
+	DEBUG_STREAM << "Wago::DevReadNoCachePhys()  - " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::dev_read_no_cache_phys) ENABLED START -----*/
 
 	vector<float> valueHolder;
@@ -490,14 +494,14 @@ Tango::DevVarFloatArray *Wago::dev_read_no_cache_phys(Tango::DevShort argin)
 //--------------------------------------------------------
 /**
  *	Command DevWritePhys related method
- *	Description: 
+ *
  *
  *	@param argin Logical device key and values for write
  */
 //--------------------------------------------------------
 void Wago::dev_write_phys(const Tango::DevVarFloatArray *argin)
 {
-	DEBUG_STREAM << "Wago::DevWritePhys()  - " << device_name << endl;
+	DEBUG_STREAM << "Wago::DevWritePhys()  - " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::dev_write_phys) ENABLED START -----*/
 	if(argin->length() < 3 )
 	{
@@ -527,7 +531,7 @@ void Wago::dev_write_phys(const Tango::DevVarFloatArray *argin)
 Tango::DevVarFloatArray *Wago::dev_read_phys(Tango::DevShort argin)
 {
 	Tango::DevVarFloatArray *argout;
-	DEBUG_STREAM << "Wago::DevReadPhys()  - " << device_name << endl;
+	DEBUG_STREAM << "Wago::DevReadPhys()  - " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::dev_read_phys) ENABLED START -----*/
 	vector<float> valueHolder;
 	wd->ReadPhys(argin, valueHolder);
@@ -554,7 +558,7 @@ Tango::DevVarFloatArray *Wago::dev_read_phys(Tango::DevShort argin)
 //--------------------------------------------------------
 void Wago::dev_write_digi(const Tango::DevVarShortArray *argin)
 {
-	DEBUG_STREAM << "Wago::DevWriteDigi()  - " << device_name << endl;
+	DEBUG_STREAM << "Wago::DevWriteDigi()  - " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::dev_write_digi) ENABLED START -----*/
 	if(argin->length() < 3 )
 	{
@@ -586,7 +590,7 @@ void Wago::dev_write_digi(const Tango::DevVarShortArray *argin)
 Tango::DevVarShortArray *Wago::dev_read_digi(Tango::DevShort argin)
 {
 	Tango::DevVarShortArray *argout;
-	DEBUG_STREAM << "Wago::DevReadDigi()  - " << device_name << endl;
+	DEBUG_STREAM << "Wago::DevReadDigi()  - " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::dev_read_digi) ENABLED START -----*/
 	vector<unsigned short> valueHolder;
 	wd->ReadDigi(argin, valueHolder);
@@ -616,7 +620,7 @@ Tango::DevVarShortArray *Wago::dev_read_digi(Tango::DevShort argin)
 Tango::DevVarShortArray *Wago::dev_read_no_cache_digi(Tango::DevShort argin)
 {
 	Tango::DevVarShortArray *argout;
-	DEBUG_STREAM << "Wago::DevReadNoCacheDigi()  - " << device_name << endl;
+	DEBUG_STREAM << "Wago::DevReadNoCacheDigi()  - " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::dev_read_no_cache_digi) ENABLED START -----*/
 	
 	vector<unsigned short> valueHolder;
@@ -647,7 +651,7 @@ Tango::DevVarShortArray *Wago::dev_read_no_cache_digi(Tango::DevShort argin)
 Tango::DevVarShortArray *Wago::dev_get_keys()
 {
 	Tango::DevVarShortArray *argout;
-	DEBUG_STREAM << "Wago::DevGetKeys()  - " << device_name << endl;
+	DEBUG_STREAM << "Wago::DevGetKeys()  - " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::dev_get_keys) ENABLED START -----*/
 	vector<unsigned short> valueHolder;
 	
@@ -678,7 +682,7 @@ Tango::DevVarShortArray *Wago::dev_get_keys()
 Tango::DevString Wago::dev_key2_name(Tango::DevShort argin)
 {
 	Tango::DevString argout;
-	DEBUG_STREAM << "Wago::DevKey2Name()  - " << device_name << endl;
+	DEBUG_STREAM << "Wago::DevKey2Name()  - " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::dev_key2_name) ENABLED START -----*/
 	string valueHolder;
 	wd->Key2Name(argin,valueHolder);
@@ -696,18 +700,18 @@ Tango::DevString Wago::dev_key2_name(Tango::DevShort argin)
  *	Description: Return hardware information of a logical device/logical channel.
  *
  *	@param argin [0] : logical device key
- *               [1] : logical channel
+ *	[1] : logical channel
  *	@returns [0] : offset in wago controller memory (ex: 0x16)
- *           [1] : MSB=I/O LSB=Bit/Word (ex: 0x4957 = (`I`<<8)+`W`)
- *           [2] : module reference (ex: 469)
- *           [3] : module number (1st is 0)
- *           [4] : physical channel of the module (ex: 1 for the 2nd)
+ *	[1] : MSB=I/O LSB=Bit/Word (ex: 0x4957 = (`I`<<8)+`W`)
+ *	[2] : module reference (ex: 469)
+ *	[3] : module number (1st is 0)
+ *	[4] : physical channel of the module (ex: 1 for the 2nd)
  */
 //--------------------------------------------------------
 Tango::DevVarShortArray *Wago::dev_log2_hard(const Tango::DevVarShortArray *argin)
 {
 	Tango::DevVarShortArray *argout;
-	DEBUG_STREAM << "Wago::DevLog2Hard()  - " << device_name << endl;
+	DEBUG_STREAM << "Wago::DevLog2Hard()  - " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::dev_log2_hard) ENABLED START -----*/
 	
 	vector<unsigned short> valueHolder;
@@ -735,15 +739,15 @@ Tango::DevVarShortArray *Wago::dev_log2_hard(const Tango::DevVarShortArray *argi
  *               on wago controller
  *
  *	@param argin [0] : MSB=I/O LSB=Bit/Word (ex: 0x4957 = (`I`<<8)+`W`)
- *               [1] : offset in wago controller memory (ex: 0x16)
+ *	[1] : offset in wago controller memory (ex: 0x16)
  *	@returns [0] : logical device key
- *           [1] : logical channel
+ *	[1] : logical channel
  */
 //--------------------------------------------------------
 Tango::DevVarShortArray *Wago::dev_hard2_log(const Tango::DevVarShortArray *argin)
 {
 	Tango::DevVarShortArray *argout;
-	DEBUG_STREAM << "Wago::DevHard2Log()  - " << device_name << endl;
+	DEBUG_STREAM << "Wago::DevHard2Log()  - " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::dev_hard2_log) ENABLED START -----*/
 	
 	vector<unsigned short> valueHolder;
@@ -776,7 +780,7 @@ Tango::DevVarShortArray *Wago::dev_hard2_log(const Tango::DevVarShortArray *argi
 Tango::DevShort Wago::dev_name2_key(Tango::DevString argin)
 {
 	Tango::DevShort argout;
-	DEBUG_STREAM << "Wago::DevName2Key()  - " << device_name << endl;
+	DEBUG_STREAM << "Wago::DevName2Key()  - " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::dev_name2_key) ENABLED START -----*/
 	string input(argin);
 	wd->Name2Key(input,(unsigned short&)argout);
@@ -791,18 +795,18 @@ Tango::DevShort Wago::dev_name2_key(Tango::DevString argin)
  *	Description: Executes a command in the wago controller programm. The communication is done using the ISG protocol.
  *
  *	@param argin [0] : code of command to execute (ex: 0x010c for ILCK_RESET)
- *               [1] : 1st parameter
- *               [2] : 2nd parameter
- *               etc
+ *	[1] : 1st parameter
+ *	[2] : 2nd parameter
+ *	etc
  *	@returns [0] : 1st argout or error code
- *           [1] : 2nd argout 
- *           etc
+ *	[1] : 2nd argout 
+ *	etc
  */
 //--------------------------------------------------------
 Tango::DevVarShortArray *Wago::dev_wc_comm(const Tango::DevVarShortArray *argin)
 {
 	Tango::DevVarShortArray *argout;
-	DEBUG_STREAM << "Wago::DevWcComm()  - " << device_name << endl;
+	DEBUG_STREAM << "Wago::DevWcComm()  - " << device_name << std::endl;
 	/*----- PROTECTED REGION ID(Wago::dev_wc_comm) ENABLED START -----*/
 	vector<unsigned short> valueHolder,inArgs;
 
@@ -822,6 +826,21 @@ Tango::DevVarShortArray *Wago::dev_wc_comm(const Tango::DevVarShortArray *argin)
 	
 	/*----- PROTECTED REGION END -----*/	//	Wago::dev_wc_comm
 	return argout;
+}
+//--------------------------------------------------------
+/**
+ *	Method     : Wago::add_dynamic_commands()
+ *	Description: Create the dynamic commands if any
+ *                for specified device.
+ */
+//--------------------------------------------------------
+void Wago::add_dynamic_commands()
+{
+	/*----- PROTECTED REGION ID(Wago::add_dynamic_commands) ENABLED START -----*/
+	/* clang-format on */
+	//	Add your own code to create and add dynamic commands if any
+	/* clang-format off */
+	/*----- PROTECTED REGION END -----*/	//	Wago::add_dynamic_commands
 }
 
 /*----- PROTECTED REGION ID(Wago::namespace_ending) ENABLED START -----*/

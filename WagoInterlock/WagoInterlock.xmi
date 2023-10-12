@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pogoDsl:PogoSystem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pogoDsl="http://www.esrf.fr/tango/pogo/PogoDsl">
-  <classes name="WagoInterlock" pogoRevision="9.6">
-    <description description="Class representing interlocks implemented using Wago" title="" sourcePath="/mntdirect/_segfs/tango/cppserver/instrumentation/Wago/WagoInterlock" language="Cpp" filestogenerate="XMI   file,Protected Regions,html Pages" license="GPL" hasMandatoryProperty="true" hasConcreteProperty="true" hasAbstractCommand="false" hasAbstractAttribute="false" descriptionHtmlExists="false">
+  <classes name="WagoInterlock" pogoRevision="9.7">
+    <description description="Class representing interlocks implemented using Wago" title="" sourcePath="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/WagoInterlock" language="Cpp" filestogenerate="XMI   file,Code files,CMakeLists,Protected Regions" license="GPL" hasMandatoryProperty="true" hasConcreteProperty="true" hasAbstractCommand="false" hasAbstractAttribute="false">
       <inheritances classname="Device_Impl" sourcePath=""/>
       <identification contact="at esrf.fr - Pawel.Kowaliszyn" author="Pawel.Kowaliszyn" emailDomain="esrf.fr" classFamily="Interlock" siteSpecific="" platform="All Platforms" bus="Not Applicable" manufacturer="none" reference=""/>
     </description>
@@ -84,5 +84,7 @@
       <status abstract="false" inherited="false" concrete="true" concreteHere="true"/>
     </states>
     <preferences docHome="./doc_html" makefileHome="/segfs/tango/cppserver/env"/>
+    <additionalFiles name="Attributes" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/WagoInterlock/Attributes.cpp"/>
+    <additionalFiles name="InterlockTools" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/WagoInterlock/InterlockTools.cpp"/>
   </classes>
 </pogoDsl:PogoSystem>

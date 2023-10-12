@@ -181,7 +181,7 @@ int ModbusConn::ReadMultipleCoilsStatus(unsigned int addr,unsigned int numOfCoil
 /*!Implementation of ForceMultipleCoils using tango Modbus class (See ModbusAbstract class).
  *
  */
-int ModbusConn::ForceMultipleCoils(unsigned int addr, vector<unsigned short>& values)
+void ModbusConn::ForceMultipleCoils(unsigned int addr, vector<unsigned short>& values)
 {
 	Tango::DevVarShortArray inArgs;
 	inArgs.length(2+values.size());
@@ -207,7 +207,7 @@ int ModbusConn::ForceMultipleCoils(unsigned int addr, vector<unsigned short>& va
 /*!Implementation of PresetSingleRegister using tango Modbus class (See ModbusAbstract class).
  *
  */
-int ModbusConn::PresetSingleRegister(unsigned int addr, unsigned short value)
+void ModbusConn::PresetSingleRegister(unsigned int addr, unsigned short value)
 {
 	Tango::DevVarShortArray inArgs;
 	inArgs.length(2);
@@ -230,7 +230,7 @@ int ModbusConn::PresetSingleRegister(unsigned int addr, unsigned short value)
 /*!Implementation of ForceMultipleCoils using tango Modbus class (See ModbusAbstract class).
  *
  */
-int ModbusConn::PresetMultipleRegisters(unsigned int addr, vector<unsigned short>& values)
+void ModbusConn::PresetMultipleRegisters(unsigned int addr, vector<unsigned short>& values)
 {
 	Tango::DevVarShortArray inArgs;
 	inArgs.length(2+values.size());
