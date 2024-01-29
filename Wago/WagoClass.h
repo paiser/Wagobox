@@ -365,6 +365,47 @@ class WagoClass : public Tango::DeviceClass
 		//            -number of logical channels (typically SSI32bits==2 words)
 		//            -string for special module  (``none``,``ssi``,``thc``,``thc100``,``thck``,etc)
 		//            -string for description
+		//  
+		//  example:
+		//  
+		//  750-400,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``
+		//  750-401,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``
+		//  750-402,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``
+		//  750-403,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``
+		//  750-404,    0, 0, 3, 0, 3, ``none``,      ``32 bit Counter``
+		//  750-405,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``
+		//  750-406,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``
+		//  750-408,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``
+		//  750-409,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``
+		//  750-410,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``
+		//  750-411,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``
+		//  750-412,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``
+		//  750-414,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``
+		//  750-415,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``
+		//  750-422,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``
+		//  750-430,    8, 0, 0, 0, 8, ``none``,      ``8 Channel Digital Input``
+		//  750-436,    8, 0, 0, 0, 8, ``none``,      ``8 Channel Digital Input``
+		//  750-485,    0, 0, 2, 0, 2, ``fs4-20_13``, ``2 Channel 4/20mA Input``
+		//  750-501,    0, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``
+		//  750-502,    0, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``
+		//  750-504,    0, 4, 0, 0, 4, ``none``,      ``4 Channel Digital Output``
+		//  750-506,    2, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``
+		//  750-507,    2, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``
+		//  750-508,    2, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``
+		//  750-509,    0, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``
+		//  750-512,    0, 2, 0, 0, 2, ``none``,      ``2 Normally Open Relay Output``
+		//  750-513,    0, 2, 0, 0, 2, ``none``,      ``2 Normally Open Relay Output``
+		//  750-514,    0, 2, 0, 0, 2, ``none``,      ``2 Changeover Relay Output``
+		//  750-516,    0, 4, 0, 0, 4, ``none``,      ``4 Channel Digital Output``
+		//  750-517,    0, 2, 0, 0, 2, ``none``,      ``2 Changeover Relay Output``
+		//  750-519,    0, 4, 0, 0, 4, ``none``,      ``4 Channel Digital Output``
+		//  750-530,    0, 8, 0, 0, 8, ``none``,      ``8 Channel Digital Output``
+		//  750-531,    0, 4, 0, 0, 4, ``none``,      ``4 Channel Digital Output``
+		//  750-536,    0, 8, 0, 0, 8, ``none``,      ``8 Channel Digital Output``
+		//  750-452,    0, 0, 2, 0, 2, ``fs20_13``,   ``2 Channel 0/20mA Input``
+		//  750-454,    0, 0, 2, 0, 2, ``fs4-20_13``, ``2 Channel 4/20mA Input``
+		//  750-461,    0, 0, 2, 0, 2, ``thc``,       ``2 Channel PT100 Input``
+		//  750-462,    0, 0, 2, 0, 2, ``thc``,       ``2 Channel Thermocouple Input``
 		std::vector<std::string>	modulesCatalogue;
 		//	write class properties data members
 		Tango::DbData	cl_prop;
