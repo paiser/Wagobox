@@ -52,20 +52,20 @@
 #define ILCK_TYPE_IB		(('I'<<8)+'B')
 #define ILCK_TYPE_OB		(('O'<<8)+'B')
 
-vector<string> string2vector(string &str, const char* tokens);
-vector<unsigned short> ParseName(string rngname, string& name);
-vector<unsigned short> PackString(string str);
-string UnpackString(vector<short> pStr);
-unsigned short FlagsTxt2Bin(string txtFlags);
-string FlagsBin2Txt(unsigned short flags);
+std::vector<std::string> string2vector(std::string &str, const char* tokens);
+std::vector<unsigned short> ParseName(std::string rngname, std::string& name);
+std::vector<unsigned short> PackString(std::string str);
+std::string UnpackString(std::vector<short> pStr);
+unsigned short FlagsTxt2Bin(std::string txtFlags);
+std::string FlagsBin2Txt(unsigned short flags);
 unsigned short DoReverseScaling(float input, unsigned short type);
 float DoScaling(unsigned short input, unsigned short type);
 Tango::DevFailed AddToException(Tango::DevFailed ex,
-				   string reason,
-				   string desc,
-				   string origin);
-Tango::DevFailed CreateException(string reason,
-				   string desc,
-				   string origin);
+				   std::string reason,
+				   std::string desc,
+				   std::string origin);
+Tango::DevFailed CreateException(std::string reason,
+				   std::string desc,
+				   std::string origin);
 
 #endif /* INTERLOCKTOOLS_H_ */

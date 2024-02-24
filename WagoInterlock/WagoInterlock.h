@@ -44,8 +44,8 @@
  *
  */
 typedef struct channel_t{
-	string name; //!Name of related wago attribute
-	string attributeName; //!Name of interlock attribute
+	std::string name; //!Name of related wago attribute
+	std::string attributeName; //!Name of interlock attribute
 	unsigned short logicalChannel;
 	unsigned short type; 	// The channel type <chtype> is a mandatory two-letter code that indicates
 							// the type of I/O channel. At least the following codes should be valid:
@@ -184,8 +184,8 @@ public:
 public:
 	//--------------------------------------------------------
 	/*
-	 *	Method     : WagoInterlock::read_attr_hardware()
-	 *	Description: Hardware acquisition for attributes.
+	 *	Method      : WagoInterlock::read_attr_hardware()
+	 * Description:  Hardware acquisition for attributes.
 	 */
 	//--------------------------------------------------------
 	virtual void read_attr_hardware(std::vector<long> &attr_list);
@@ -193,8 +193,8 @@ public:
 
 	//--------------------------------------------------------
 	/**
-	 *	Method     : WagoInterlock::add_dynamic_attributes()
-	 *	Description: Add dynamic attributes if any.
+	 *	Method      : WagoInterlock::add_dynamic_attributes()
+	 * Description:  Add dynamic attributes if any.
 	 */
 	//--------------------------------------------------------
 	void add_dynamic_attributes();
@@ -206,21 +206,21 @@ public:
 public:
 	/**
 	 *	Command State related method
-	 *	Description: This command gets the device state (stored in its device_state data member) and returns it to the caller.
+	 * Description:  This command gets the device state (stored in its device_state data member) and returns it to the caller.
 	 *
 	 *	@returns Device state
 	 */
 	virtual Tango::DevState dev_state();
 	/**
 	 *	Command UploadConfig related method
-	 *	Description: Uploads configuration to controller
+	 * Description:  Uploads configuration to controller
 	 *
 	 */
 	virtual void upload_config();
 	virtual bool is_UploadConfig_allowed(const CORBA::Any &any);
 	/**
 	 *	Command Reset related method
-	 *	Description: Resets the instance controller (in case of sticky channels)
+	 * Description:  Resets the instance controller (in case of sticky channels)
 	 *
 	 */
 	virtual void reset();
@@ -229,8 +229,8 @@ public:
 
 	//--------------------------------------------------------
 	/**
-	 *	Method     : WagoInterlock::add_dynamic_commands()
-	 *	Description: Add dynamic commands if any.
+	 *	Method      : WagoInterlock::add_dynamic_commands()
+	 * Description:  Add dynamic commands if any.
 	 */
 	//--------------------------------------------------------
 	void add_dynamic_commands();
@@ -246,14 +246,14 @@ protected:
 	__useconds_t lastDataCallT;	// Timestamp of last data update.
 	__useconds_t lastStatusCallT;	// Timestamp of last status update.
 
-	map<string,wagoAttrMapping_t> attributeMapping; // Vector of mappings of interlock attributes into wago attributes representing channels
+	std::map<std::string,wagoAttrMapping_t> attributeMapping; // Vector of mappings of interlock attributes into wago attributes representing channels
 													// of interlock.
 
-	vector<channel_t> processedConfiguration;	// Vector holding configuration structures for each channel of interlock(created according
+	std::vector<channel_t> processedConfiguration;	// Vector holding configuration structures for each channel of interlock(created according
 												// to config property.
 
-	vector<WagoAttribute*> channelAttributes;	// Vector of interface objects to wago attributes representing channels of interlock.
-	vector<InterlockAttribute*> attributes;	// Vector of interlock attribute objects
+	std::vector<WagoAttribute*> channelAttributes;	// Vector of interface objects to wago attributes representing channels of interlock.
+	std::vector<InterlockAttribute*> attributes;	// Vector of interlock attribute objects
 
 	int outRelayAttribIndex;			// Index of position within wago attribute(spectrum)
 										// of interlock ouput relay. If wago attribute representing
@@ -269,12 +269,12 @@ protected:
 
 	void StatusUpdate();
 	void ParseConfiguration();
-	void PrepareRelayOutput(string outRelayAttribName);
+	void PrepareRelayOutput(std::string outRelayAttribName);
 	void PrepareWagoAttributeObjs();
 	int CreateDeviceProxy();
 	int FindInterlock();
-	void RetriveIclkConfig(unsigned short &outChan, unsigned short &mFlags, vector<channel_t> &cConf);
-	void ValidateIlckConfig(unsigned short &outChan, unsigned short &mFlags, vector<channel_t> &cConf);
+	void RetriveIclkConfig(unsigned short &outChan, unsigned short &mFlags, std::vector<channel_t> &cConf);
+	void ValidateIlckConfig(unsigned short &outChan, unsigned short &mFlags, std::vector<channel_t> &cConf);
 	unsigned short GetAttrAffsetOffset(std::string wagoAttributeName, unsigned short logicalChannel);
 
 	Tango::DevState GetWagoSrvState();

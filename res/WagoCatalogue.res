@@ -32,6 +32,7 @@ CLASS/Wago->modulesCatalogue: \
  "750-414,    4, 0, 0, 0, 4, \"none\",      \"4 Channel Digital Input\"", \
  "750-415,    4, 0, 0, 0, 4, \"none\",      \"4 Channel Digital Input\"", \
  "750-422,    4, 0, 0, 0, 4, \"none\",      \"4 Channel Digital Input\"", \
+ "750-432,    4, 0, 0, 0, 4, \"none\",      \"4 Channel Digital Input\"", \
  "750-430,    8, 0, 0, 0, 8, \"none\",      \"8 Channel Digital Input\"", \
  "750-436,    8, 0, 0, 0, 8, \"none\",      \"8 Channel Digital Input\"", \
  "750-485,    0, 0, 2, 0, 2, \"fs4-20_13\", \"2 Channel 4/20mA Input\"",  \

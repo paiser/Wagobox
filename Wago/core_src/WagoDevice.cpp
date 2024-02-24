@@ -377,8 +377,12 @@ bool WagoDevice::ValidateConfiguration(configInfo& cfg)
 
 	DEBUG_STREAM <<  "WagoDevice::ValidateConfiguration() called " << endl;
 
+
+
 	for(i= 0; i < cfg.modules.size() && i < modules.size(); i++)
 	{
+
+        
 		if( cfg.modules[i] & 0x8000 )
 			continue;
 
@@ -392,6 +396,8 @@ bool WagoDevice::ValidateConfiguration(configInfo& cfg)
 
 	if( i >= cfg.modules.size() &&   i < modules.size() )
 	{
+        INFO_STREAM << cfg.modules.size() << endl;
+        INFO_STREAM << modules.size() << endl;
 		ERROR_STREAM << "WagoDevice::ValidateConfiguration() number of modules in config and seen by controller does not match " << endl;
 		return false;
 	}

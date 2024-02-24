@@ -335,7 +335,7 @@ void BufferHolder::RetrieveConfig(configInfo &cfg)
 		INFO_STREAM << "BufferHolder::RetrieveConfig controller: " << cfg.couplerControllerCode << endl;
 
 		// Get information of modules seen physically by the controller
-		if (cfg.couplerControllerCode == 881) { 
+		if (cfg.couplerControllerCode == 881 || cfg.couplerControllerCode == 862) { 
 			values.clear();
 			modbusInterface->ReadInputRegisters(0x1022, 4, values);
 
@@ -362,9 +362,10 @@ void BufferHolder::RetrieveConfig(configInfo &cfg)
 		if (cfg.couplerControllerCode == 881) { 
 			nwords = FIRMWARE_DATE_TIME_BUFFER_SIZE_8WORDS;
 		} 
-		if (cfg.couplerControllerCode == 352) { 
+		if (cfg.couplerControllerCode == 352 || cfg.couplerControllerCode == 862) { 
 			nwords = FIRMWARE_DATE_TIME_BUFFER_SIZE_8WORDS;
 		} 
+ 
 
 		values.clear();
 		modbusInterface->ReadInputRegisters(0x2010, 1, values);//Read firmware version

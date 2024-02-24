@@ -148,8 +148,8 @@ public:
 public:
 	//--------------------------------------------------------
 	/*
-	 *	Method     : Wago::read_attr_hardware()
-	 *	Description: Hardware acquisition for attributes.
+	 *	Method      : Wago::read_attr_hardware()
+	 * Description:  Hardware acquisition for attributes.
 	 */
 	//--------------------------------------------------------
 	virtual void read_attr_hardware(std::vector<long> &attr_list);
@@ -157,8 +157,8 @@ public:
 
 	//--------------------------------------------------------
 	/**
-	 *	Method     : Wago::add_dynamic_attributes()
-	 *	Description: Add dynamic attributes if any.
+	 *	Method      : Wago::add_dynamic_attributes()
+	 * Description:  Add dynamic attributes if any.
 	 */
 	//--------------------------------------------------------
 	void add_dynamic_attributes();
@@ -170,21 +170,21 @@ public:
 public:
 	/**
 	 *	Command State related method
-	 *	Description: This command gets the device state (stored in its device_state data member) and returns it to the caller.
+	 * Description:  This command gets the device state (stored in its device_state data member) and returns it to the caller.
 	 *
 	 *	@returns Device state
 	 */
 	virtual Tango::DevState dev_state();
 	/**
 	 *	Command Status related method
-	 *	Description: This command gets the device status (stored in its device_status data member) and returns it to the caller.
+	 * Description:  This command gets the device status (stored in its device_status data member) and returns it to the caller.
 	 *
 	 *	@returns Device status
 	 */
 	virtual Tango::ConstDevString dev_status();
 	/**
 	 *	Command DevReadNoCachePhys related method
-	 *	Description: Read all physical values of the specified logical device and 
+	 * Description:  Read all physical values of the specified logical device and 
 	 *               //              return the values as a float array. Physical value are
 	 *               //              calculated from module registers according to a predefined
 	 *               //              algorithm deduced from the module type in the catalogue.
@@ -209,7 +209,7 @@ public:
 	virtual bool is_DevWritePhys_allowed(const CORBA::Any &any);
 	/**
 	 *	Command DevReadPhys related method
-	 *	Description: Read physical values of LD
+	 * Description:  Read physical values of LD
 	 *
 	 *	@param argin Logical device key
 	 *	@returns Placeholder for obtained values
@@ -218,7 +218,7 @@ public:
 	virtual bool is_DevReadPhys_allowed(const CORBA::Any &any);
 	/**
 	 *	Command DevWriteDigi related method
-	 *	Description: Write words and bits to output module registers.
+	 * Description:  Write words and bits to output module registers.
 	 *
 	 *	@param argin Logical device key, then pairs of channel,value.
 	 */
@@ -226,7 +226,7 @@ public:
 	virtual bool is_DevWriteDigi_allowed(const CORBA::Any &any);
 	/**
 	 *	Command DevReadDigi related method
-	 *	Description: Read all input and output word and bits of the specified logical 
+	 * Description:  Read all input and output word and bits of the specified logical 
 	 *               device and return the values as a short array (short per bit). 
 	 *               Read from the cache.
 	 *
@@ -237,7 +237,7 @@ public:
 	virtual bool is_DevReadDigi_allowed(const CORBA::Any &any);
 	/**
 	 *	Command DevReadNoCacheDigi related method
-	 *	Description: Read all input and output word and bits of the specified logical 
+	 * Description:  Read all input and output word and bits of the specified logical 
 	 *               device and return the values as a short array (short per bit). 
 	 *               Read from the cache.
 	 *
@@ -248,7 +248,7 @@ public:
 	virtual bool is_DevReadNoCacheDigi_allowed(const CORBA::Any &any);
 	/**
 	 *	Command DevGetKeys related method
-	 *	Description: Return all the numerical keys known by the server.
+	 * Description:  Return all the numerical keys known by the server.
 	 *
 	 *	@returns Numerical keys
 	 */
@@ -256,7 +256,7 @@ public:
 	virtual bool is_DevGetKeys_allowed(const CORBA::Any &any);
 	/**
 	 *	Command DevKey2Name related method
-	 *	Description: Return the logical device name associated to a numerical keys 
+	 * Description:  Return the logical device name associated to a numerical keys 
 	 *               name.
 	 *
 	 *	@param argin Numerical key
@@ -266,7 +266,7 @@ public:
 	virtual bool is_DevKey2Name_allowed(const CORBA::Any &any);
 	/**
 	 *	Command DevLog2Hard related method
-	 *	Description: Return hardware information of a logical device/logical channel.
+	 * Description:  Return hardware information of a logical device/logical channel.
 	 *
 	 *	@param argin [0] : logical device key
 	 *	[1] : logical channel
@@ -280,7 +280,7 @@ public:
 	virtual bool is_DevLog2Hard_allowed(const CORBA::Any &any);
 	/**
 	 *	Command DevHard2Log related method
-	 *	Description: Returns the logical device/logical channel of a memory location 
+	 * Description:  Returns the logical device/logical channel of a memory location 
 	 *               on wago controller
 	 *
 	 *	@param argin [0] : MSB=I/O LSB=Bit/Word (ex: 0x4957 = (`I`<<8)+`W`)
@@ -292,7 +292,7 @@ public:
 	virtual bool is_DevHard2Log_allowed(const CORBA::Any &any);
 	/**
 	 *	Command DevName2Key related method
-	 *	Description: Return the logical device name associated to a numerical keys name.
+	 * Description:  Return the logical device name associated to a numerical keys name.
 	 *
 	 *	@param argin Logical device name
 	 *	@returns Numerical key
@@ -301,7 +301,7 @@ public:
 	virtual bool is_DevName2Key_allowed(const CORBA::Any &any);
 	/**
 	 *	Command DevWcComm related method
-	 *	Description: Executes a command in the wago controller programm. The communication is done using the ISG protocol.
+	 * Description:  Executes a command in the wago controller programm. The communication is done using the ISG protocol.
 	 *
 	 *	@param argin [0] : code of command to execute (ex: 0x010c for ILCK_RESET)
 	 *	[1] : 1st parameter
@@ -317,8 +317,8 @@ public:
 
 	//--------------------------------------------------------
 	/**
-	 *	Method     : Wago::add_dynamic_commands()
-	 *	Description: Add dynamic commands if any.
+	 *	Method      : Wago::add_dynamic_commands()
+	 * Description:  Add dynamic commands if any.
 	 */
 	//--------------------------------------------------------
 	void add_dynamic_commands();

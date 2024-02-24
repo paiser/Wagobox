@@ -63,7 +63,7 @@ void DeviceState::setLastException(Tango::DevFailed lastEx)
 {
 	accessMutex.lock();
 	lastException = lastEx;
-	INFO_STREAM << "setLastException setting last exception" << endl;
+	INFO_STREAM << "setLastException setting last exception" << std::endl;
 	accessMutex.unlock();
 }
 
@@ -83,9 +83,9 @@ devState(devSt)
 /*!Implementation of ReadDigitalInputs using tango Modbus class (See ModbusAbstract class).
  *
  */
-int ModbusConn::ReadDigitalInputs(unsigned int addr, unsigned int numOfInputs, vector<unsigned short>& dataBuffer)
+int ModbusConn::ReadDigitalInputs(unsigned int addr, unsigned int numOfInputs, std::vector<unsigned short>& dataBuffer)
 {
- 	vector<unsigned char> data;
+ 	std::vector<unsigned char> data;
 	Tango::DevVarShortArray inArgs;
 	inArgs.length(2);
 	inArgs[0] = addr;
@@ -96,7 +96,7 @@ int ModbusConn::ReadDigitalInputs(unsigned int addr, unsigned int numOfInputs, v
 		outdat = modbus_obj->command_inout("ReadInputStatus", indat);
 	}catch(Tango::DevFailed &ex)
 	{
-		ERROR_STREAM << "ModbusConn::ReadDigitalInputs catched exception" << endl;
+		ERROR_STREAM << "ModbusConn::ReadDigitalInputs catched exception" << std::endl;
 		devState->setLastException(ex);
 		throw ex;
 	}
@@ -109,9 +109,9 @@ int ModbusConn::ReadDigitalInputs(unsigned int addr, unsigned int numOfInputs, v
 /*!Implementation of ReadInputRegisters using tango Modbus class (See ModbusAbstract class).
  *
  */
-int ModbusConn::ReadInputRegisters(unsigned int addr, unsigned int numOfRegisters, vector<unsigned short>& dataBuffer)
+int ModbusConn::ReadInputRegisters(unsigned int addr, unsigned int numOfRegisters, std::vector<unsigned short>& dataBuffer)
 {
-	//vector<short> data;
+	//std::vector<short> data;
 	Tango::DevVarShortArray inArgs;
 	inArgs.length(2);
 	inArgs[0] = addr;
@@ -122,18 +122,18 @@ int ModbusConn::ReadInputRegisters(unsigned int addr, unsigned int numOfRegister
 		outdat = modbus_obj->command_inout("ReadInputRegisters", indat);
 	}catch(Tango::DevFailed &ex)
 	{
-		ERROR_STREAM << "ModbusConn::ReadInputRegisters catched exception" << endl;
+		ERROR_STREAM << "ModbusConn::ReadInputRegisters catched exception" << std::endl;
 		devState->setLastException(ex);
 		throw ex;
 	}
-	outdat >> (vector<short>&)dataBuffer;
+	outdat >> (std::vector<short>&)dataBuffer;
 	return 0;
 }
 
 /*!Implementation of ReadHoldingRegisters using tango Modbus class (See ModbusAbstract class).
  *
  */
-int ModbusConn::ReadHoldingRegisters(unsigned int addr, unsigned int numOfRegisters, vector<unsigned short>& dataBuffer)
+int ModbusConn::ReadHoldingRegisters(unsigned int addr, unsigned int numOfRegisters, std::vector<unsigned short>& dataBuffer)
 {
 	Tango::DevVarShortArray inArgs;
 	inArgs.length(2);
@@ -145,19 +145,19 @@ int ModbusConn::ReadHoldingRegisters(unsigned int addr, unsigned int numOfRegist
 		outdat = modbus_obj->command_inout("ReadHoldingRegisters", indat);
 	}catch(Tango::DevFailed &ex)
 	{
-		ERROR_STREAM << "ModbusConn::ReadHoldingRegisters catched exception" << endl;
+		ERROR_STREAM << "ModbusConn::ReadHoldingRegisters catched exception" << std::endl;
 		devState->setLastException(ex);
 		throw ex;
 	}
 
-	outdat >> (vector<short>&)dataBuffer;
+	outdat >> (std::vector<short>&)dataBuffer;
 	return 0;
 }
 
 /*!Implementation of ReadMultipleCoilsStatus using tango Modbus class (See ModbusAbstract class).
  *
  */
-int ModbusConn::ReadMultipleCoilsStatus(unsigned int addr,unsigned int numOfCoils, vector<unsigned short>& dataBuffer)
+int ModbusConn::ReadMultipleCoilsStatus(unsigned int addr,unsigned int numOfCoils, std::vector<unsigned short>& dataBuffer)
 {
 	Tango::DevVarShortArray inArgs;
 	inArgs.length(2);
@@ -169,19 +169,19 @@ int ModbusConn::ReadMultipleCoilsStatus(unsigned int addr,unsigned int numOfCoil
 		outdat = modbus_obj->command_inout("ReadMultipleCoilsStatus", indat);
 	}catch(Tango::DevFailed &ex)
 	{
-		ERROR_STREAM << "ModbusConn::ReadMultipleCoilsStatus catched exception" << endl;
+		ERROR_STREAM << "ModbusConn::ReadMultipleCoilsStatus catched exception" << std::endl;
 		devState->setLastException(ex);
 		throw ex;
 	}
 
-	outdat >> (vector<short>&)dataBuffer;
+	outdat >> (std::vector<short>&)dataBuffer;
 	return 0;
 }
 
 /*!Implementation of ForceMultipleCoils using tango Modbus class (See ModbusAbstract class).
  *
  */
-void ModbusConn::ForceMultipleCoils(unsigned int addr, vector<unsigned short>& values)
+void ModbusConn::ForceMultipleCoils(unsigned int addr, std::vector<unsigned short>& values)
 {
 	Tango::DevVarShortArray inArgs;
 	inArgs.length(2+values.size());
@@ -197,7 +197,7 @@ void ModbusConn::ForceMultipleCoils(unsigned int addr, vector<unsigned short>& v
 		modbus_obj->command_inout("ForceMultipleCoils", indat);
 	}catch(Tango::DevFailed &ex)
 	{
-		ERROR_STREAM << "ModbusConn::ForceMultipleCoils catched exception" << endl;
+		ERROR_STREAM << "ModbusConn::ForceMultipleCoils catched exception" << std::endl;
 		devState->setLastException(ex);
 		throw ex;
 	}
@@ -221,7 +221,7 @@ void ModbusConn::PresetSingleRegister(unsigned int addr, unsigned short value)
 		modbus_obj->command_inout("PresetSingleRegister", indat);
 	}catch(Tango::DevFailed &ex)
 	{
-		ERROR_STREAM << "ModbusConn::PresetSingleRegister catched exception" << endl;
+		ERROR_STREAM << "ModbusConn::PresetSingleRegister catched exception" << std::endl;
 		devState->setLastException(ex);
 		throw ex;
 	}
@@ -230,7 +230,7 @@ void ModbusConn::PresetSingleRegister(unsigned int addr, unsigned short value)
 /*!Implementation of ForceMultipleCoils using tango Modbus class (See ModbusAbstract class).
  *
  */
-void ModbusConn::PresetMultipleRegisters(unsigned int addr, vector<unsigned short>& values)
+void ModbusConn::PresetMultipleRegisters(unsigned int addr, std::vector<unsigned short>& values)
 {
 	Tango::DevVarShortArray inArgs;
 	inArgs.length(2+values.size());
@@ -246,7 +246,7 @@ void ModbusConn::PresetMultipleRegisters(unsigned int addr, vector<unsigned shor
 		modbus_obj->command_inout("PresetMultipleRegisters", indat);
 	}catch(Tango::DevFailed &ex)
 	{
-		ERROR_STREAM << "ModbusConn::PresetMultipleRegisters catched exception" << endl;
+		ERROR_STREAM << "ModbusConn::PresetMultipleRegisters catched exception" << std::endl;
 		devState->setLastException(ex);
 		throw ex;
 	}
@@ -260,12 +260,12 @@ bool ModbusConn::ModbusStateCheck()
 	try
 	{
 		Tango::DeviceData indat = modbus_obj->command_inout("State");
-//		cout << "ModbusStateCheck state valid"<< endl;
+//		cout << "ModbusStateCheck state valid"<< std::endl;
 //		devState->SetState(Tango::ON);		//TODO this is temporary since states is not implemented in Modbus Server
 		return false;
 	}catch(Tango::DevFailed &ex )
 	{
-		ERROR_STREAM << "ModbusStateCheck state not valid"<< endl;
+		ERROR_STREAM << "ModbusStateCheck state not valid"<< std::endl;
 		devState->SetState(Tango::FAULT);
 		devState->setLastException(ex);
 		return true;

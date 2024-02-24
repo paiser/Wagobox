@@ -24,7 +24,7 @@ template <typename T> T CLAMP(const T& value, const T& low, const T& high)
   return tmp;
 };
 
-vector<string> string2vector(string &str, const char* tokens);
+std::vector<std::string> string2vector(std::string &str, const char* tokens);
 
 
 #ifdef REG_TEST_ENV
@@ -59,8 +59,8 @@ vector<string> string2vector(string &str, const char* tokens);
 #define LOGGING_INITIALIZE_WITH_LOGGER_REF_ADDON( _ref_, _logger_ref_ )  _ref_->set_logger(_logger_ref_)
 
 #define DB_ERROR_STREAM cerr
-#define DB_INFO_STREAM cout1
-#define DB_DEBUG_STREAM cout3
+#define DB_INFO_STREAM TANGO_LOG_INFO
+#define DB_DEBUG_STREAM TANGO_LOG_DEBUG
 
 #endif
 

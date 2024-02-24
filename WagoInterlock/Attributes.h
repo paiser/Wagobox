@@ -19,7 +19,7 @@ namespace WagoInterlock_ns
 class WagoAttribute
 {
 public:
-	WagoAttribute(string nam, int dX );
+	WagoAttribute(std::string nam, int dX );
 	~WagoAttribute();
 	void readAttribute(Tango::DeviceProxy* wagoDeviceProxyObj);
 	float at(unsigned short pos);
@@ -27,10 +27,10 @@ public:
 
 	Tango::AttrQuality getQuality(){return quality;};
 	unsigned int size();
-	string getName(){return name;};
+	std::string getName(){return name;};
 
 private:
-	string name; //! Name of the corresponding wago attribute.
+	std::string name; //! Name of the corresponding wago attribute.
 	int dimX; //!Dimension of the attribute (0 for scalar attribute).
 
 	float *buff; //!Data buffer

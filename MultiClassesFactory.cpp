@@ -31,7 +31,7 @@
 //        (Program Obviously used to Generate tango Object)
 //=============================================================================
 
-#include <tango.h>
+#include <tango/tango.h>
 #include <SerialClass.h>
 #include <ModbusClass.h>
 #include <WagoClass.h>

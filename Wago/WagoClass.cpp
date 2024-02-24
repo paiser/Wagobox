@@ -152,7 +152,7 @@ WagoClass *WagoClass::instance()
 {
 	if (_instance == NULL)
 	{
-		std::cerr << "Class is not initialized !!" << std::endl;
+		std::cerr << "Class is not initialised !!" << std::endl;
 		exit(-1);
 	}
 	return _instance;
@@ -397,8 +397,8 @@ CORBA::Any *DevWcCommClass::execute(Tango::DeviceImpl *device, const CORBA::Any 
 //===================================================================
 //--------------------------------------------------------
 /**
- *	Method     : WagoClass::get_class_property()
- *	Description: Get the class property for specified name.
+ *	Method      : WagoClass::get_class_property()
+ * Description:  Get the class property for specified name.
  */
 //--------------------------------------------------------
 Tango::DbDatum WagoClass::get_class_property(std::string &prop_name)
@@ -412,8 +412,8 @@ Tango::DbDatum WagoClass::get_class_property(std::string &prop_name)
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoClass::get_default_device_property()
- *	Description: Return the default value for device property.
+ *	Method      : WagoClass::get_default_device_property()
+ * Description:  Return the default value for device property.
  */
 //--------------------------------------------------------
 Tango::DbDatum WagoClass::get_default_device_property(std::string &prop_name)
@@ -427,8 +427,8 @@ Tango::DbDatum WagoClass::get_default_device_property(std::string &prop_name)
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoClass::get_default_class_property()
- *	Description: Return the default value for class property.
+ *	Method      : WagoClass::get_default_class_property()
+ * Description:  Return the default value for class property.
  */
 //--------------------------------------------------------
 Tango::DbDatum WagoClass::get_default_class_property(std::string &prop_name)
@@ -442,8 +442,8 @@ Tango::DbDatum WagoClass::get_default_class_property(std::string &prop_name)
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoClass::get_class_property()
- *	Description: Read database to initialize class property data members.
+ *	Method      : WagoClass::get_class_property()
+ * Description:  Read database to initialize class property data members.
  */
 //--------------------------------------------------------
 void WagoClass::get_class_property()
@@ -484,8 +484,8 @@ void WagoClass::get_class_property()
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoClass::set_default_property()
- *	Description: Set default property (class and device) for wizard.
+ *	Method      : WagoClass::set_default_property()
+ * Description:  Set default property (class and device) for wizard.
  *                For each property, add to wizard property name and description.
  *                If default value has been set, add it to wizard property and
  *                store it in a DbDatum.
@@ -500,7 +500,7 @@ void WagoClass::set_default_property()
 
 	//	Set Default Class Properties
 	prop_name = "modulesCatalogue";
-	prop_desc = "List of know WAGO modules usable by the WAGO Device Server\nSYNTAX: \n   -the first item should be the date the list has been updated\n   -then, for each module, you must supply:\n          -module reference\n          -number of digital  inputs\n          -number of digital outputs\n          -number of word     inputs\n          -number of word    outputs\n          -number of logical channels (typically SSI32bits==2 words)\n          -string for special module  (``none``,``ssi``,``thc``,``thc100``,``thck``,etc)\n          -string for description\n\nexample:\n\n750-400,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``\n750-401,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``\n750-402,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-403,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-404,    0, 0, 3, 0, 3, ``none``,      ``32 bit Counter``\n750-405,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``\n750-406,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``\n750-408,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-409,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-410,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``\n750-411,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``\n750-412,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``\n750-414,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-415,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-422,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-430,    8, 0, 0, 0, 8, ``none``,      ``8 Channel Digital Input``\n750-436,    8, 0, 0, 0, 8, ``none``,      ``8 Channel Digital Input``\n750-485,    0, 0, 2, 0, 2, ``fs4-20_13``, ``2 Channel 4/20mA Input``\n750-501,    0, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``\n750-502,    0, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``\n750-504,    0, 4, 0, 0, 4, ``none``,      ``4 Channel Digital Output``\n750-506,    2, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``\n750-507,    2, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``\n750-508,    2, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``\n750-509,    0, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``\n750-512,    0, 2, 0, 0, 2, ``none``,      ``2 Normally Open Relay Output``\n750-513,    0, 2, 0, 0, 2, ``none``,      ``2 Normally Open Relay Output``\n750-514,    0, 2, 0, 0, 2, ``none``,      ``2 Changeover Relay Output``\n750-516,    0, 4, 0, 0, 4, ``none``,      ``4 Channel Digital Output``\n750-517,    0, 2, 0, 0, 2, ``none``,      ``2 Changeover Relay Output``\n750-519,    0, 4, 0, 0, 4, ``none``,      ``4 Channel Digital Output``\n750-530,    0, 8, 0, 0, 8, ``none``,      ``8 Channel Digital Output``\n750-531,    0, 4, 0, 0, 4, ``none``,      ``4 Channel Digital Output``\n750-536,    0, 8, 0, 0, 8, ``none``,      ``8 Channel Digital Output``\n750-452,    0, 0, 2, 0, 2, ``fs20_13``,   ``2 Channel 0/20mA Input``\n750-454,    0, 0, 2, 0, 2, ``fs4-20_13``, ``2 Channel 4/20mA Input``\n750-461,    0, 0, 2, 0, 2, ``thc``,       ``2 Channel PT100 Input``\n750-462,    0, 0, 2, 0, 2, ``thc``,       ``2 Channel Thermocouple Input``";
+	prop_desc = "List of know WAGO modules usable by the WAGO Device Server\nSYNTAX: \n   -the first item should be the date the list has been updated\n   -then, for each module, you must supply:\n          -module reference\n          -number of digital  inputs\n          -number of digital outputs\n          -number of word     inputs\n          -number of word    outputs\n          -number of logical channels (typically SSI32bits==2 words)\n          -string for special module  (``none``,``ssi``,``thc``,``thc100``,``thck``,etc)\n          -string for description\n\nexample:\n\n750-400,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``\n750-401,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``\n750-402,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-403,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-404,    0, 0, 3, 0, 3, ``none``,      ``32 bit Counter``\n750-405,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``\n750-406,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``\n750-408,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-409,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-410,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``\n750-411,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``\n750-412,    2, 0, 0, 0, 2, ``none``,      ``2 Channel Digital Input``\n750-414,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-415,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-422,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-432,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-9999/400-004,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``\n750-430,    8, 0, 0, 0, 8, ``none``,      ``8 Channel Digital Input``\n750-436,    8, 0, 0, 0, 8, ``none``,      ``8 Channel Digital Input``\n750-485,    0, 0, 2, 0, 2, ``fs4-20_13``, ``2 Channel 4/20mA Input``\n750-501,    0, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``\n750-502,    0, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``\n750-504,    0, 4, 0, 0, 4, ``none``,      ``4 Channel Digital Output``\n750-9999/500-004,    0, 4, 0, 0, 4, ``none``,      ``4 Channel Digital Output``\n750-506,    2, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``\n750-507,    2, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``\n750-508,    2, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``\n750-509,    0, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``\n750-512,    0, 2, 0, 0, 2, ``none``,      ``2 Normally Open Relay Output``\n750-513,    0, 2, 0, 0, 2, ``none``,      ``2 Normally Open Relay Output``\n750-514,    0, 2, 0, 0, 2, ``none``,      ``2 Changeover Relay Output``\n750-516,    0, 4, 0, 0, 4, ``none``,      ``4 Channel Digital Output``\n750-517,    0, 2, 0, 0, 2, ``none``,      ``2 Changeover Relay Output``\n750-519,    0, 4, 0, 0, 4, ``none``,      ``4 Channel Digital Output``\n750-530,    0, 8, 0, 0, 8, ``none``,      ``8 Channel Digital Output``\n750-531,    0, 4, 0, 0, 4, ``none``,      ``4 Channel Digital Output``\n750-536,    0, 8, 0, 0, 8, ``none``,      ``8 Channel Digital Output``\n750-452,    0, 0, 2, 0, 2, ``fs20_13``,   ``2 Channel 0/20mA Input``\n750-454,    0, 0, 2, 0, 2, ``fs4-20_13``, ``2 Channel 4/20mA Input``\n750-461,    0, 0, 2, 0, 2, ``thc``,       ``2 Channel PT100 Input``\n750-462,    0, 0, 2, 0, 2, ``thc``,       ``2 Channel Thermocouple Input``";
 	prop_def  = "";
 	vect_data.clear();
 	if (prop_def.length()>0)
@@ -558,45 +558,45 @@ void WagoClass::set_default_property()
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoClass::write_class_property()
- *	Description: Set class description fields as property in database
+ *	Method      : WagoClass::write_class_property()
+ * Description:  Set class description fields as property in database
  */
 //--------------------------------------------------------
 void WagoClass::write_class_property()
 {
-	//	First time, check if database used
-	if (Tango::Util::_UseDb == false)
-		return;
+//	First time, check if database used
+if (Tango::Util::_UseDb == false)
+	return;
 
-	Tango::DbData	data;
-	std::string	classname = get_name();
-	std::string	header;
+Tango::DbData	data;
+std::string	classname = get_name();
+std::string	header;
 
-	//	Put title
-	Tango::DbDatum	title("ProjectTitle");
-	std::string	str_title("Wago interface");
-	title << str_title;
-	data.push_back(title);
+//	Put title
+Tango::DbDatum	title("ProjectTitle");
+std::string	str_title("Wago interface");
+title << str_title;
+data.push_back(title);
 
-	//	Put Description
-	Tango::DbDatum	description("Description");
-	std::vector<std::string>	str_desc;
-	str_desc.push_back("Device server for Wago 750 series Programable Fieldbus Controllers ");
-	str_desc.push_back("and Fieldbus Couplers. The class supports reading and writing to a node");
-	str_desc.push_back("consisting of a number of Wago modules. It communicates with device over");
-	str_desc.push_back("Modbus TCP or RTU protocol by means of Modbus Tango class.");
-	description << str_desc;
-	data.push_back(description);
+//	Put Description
+Tango::DbDatum	description("Description");
+std::vector<std::string>	str_desc;
+str_desc.push_back("Device server for Wago 750 series Programable Fieldbus Controllers ");
+str_desc.push_back("and Fieldbus Couplers. The class supports reading and writing to a node");
+str_desc.push_back("consisting of a number of Wago modules. It communicates with device over");
+str_desc.push_back("Modbus TCP or RTU protocol by means of Modbus Tango class.");
+description << str_desc;
+data.push_back(description);
 
-	//  Put inheritance
-	Tango::DbDatum	inher_datum("InheritedFrom");
-	std::vector<std::string> inheritance;
-	inheritance.push_back("TANGO_BASE_CLASS");
-	inher_datum << inheritance;
-	data.push_back(inher_datum);
+//  Put inheritance
+Tango::DbDatum	inher_datum("InheritedFrom");
+std::vector<std::string> inheritance;
+inheritance.push_back("TANGO_BASE_CLASS");
+inher_datum << inheritance;
+data.push_back(inher_datum);
 
-	//	Call database and and values
-	get_db_class()->put_property(data);
+//	Call database and and values
+get_db_class()->put_property(data);
 }
 
 //===================================================================
@@ -605,14 +605,14 @@ void WagoClass::write_class_property()
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoClass::device_factory()
- *	Description: Create the device object(s)
+ *	Method      : WagoClass::device_factory()
+ * Description:  Create the device object(s)
  *                and store them in the device list
  */
 //--------------------------------------------------------
 void WagoClass::device_factory(const Tango::DevVarStringArray *devlist_ptr)
 {
-	/*----- PROTECTED REGION ID(WagoClass::device_factory_before) ENABLED START -----*/
+/*----- PROTECTED REGION ID(WagoClass::device_factory_before) ENABLED START -----*/
 	
 	//	Add your own code
 	//TODO Move ModuleDB initialisation here;
@@ -621,31 +621,31 @@ void WagoClass::device_factory(const Tango::DevVarStringArray *devlist_ptr)
 
 	/*----- PROTECTED REGION END -----*/	//	WagoClass::device_factory_before
 
-	//	Create devices and add it into the device list
-	for (unsigned long i=0 ; i<devlist_ptr->length() ; i++)
-	{
-		TANGO_LOG_DEBUG << "Device name : " << (*devlist_ptr)[i].in() << std::endl;
-		device_list.push_back(new Wago(this, (*devlist_ptr)[i]));
-	}
+//	Create devices and add it into the device list
+for (unsigned long i=0 ; i<devlist_ptr->length() ; i++)
+{
+	TANGO_LOG_DEBUG << "Device name : " << (*devlist_ptr)[i].in() << std::endl;
+	device_list.push_back(new Wago(this, (*devlist_ptr)[i]));
+}
 
-	//	Manage dynamic attributes if any
-	erase_dynamic_attributes(devlist_ptr, get_class_attr()->get_attr_list());
+//	Manage dynamic attributes if any
+erase_dynamic_attributes(devlist_ptr, get_class_attr()->get_attr_list());
 
-	//	Export devices to the outside world
-	for (unsigned long i=1 ; i<=devlist_ptr->length() ; i++)
-	{
-		//	Add dynamic attributes if any
-		Wago *dev = static_cast<Wago *>(device_list[device_list.size()-i]);
-		dev->add_dynamic_attributes();
+//	Export devices to the outside world
+for (unsigned long i=1 ; i<=devlist_ptr->length() ; i++)
+{
+	//	Add dynamic attributes if any
+	Wago *dev = static_cast<Wago *>(device_list[device_list.size()-i]);
+	dev->add_dynamic_attributes();
 
-		//	Check before if database used.
-		if ((Tango::Util::_UseDb == true) && (Tango::Util::_FileDb == false))
-			export_device(dev);
-		else
-			export_device(dev, dev->get_name().c_str());
-	}
+	//	Check before if database used.
+	if ((Tango::Util::_UseDb == true) && (Tango::Util::_FileDb == false))
+		export_device(dev);
+	else
+		export_device(dev, dev->get_name().c_str());
+}
 
-	/*----- PROTECTED REGION ID(WagoClass::device_factory_after) ENABLED START -----*/
+/*----- PROTECTED REGION ID(WagoClass::device_factory_after) ENABLED START -----*/
 	
 	//	Add your own code
 	
@@ -653,8 +653,8 @@ void WagoClass::device_factory(const Tango::DevVarStringArray *devlist_ptr)
 }
 //--------------------------------------------------------
 /**
- *	Method     : WagoClass::attribute_factory()
- *	Description: Create the attribute object(s)
+ *	Method      : WagoClass::attribute_factory()
+ * Description:  Create the attribute object(s)
  *                and store them in the attribute list
  */
 //--------------------------------------------------------
@@ -676,8 +676,8 @@ void WagoClass::attribute_factory(std::vector<Tango::Attr *> &att_list)
 }
 //--------------------------------------------------------
 /**
- *	Method     : WagoClass::pipe_factory()
- *	Description: Create the pipe object(s)
+ *	Method      : WagoClass::pipe_factory()
+ * Description:  Create the pipe object(s)
  *                and store them in the pipe list
  */
 //--------------------------------------------------------
@@ -696,8 +696,8 @@ void WagoClass::pipe_factory()
 }
 //--------------------------------------------------------
 /**
- *	Method     : WagoClass::command_factory()
- *	Description: Create the command object(s)
+ *	Method      : WagoClass::command_factory()
+ * Description:  Create the command object(s)
  *                and store them in the command list
  */
 //--------------------------------------------------------
@@ -896,8 +896,8 @@ void WagoClass::erase_dynamic_attributes(const Tango::DevVarStringArray *devlist
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoClass::get_attr_object_by_name()
- *	Description: returns Tango::Attr * object found by name
+ *	Method      : WagoClass::get_attr_object_by_name()
+ * Description:  returns Tango::Attr * object found by name
  */
 //--------------------------------------------------------
 Tango::Attr *WagoClass::get_attr_object_by_name(std::vector<Tango::Attr *> &att_list, std::string attname)

@@ -60,8 +60,8 @@ namespace Wago_ns
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::is_DevReadNoCachePhys_allowed()
- *	Description: Execution allowed for DevReadNoCachePhys attribute
+ *	Method      : Wago::is_DevReadNoCachePhys_allowed()
+ * Description:  Execution allowed for DevReadNoCachePhys attribute
  */
 //--------------------------------------------------------
 bool Wago::is_DevReadNoCachePhys_allowed(TANGO_UNUSED(const CORBA::Any &any))
@@ -80,8 +80,8 @@ bool Wago::is_DevReadNoCachePhys_allowed(TANGO_UNUSED(const CORBA::Any &any))
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::is_DevWritePhys_allowed()
- *	Description: Execution allowed for DevWritePhys attribute
+ *	Method      : Wago::is_DevWritePhys_allowed()
+ * Description:  Execution allowed for DevWritePhys attribute
  */
 //--------------------------------------------------------
 bool Wago::is_DevWritePhys_allowed(TANGO_UNUSED(const CORBA::Any &any))
@@ -100,8 +100,8 @@ bool Wago::is_DevWritePhys_allowed(TANGO_UNUSED(const CORBA::Any &any))
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::is_DevReadPhys_allowed()
- *	Description: Execution allowed for DevReadPhys attribute
+ *	Method      : Wago::is_DevReadPhys_allowed()
+ * Description:  Execution allowed for DevReadPhys attribute
  */
 //--------------------------------------------------------
 bool Wago::is_DevReadPhys_allowed(TANGO_UNUSED(const CORBA::Any &any))
@@ -120,8 +120,8 @@ bool Wago::is_DevReadPhys_allowed(TANGO_UNUSED(const CORBA::Any &any))
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::is_DevWriteDigi_allowed()
- *	Description: Execution allowed for DevWriteDigi attribute
+ *	Method      : Wago::is_DevWriteDigi_allowed()
+ * Description:  Execution allowed for DevWriteDigi attribute
  */
 //--------------------------------------------------------
 bool Wago::is_DevWriteDigi_allowed(TANGO_UNUSED(const CORBA::Any &any))
@@ -140,8 +140,8 @@ bool Wago::is_DevWriteDigi_allowed(TANGO_UNUSED(const CORBA::Any &any))
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::is_DevReadDigi_allowed()
- *	Description: Execution allowed for DevReadDigi attribute
+ *	Method      : Wago::is_DevReadDigi_allowed()
+ * Description:  Execution allowed for DevReadDigi attribute
  */
 //--------------------------------------------------------
 bool Wago::is_DevReadDigi_allowed(TANGO_UNUSED(const CORBA::Any &any))
@@ -160,8 +160,8 @@ bool Wago::is_DevReadDigi_allowed(TANGO_UNUSED(const CORBA::Any &any))
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::is_DevReadNoCacheDigi_allowed()
- *	Description: Execution allowed for DevReadNoCacheDigi attribute
+ *	Method      : Wago::is_DevReadNoCacheDigi_allowed()
+ * Description:  Execution allowed for DevReadNoCacheDigi attribute
  */
 //--------------------------------------------------------
 bool Wago::is_DevReadNoCacheDigi_allowed(TANGO_UNUSED(const CORBA::Any &any))
@@ -180,8 +180,8 @@ bool Wago::is_DevReadNoCacheDigi_allowed(TANGO_UNUSED(const CORBA::Any &any))
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::is_DevGetKeys_allowed()
- *	Description: Execution allowed for DevGetKeys attribute
+ *	Method      : Wago::is_DevGetKeys_allowed()
+ * Description:  Execution allowed for DevGetKeys attribute
  */
 //--------------------------------------------------------
 bool Wago::is_DevGetKeys_allowed(TANGO_UNUSED(const CORBA::Any &any))
@@ -200,8 +200,8 @@ bool Wago::is_DevGetKeys_allowed(TANGO_UNUSED(const CORBA::Any &any))
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::is_DevKey2Name_allowed()
- *	Description: Execution allowed for DevKey2Name attribute
+ *	Method      : Wago::is_DevKey2Name_allowed()
+ * Description:  Execution allowed for DevKey2Name attribute
  */
 //--------------------------------------------------------
 bool Wago::is_DevKey2Name_allowed(TANGO_UNUSED(const CORBA::Any &any))
@@ -220,8 +220,8 @@ bool Wago::is_DevKey2Name_allowed(TANGO_UNUSED(const CORBA::Any &any))
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::is_DevLog2Hard_allowed()
- *	Description: Execution allowed for DevLog2Hard attribute
+ *	Method      : Wago::is_DevLog2Hard_allowed()
+ * Description:  Execution allowed for DevLog2Hard attribute
  */
 //--------------------------------------------------------
 bool Wago::is_DevLog2Hard_allowed(TANGO_UNUSED(const CORBA::Any &any))
@@ -240,8 +240,8 @@ bool Wago::is_DevLog2Hard_allowed(TANGO_UNUSED(const CORBA::Any &any))
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::is_DevHard2Log_allowed()
- *	Description: Execution allowed for DevHard2Log attribute
+ *	Method      : Wago::is_DevHard2Log_allowed()
+ * Description:  Execution allowed for DevHard2Log attribute
  */
 //--------------------------------------------------------
 bool Wago::is_DevHard2Log_allowed(TANGO_UNUSED(const CORBA::Any &any))
@@ -260,8 +260,8 @@ bool Wago::is_DevHard2Log_allowed(TANGO_UNUSED(const CORBA::Any &any))
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::is_DevName2Key_allowed()
- *	Description: Execution allowed for DevName2Key attribute
+ *	Method      : Wago::is_DevName2Key_allowed()
+ * Description:  Execution allowed for DevName2Key attribute
  */
 //--------------------------------------------------------
 bool Wago::is_DevName2Key_allowed(TANGO_UNUSED(const CORBA::Any &any))
@@ -280,8 +280,8 @@ bool Wago::is_DevName2Key_allowed(TANGO_UNUSED(const CORBA::Any &any))
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::is_DevWcComm_allowed()
- *	Description: Execution allowed for DevWcComm attribute
+ *	Method      : Wago::is_DevWcComm_allowed()
+ * Description:  Execution allowed for DevWcComm attribute
  */
 //--------------------------------------------------------
 bool Wago::is_DevWcComm_allowed(TANGO_UNUSED(const CORBA::Any &any))

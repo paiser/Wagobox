@@ -3,9 +3,3 @@ bin
 CVS
 cvstag
 OLD
-nbproject
-CMakeFiles
-Makefile
-CMakeCache.txt
-compile_commands.json
-cmake_install.cmake

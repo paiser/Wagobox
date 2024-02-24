@@ -3,34 +3,30 @@
 #
 
 #---------------------------------------------------------
-# SERVER Wago/wcisgd, Modbus device declaration
+# SERVER Wago/wclbl01, Modbus device declaration
 #---------------------------------------------------------
 
-Wago/wcisgd/DEVICE/Modbus: "ISG/wcisgd/mb"
+Wago/wclbl01/DEVICE/Modbus: "BCG/wclbl01/mb"
 
 
-ISG/wcisgd/mb->Iphost: 160.103.2.18
-ISG/wcisgd/mb->Protocol: TCP
-ISG/wcisgd/mb->TCPTimeout: 1000
+BCG/wclbl01/mb->Iphost: 128.3.128.129
+BCG/wclbl01/mb->Protocol: TCP
+BCG/wclbl01/mb->TCPTimeout: 1000
 
 
 
 #---------------------------------------------------------
-# SERVER Wago/wcisgd, Wago device declaration
+# SERVER Wago/wclbl01, Wago device declaration
 #---------------------------------------------------------
 
-Wago/wcisgd/DEVICE/Wago: "isg/wcisgd/tg"
+Wago/wclbl01/DEVICE/Wago: "bcg/wclbl01/tg"
 
 
-isg/wcisgd/tg->config: "750-400,din1,din2",\ 
-                       "750-630,enc4",\ 
-                       "750-504,dout2,dout2,dout2,dout2",\ 
-                       "750-562,dac0,dac1",\ 
-                       "750-459,adc0,adc1,adc2,adc3",\ 
-                       "750-556,dac5,dac6",\ 
-                       "750-469,temp6,temp6"
+bcg/wclbl01/tg->config: "750-432,din1,din2,din3,din4",\ 
+                        "750-504,dout2,dout2,dout2,dout2",\  
+                        "750-469,temp6,temp6"
 
-isg/wcisgd/tg->modbusDevName: "ISG/wcisgd/mb"
+bcg/wclbl01/tg->modbusDevName: "BCG/wclbl01/mb"
 
 
 

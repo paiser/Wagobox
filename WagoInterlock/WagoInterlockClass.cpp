@@ -150,7 +150,7 @@ WagoInterlockClass *WagoInterlockClass::instance()
 {
 	if (_instance == NULL)
 	{
-		std::cerr << "Class is not initialized !!" << std::endl;
+		std::cerr << "Class is not initialised !!" << std::endl;
 		exit(-1);
 	}
 	return _instance;
@@ -203,8 +203,8 @@ CORBA::Any *ResetClass::execute(Tango::DeviceImpl *device, TANGO_UNUSED(const CO
 //===================================================================
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlockClass::get_class_property()
- *	Description: Get the class property for specified name.
+ *	Method      : WagoInterlockClass::get_class_property()
+ * Description:  Get the class property for specified name.
  */
 //--------------------------------------------------------
 Tango::DbDatum WagoInterlockClass::get_class_property(std::string &prop_name)
@@ -218,8 +218,8 @@ Tango::DbDatum WagoInterlockClass::get_class_property(std::string &prop_name)
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlockClass::get_default_device_property()
- *	Description: Return the default value for device property.
+ *	Method      : WagoInterlockClass::get_default_device_property()
+ * Description:  Return the default value for device property.
  */
 //--------------------------------------------------------
 Tango::DbDatum WagoInterlockClass::get_default_device_property(std::string &prop_name)
@@ -233,8 +233,8 @@ Tango::DbDatum WagoInterlockClass::get_default_device_property(std::string &prop
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlockClass::get_default_class_property()
- *	Description: Return the default value for class property.
+ *	Method      : WagoInterlockClass::get_default_class_property()
+ * Description:  Return the default value for class property.
  */
 //--------------------------------------------------------
 Tango::DbDatum WagoInterlockClass::get_default_class_property(std::string &prop_name)
@@ -249,8 +249,8 @@ Tango::DbDatum WagoInterlockClass::get_default_class_property(std::string &prop_
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlockClass::set_default_property()
- *	Description: Set default property (class and device) for wizard.
+ *	Method      : WagoInterlockClass::set_default_property()
+ * Description:  Set default property (class and device) for wizard.
  *                For each property, add to wizard property name and description.
  *                If default value has been set, add it to wizard property and
  *                store it in a DbDatum.
@@ -363,42 +363,42 @@ void WagoInterlockClass::set_default_property()
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlockClass::write_class_property()
- *	Description: Set class description fields as property in database
+ *	Method      : WagoInterlockClass::write_class_property()
+ * Description:  Set class description fields as property in database
  */
 //--------------------------------------------------------
 void WagoInterlockClass::write_class_property()
 {
-	//	First time, check if database used
-	if (Tango::Util::_UseDb == false)
-		return;
+//	First time, check if database used
+if (Tango::Util::_UseDb == false)
+	return;
 
-	Tango::DbData	data;
-	std::string	classname = get_name();
-	std::string	header;
+Tango::DbData	data;
+std::string	classname = get_name();
+std::string	header;
 
-	//	Put title
-	Tango::DbDatum	title("ProjectTitle");
-	std::string	str_title("");
-	title << str_title;
-	data.push_back(title);
+//	Put title
+Tango::DbDatum	title("ProjectTitle");
+std::string	str_title("");
+title << str_title;
+data.push_back(title);
 
-	//	Put Description
-	Tango::DbDatum	description("Description");
-	std::vector<std::string>	str_desc;
-	str_desc.push_back("Class representing interlocks implemented using Wago");
-	description << str_desc;
-	data.push_back(description);
+//	Put Description
+Tango::DbDatum	description("Description");
+std::vector<std::string>	str_desc;
+str_desc.push_back("Class representing interlocks implemented using Wago");
+description << str_desc;
+data.push_back(description);
 
-	//  Put inheritance
-	Tango::DbDatum	inher_datum("InheritedFrom");
-	std::vector<std::string> inheritance;
-	inheritance.push_back("TANGO_BASE_CLASS");
-	inher_datum << inheritance;
-	data.push_back(inher_datum);
+//  Put inheritance
+Tango::DbDatum	inher_datum("InheritedFrom");
+std::vector<std::string> inheritance;
+inheritance.push_back("TANGO_BASE_CLASS");
+inher_datum << inheritance;
+data.push_back(inher_datum);
 
-	//	Call database and and values
-	get_db_class()->put_property(data);
+//	Call database and and values
+get_db_class()->put_property(data);
 }
 
 //===================================================================
@@ -407,44 +407,44 @@ void WagoInterlockClass::write_class_property()
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlockClass::device_factory()
- *	Description: Create the device object(s)
+ *	Method      : WagoInterlockClass::device_factory()
+ * Description:  Create the device object(s)
  *                and store them in the device list
  */
 //--------------------------------------------------------
 void WagoInterlockClass::device_factory(const Tango::DevVarStringArray *devlist_ptr)
 {
-	/*----- PROTECTED REGION ID(WagoInterlockClass::device_factory_before) ENABLED START -----*/
+/*----- PROTECTED REGION ID(WagoInterlockClass::device_factory_before) ENABLED START -----*/
 	
 	//	Add your own code
 	
 	/*----- PROTECTED REGION END -----*/	//	WagoInterlockClass::device_factory_before
 
-	//	Create devices and add it into the device list
-	for (unsigned long i=0 ; i<devlist_ptr->length() ; i++)
-	{
-		TANGO_LOG_DEBUG << "Device name : " << (*devlist_ptr)[i].in() << std::endl;
-		device_list.push_back(new WagoInterlock(this, (*devlist_ptr)[i]));
-	}
+//	Create devices and add it into the device list
+for (unsigned long i=0 ; i<devlist_ptr->length() ; i++)
+{
+	TANGO_LOG_DEBUG << "Device name : " << (*devlist_ptr)[i].in() << std::endl;
+	device_list.push_back(new WagoInterlock(this, (*devlist_ptr)[i]));
+}
 
-	//	Manage dynamic attributes if any
-	erase_dynamic_attributes(devlist_ptr, get_class_attr()->get_attr_list());
+//	Manage dynamic attributes if any
+erase_dynamic_attributes(devlist_ptr, get_class_attr()->get_attr_list());
 
-	//	Export devices to the outside world
-	for (unsigned long i=1 ; i<=devlist_ptr->length() ; i++)
-	{
-		//	Add dynamic attributes if any
-		WagoInterlock *dev = static_cast<WagoInterlock *>(device_list[device_list.size()-i]);
-		dev->add_dynamic_attributes();
+//	Export devices to the outside world
+for (unsigned long i=1 ; i<=devlist_ptr->length() ; i++)
+{
+	//	Add dynamic attributes if any
+	WagoInterlock *dev = static_cast<WagoInterlock *>(device_list[device_list.size()-i]);
+	dev->add_dynamic_attributes();
 
-		//	Check before if database used.
-		if ((Tango::Util::_UseDb == true) && (Tango::Util::_FileDb == false))
-			export_device(dev);
-		else
-			export_device(dev, dev->get_name().c_str());
-	}
+	//	Check before if database used.
+	if ((Tango::Util::_UseDb == true) && (Tango::Util::_FileDb == false))
+		export_device(dev);
+	else
+		export_device(dev, dev->get_name().c_str());
+}
 
-	/*----- PROTECTED REGION ID(WagoInterlockClass::device_factory_after) ENABLED START -----*/
+/*----- PROTECTED REGION ID(WagoInterlockClass::device_factory_after) ENABLED START -----*/
 	
 	//	Add your own code
 	
@@ -452,8 +452,8 @@ void WagoInterlockClass::device_factory(const Tango::DevVarStringArray *devlist_
 }
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlockClass::attribute_factory()
- *	Description: Create the attribute object(s)
+ *	Method      : WagoInterlockClass::attribute_factory()
+ * Description:  Create the attribute object(s)
  *                and store them in the attribute list
  */
 //--------------------------------------------------------
@@ -475,8 +475,8 @@ void WagoInterlockClass::attribute_factory(std::vector<Tango::Attr *> &att_list)
 }
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlockClass::pipe_factory()
- *	Description: Create the pipe object(s)
+ *	Method      : WagoInterlockClass::pipe_factory()
+ * Description:  Create the pipe object(s)
  *                and store them in the pipe list
  */
 //--------------------------------------------------------
@@ -495,8 +495,8 @@ void WagoInterlockClass::pipe_factory()
 }
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlockClass::command_factory()
- *	Description: Create the command object(s)
+ *	Method      : WagoInterlockClass::command_factory()
+ * Description:  Create the command object(s)
  *                and store them in the command list
  */
 //--------------------------------------------------------
@@ -605,8 +605,8 @@ void WagoInterlockClass::erase_dynamic_attributes(const Tango::DevVarStringArray
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlockClass::get_attr_object_by_name()
- *	Description: returns Tango::Attr * object found by name
+ *	Method      : WagoInterlockClass::get_attr_object_by_name()
+ * Description:  returns Tango::Attr * object found by name
  */
 //--------------------------------------------------------
 Tango::Attr *WagoInterlockClass::get_attr_object_by_name(std::vector<Tango::Attr *> &att_list, std::string attname)

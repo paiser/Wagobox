@@ -80,8 +80,8 @@ namespace WagoInterlock_ns
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlock::WagoInterlock()
- *	Description: Constructors for a Tango device
+ *	Method      : WagoInterlock::WagoInterlock()
+ * Description:  Constructors for a Tango device
  *                implementing the classWagoInterlock
  */
 //--------------------------------------------------------
@@ -119,8 +119,8 @@ WagoInterlock::~WagoInterlock()
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlock::delete_device()
- *	Description: will be called at device destruction or at init command
+ *	Method      : WagoInterlock::delete_device()
+ * Description:  will be called at device destruction or at init command
  */
 //--------------------------------------------------------
 void WagoInterlock::delete_device()
@@ -156,8 +156,8 @@ void WagoInterlock::delete_device()
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlock::init_device()
- *	Description: will be called at device initialization.
+ *	Method      : WagoInterlock::init_device()
+ * Description:  will be called at device initialization.
  */
 //--------------------------------------------------------
 void WagoInterlock::init_device()
@@ -187,17 +187,17 @@ void WagoInterlock::init_device()
 		return;
 
 	//Process the interlock flags
-	string tmp = flags;
+	std::string tmp = flags;
 	tmp.erase(std::remove(tmp.begin(), tmp.end(), ' '), tmp.end()); // remove whitespaces from line
-	vector<string> fields = string2vector(tmp, ",");
+	std::vector<std::string> fields = string2vector(tmp, ",");
 	modeFlags = 0;
 	for(unsigned int i = 0 ; i < fields.size(); i++)
 	{
-		DEBUG_STREAM << "Interlock::init_device() fields[i]: " << fields[i] << endl;
+		DEBUG_STREAM << "Interlock::init_device() fields[i]: " << fields[i] << std::endl;
 		unsigned short fg = FlagsTxt2Bin(fields[i]);
 		if(fg == 0x0)
 		{
-			ERROR_STREAM << "Interlock::init_device() invalid flag " << endl;
+			ERROR_STREAM << "Interlock::init_device() invalid flag " << std::endl;
 			this->lastException = CreateException("Invalid interlock flag: " + fields[i], "", "Interlock::init_device()");
 			set_state(Tango::UNKNOWN);
 			interlockInstance = -1;
@@ -205,13 +205,13 @@ void WagoInterlock::init_device()
 		}
 		modeFlags |= fg;
 	}
-	DEBUG_STREAM << "Interlock::init_device() flags checked:" << std::hex << modeFlags << std::dec << endl;
+	DEBUG_STREAM << "Interlock::init_device() flags checked:" << std::hex << modeFlags << std::dec << std::endl;
 
-	string outRelayAttribName;
-	vector<unsigned short> addr =  ParseName(outRelay, outRelayAttribName);
+	std::string outRelayAttribName;
+	std::vector<unsigned short> addr =  ParseName(outRelay, outRelayAttribName);
 	if(addr.size() != 1)
 	{
-		ERROR_STREAM << "Interlock::init_device() - invalid output relay name syntax" << endl;
+		ERROR_STREAM << "Interlock::init_device() - invalid output relay name syntax" << std::endl;
 		this->lastException = CreateException("Invalid output relay name syntax", "", "Interlock::init_device()");
 		set_state(Tango::UNKNOWN);
 		return;
@@ -223,7 +223,7 @@ void WagoInterlock::init_device()
 	//Get the Interlock instance name;
 	unsigned short outChan;
 	unsigned short mFlags;
-	vector<channel_t> cConf;
+	std::vector<channel_t> cConf;
 
 	try
 	{
@@ -241,7 +241,7 @@ void WagoInterlock::init_device()
 	}catch(const Tango::DevFailed &ex)
 	{
 		this->lastException = ex;
-		ERROR_STREAM << "Interlock::init_device() caught exception while initialization" << endl;
+		ERROR_STREAM << "Interlock::init_device() caught exception while initialization" << std::endl;
 		set_state(Tango::UNKNOWN);
 		interlockInstance = -1;
 		return;
@@ -251,7 +251,7 @@ void WagoInterlock::init_device()
 		ValidateIlckConfig(outChan, mFlags, cConf);
 	}catch(const Tango::DevFailed &ex)
 	{
-		ERROR_STREAM << "Interlock::init_device() configuration INVALID" << endl;
+		ERROR_STREAM << "Interlock::init_device() configuration INVALID" << std::endl;
 		set_state(Tango::UNKNOWN);
 		//interlockInstance = -1;
 		this->lastException = ex;
@@ -260,7 +260,7 @@ void WagoInterlock::init_device()
 
 	this->modeFlags = mFlags;
 
-	INFO_STREAM << "Interlock::init_device() configuration valid" << endl;
+	INFO_STREAM << "Interlock::init_device() configuration valid" << std::endl;
 
 	PrepareWagoAttributeObjs();
 
@@ -272,8 +272,8 @@ void WagoInterlock::init_device()
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlock::get_device_property()
- *	Description: Read database to initialize property data members.
+ *	Method      : WagoInterlock::get_device_property()
+ * Description:  Read database to initialize property data members.
  */
 //--------------------------------------------------------
 void WagoInterlock::get_device_property()
@@ -398,8 +398,8 @@ void WagoInterlock::get_device_property()
 }
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlock::check_mandatory_property()
- *	Description: For mandatory properties check if defined in database.
+ *	Method      : WagoInterlock::check_mandatory_property()
+ * Description:  For mandatory properties check if defined in database.
  */
 //--------------------------------------------------------
 void WagoInterlock::check_mandatory_property(Tango::DbDatum &class_prop, Tango::DbDatum &dev_prop)
@@ -416,7 +416,7 @@ void WagoInterlock::check_mandatory_property(Tango::DbDatum &class_prop, Tango::
 		append_status(tms.str());
 		mandatoryNotDefined = true;
 		/*----- PROTECTED REGION ID(WagoInterlock::check_mandatory_property) ENABLED START -----*/
-		cerr << tms.str() << " for " << device_name << endl;
+		std::cerr << tms.str() << " for " << device_name << std::endl;
 		
 		/*----- PROTECTED REGION END -----*/	//	WagoInterlock::check_mandatory_property
 	}
@@ -425,8 +425,8 @@ void WagoInterlock::check_mandatory_property(Tango::DbDatum &class_prop, Tango::
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlock::always_executed_hook()
- *	Description: method always executed before any command is executed
+ *	Method      : WagoInterlock::always_executed_hook()
+ * Description:  method always executed before any command is executed
  */
 //--------------------------------------------------------
 void WagoInterlock::always_executed_hook()
@@ -452,33 +452,33 @@ void WagoInterlock::always_executed_hook()
 
 	if( interval >= dataPeriod && interlockInstance != -1)
 	{
-		DEBUG_STREAM << "Interlock::always_executed_hook() performing data Update interval: "<< interval << endl;
+		DEBUG_STREAM << "Interlock::always_executed_hook() performing data Update interval: "<< interval << std::endl;
 		try{
 			WagoInterlock::UpdateAttributes();
 		}catch(Tango::DevFailed &ex){
-			ERROR_STREAM << "Interlock::always_executed_hook caught exception in UpdateAttributes() saving to lastException" << endl;
+			ERROR_STREAM << "Interlock::always_executed_hook caught exception in UpdateAttributes() saving to lastException" << std::endl;
 			lastException = ex;
 		}
 		lastDataCallT = (cache_update_t.tv_sec*1000)+ (cache_update_t.tv_usec/1000);
 	}
 	else
 	{
-		DEBUG_STREAM << "Interlock::always_executed_hook() skipping data Update interval: "<< interval << endl;
+		DEBUG_STREAM << "Interlock::always_executed_hook() skipping data Update interval: "<< interval << std::endl;
 	}
 
 	interval = (cache_update_t.tv_sec*1000) + (cache_update_t.tv_usec/1000) - lastStatusCallT;
 
 	if( interval < statusPeriod)
 	{
-		DEBUG_STREAM << "Interlock::always_executed_hook() skipping status Update interval: " << interval << " lastStatusCallT:" << lastStatusCallT << endl;
+		DEBUG_STREAM << "Interlock::always_executed_hook() skipping status Update interval: " << interval << " lastStatusCallT:" << lastStatusCallT << std::endl;
 		return;
 	}
 
-	INFO_STREAM << "Interlock::always_executed_hook() performing status Update" << endl;
+	INFO_STREAM << "Interlock::always_executed_hook() performing status Update" << std::endl;
 	try{
 		WagoInterlock::StatusUpdate();
 	}catch(Tango::DevFailed &ex){
-		ERROR_STREAM << "Interlock::always_executed_hook() caught exception in StatusUpdate() saving to lastException" << endl;
+		ERROR_STREAM << "Interlock::always_executed_hook() caught exception in StatusUpdate() saving to lastException" << std::endl;
 		lastException = ex;
 	}
 	lastStatusCallT = (cache_update_t.tv_sec*1000)+ (cache_update_t.tv_usec/1000);
@@ -488,8 +488,8 @@ void WagoInterlock::always_executed_hook()
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlock::read_attr_hardware()
- *	Description: Hardware acquisition for attributes
+ *	Method      : WagoInterlock::read_attr_hardware()
+ * Description:  Hardware acquisition for attributes
  */
 //--------------------------------------------------------
 void WagoInterlock::read_attr_hardware(TANGO_UNUSED(std::vector<long> &attr_list))
@@ -505,8 +505,8 @@ void WagoInterlock::read_attr_hardware(TANGO_UNUSED(std::vector<long> &attr_list
 
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlock::add_dynamic_attributes()
- *	Description: Create the dynamic attributes if any
+ *	Method      : WagoInterlock::add_dynamic_attributes()
+ * Description:  Create the dynamic attributes if any
  *                for specified device.
  */
 //--------------------------------------------------------
@@ -519,12 +519,12 @@ void WagoInterlock::add_dynamic_attributes()
 	for(unsigned int i = 0 ; i < this->processedConfiguration.size(); i++ )
 	{
 
-		INFO_STREAM << "Interlock::add_dynamic_attributes() InterlockAttribute  - "  << processedConfiguration[i].attributeName << endl;
+		INFO_STREAM << "Interlock::add_dynamic_attributes() InterlockAttribute  - "  << processedConfiguration[i].attributeName << std::endl;
 		InterlockAttribute* iAttr = new InterlockAttribute(processedConfiguration[i].attributeName.c_str(),Tango::DEV_FLOAT, Tango::READ);
 
 		Tango::UserDefaultAttrProp* def_prop = new Tango::UserDefaultAttrProp();
 
-		ostringstream ss;
+		std::stringstream ss;
 		ss << processedConfiguration[i].threshold_low;
 		def_prop->set_min_alarm(ss.str().c_str());
 		ss.str("");
@@ -560,7 +560,7 @@ void WagoInterlock::add_dynamic_attributes()
 //--------------------------------------------------------
 /**
  *	Command State related method
- *	Description: This command gets the device state (stored in its device_state data member) and returns it to the caller.
+ * Description:  This command gets the device state (stored in its device_state data member) and returns it to the caller.
  *
  *	@returns Device state
  */
@@ -575,12 +575,12 @@ Tango::DevState WagoInterlock::dev_state()
 
 	if(this->interlockInstance == -1 || !configOK || this->modeFlags & IL_CNF_ERR || this->modeFlags & IL_HDW_ERR || !this->wagoDeviceProxyObj || GetWagoSrvState() == Tango::FAULT)
 	{
-		DEBUG_STREAM << "Interlock::State() configOK == false state set to Tango::UNKNOWN" << endl;
+		DEBUG_STREAM << "Interlock::State() configOK == false state set to Tango::UNKNOWN" << std::endl;
 		argout = Tango::UNKNOWN;
 	}
 	else if(!CheckChannelsValidity() ||  this->modeFlags & IL_ALARM  ) //TODO this->modeFlags & IL_ALARM is this needed ??
 	{
-		DEBUG_STREAM << "Interlock::State() CheckChannelsValidity or Wago state invalid setting state to Tango::ALARM" << endl;
+		DEBUG_STREAM << "Interlock::State() CheckChannelsValidity or Wago state invalid setting state to Tango::ALARM" << std::endl;
 		argout = Tango::ALARM;
 	}
 	else
@@ -590,7 +590,7 @@ Tango::DevState WagoInterlock::dev_state()
 			outRelayWagoAttrib->readAttribute(wagoDeviceProxyObj);
 			intlckVal = outRelayWagoAttrib->at(outRelayAttribIndex);
 
-			DEBUG_STREAM << "Interlock::dev_state() read relay  " << outRelay << "  value " << intlckVal << endl;
+			DEBUG_STREAM << "Interlock::dev_state() read relay  " << outRelay << "  value " << intlckVal << std::endl;
 
 
 			bool interlockTriggered = intlckVal > 0 ? false : true; //Output set to 1 means that interlock is not activated 0 - interlock tripped.
@@ -602,22 +602,22 @@ Tango::DevState WagoInterlock::dev_state()
 
 				this->lastException = CreateException("Relay output attribute has invalid quality", "", "Interlock::State()");
 
-				DEBUG_STREAM << "Interlock::State() relay output attribute has invalid quality setting state to Tango::ALARM" << endl;
+				DEBUG_STREAM << "Interlock::State() relay output attribute has invalid quality setting state to Tango::ALARM" << std::endl;
 				argout = Tango::ALARM;
 			}
 			else if(interlockTriggered || this->modeFlags & IL_TRIP)
 			{
-				DEBUG_STREAM << "Interlock::State() interlock is trigered state to Tango::FAULT" << endl;
+				DEBUG_STREAM << "Interlock::State() interlock is trigered state to Tango::FAULT" << std::endl;
 				argout = Tango::FAULT;
 			}
 			else
 			{
-				DEBUG_STREAM << "Interlock::State() setting state to Tango::ON" << endl;
+				DEBUG_STREAM << "Interlock::State() setting state to Tango::ON" << std::endl;
 				argout = Tango::ON;
 			}
 		}catch(Tango::DevFailed &ex)
 		{
-			ERROR_STREAM << "Interlock::dev_state() exception while reading relay: "<< outRelay << endl;
+			ERROR_STREAM << "Interlock::dev_state() exception while reading relay: "<< outRelay << std::endl;
 			lastException = ex;
 			argout = Tango::UNKNOWN;
 		}
@@ -631,7 +631,7 @@ Tango::DevState WagoInterlock::dev_state()
 //--------------------------------------------------------
 /**
  *	Command UploadConfig related method
- *	Description: Uploads configuration to controller
+ * Description:  Uploads configuration to controller
  *
  */
 //--------------------------------------------------------
@@ -659,7 +659,7 @@ void WagoInterlock::upload_config()
 	try{
 		Tango::DeviceData indat, outdat;
 
-		vector<short> requestBuffer;
+		std::vector<short> requestBuffer;
 
 		int existingInst;
 		do
@@ -667,21 +667,21 @@ void WagoInterlock::upload_config()
 			existingInst = FindInterlock(); //if interlock already exists delete it
 			if(existingInst != -1)
 			{
-				INFO_STREAM << "Interlock::UploadConfig()  -  existing instance found deleting !!!" << endl;
+				INFO_STREAM << "Interlock::UploadConfig()  -  existing instance found deleting !!!" << std::endl;
 				requestBuffer.resize(2);
 				requestBuffer[0] = ILCK_DELETE;
 				requestBuffer[1] = (unsigned short)existingInst;
 				indat <<  requestBuffer;
 				wagoDeviceProxyObj->command_inout("DevWcComm", indat);
 			}else
-				INFO_STREAM << "Interlock::UploadConfig()  - no existing instance found !" << endl;
+				INFO_STREAM << "Interlock::UploadConfig()  - no existing instance found !" << std::endl;
 		}while(existingInst != -1);
 
-		string relayName;
-		vector<unsigned short> addr =  ParseName(outRelay, relayName);
+		std::string relayName;
+		std::vector<unsigned short> addr =  ParseName(outRelay, relayName);
 		if(addr.size() != 1)
 		{
-			ERROR_STREAM << "Interlock::UploadConfig()  - Invalid ouput relay name" << endl;
+			ERROR_STREAM << "Interlock::UploadConfig()  - Invalid ouput relay name" << std::endl;
 			Tango::Except::throw_exception("Server outChan property does not match to internal configuration.",
 					"Invalid ouput relay name",
 					"Interlock::upload_config()");
@@ -694,7 +694,7 @@ void WagoInterlock::upload_config()
 		outdat = wagoDeviceProxyObj->command_inout("DevName2Key", indat);
 		short devKey;
 		outdat >> devKey;
-		DEBUG_STREAM << "Interlock::UploadConfig() DevName2Key returned key : " <<  devKey << endl;
+		DEBUG_STREAM << "Interlock::UploadConfig() DevName2Key returned key : " <<  devKey << std::endl;
 
 		requestBuffer.resize(2);
 		requestBuffer[0] = devKey;
@@ -705,7 +705,7 @@ void WagoInterlock::upload_config()
 
 		if(requestBuffer[1] != (('O'<<8)+'B'))
 		{
-			ERROR_STREAM << "Interlock::UploadConfig()  - invalid ouptu channel type !" << endl;
+			ERROR_STREAM << "Interlock::UploadConfig()  - invalid ouptu channel type !" << std::endl;
 			Tango::Except::throw_exception("Server outChan property does not match to internal configuration.",
 					"Invalid output channel type",
 					"Interlock::upload_config()");
@@ -722,7 +722,7 @@ void WagoInterlock::upload_config()
 		outdat >> requestBuffer;
 		interlockInstance = requestBuffer[0];
 		outputChannel = outSharedOff;
-		DEBUG_STREAM << "Interlock::UploadConfig() interlockInstance = " << interlockInstance << endl;//*/interlockInstance=1;
+		DEBUG_STREAM << "Interlock::UploadConfig() interlockInstance = " << interlockInstance << std::endl;//*/interlockInstance=1;
 
 		// Set name
 		requestBuffer.resize(2);
@@ -732,21 +732,21 @@ void WagoInterlock::upload_config()
 
 
 		unsigned int i;
-		vector<unsigned short> packedName =  PackString(this->name);
+		std::vector<unsigned short> packedName =  PackString(this->name);
 		for(i = 0 ; i < packedName.size(); i++ )
-			DEBUG_STREAM << "packedName[" << i << "] = " << std::hex << packedName[i] << std::dec << endl;
+			DEBUG_STREAM << "packedName[" << i << "] = " << std::hex << packedName[i] << std::dec << std::endl;
 		requestBuffer.insert( requestBuffer.end(), packedName.begin(), packedName.end() );
 
 
 		for(i = 0 ; i < requestBuffer.size(); i++ )
-			DEBUG_STREAM << "requestBuffer[" << i << "] = " << std::hex << requestBuffer[i] << std::dec << endl;
+			DEBUG_STREAM << "requestBuffer[" << i << "] = " << std::hex << requestBuffer[i] << std::dec << std::endl;
 
 		indat <<  requestBuffer;
 
 		outdat = wagoDeviceProxyObj->command_inout("DevWcComm", indat);
 		indat = outdat;
 
-		DEBUG_STREAM << "Interlock::UploadConfig() setting up interlock channels"<< endl;
+		DEBUG_STREAM << "Interlock::UploadConfig() setting up interlock channels"<< std::endl;
 		for(i = 0; i < processedConfiguration.size(); i++)
 		{
 
@@ -755,7 +755,7 @@ void WagoInterlock::upload_config()
 
 			short devKey;
 			outdat >> devKey;
-			DEBUG_STREAM << "Interlock::UploadConfig() DevName2Key returned key : " <<  devKey << endl;
+			DEBUG_STREAM << "Interlock::UploadConfig() DevName2Key returned key : " <<  devKey << std::endl;
 			requestBuffer[0] = devKey;
 			requestBuffer[1] = processedConfiguration[i].logicalChannel;
 			indat << requestBuffer;
@@ -763,7 +763,7 @@ void WagoInterlock::upload_config()
 			outdat = wagoDeviceProxyObj->command_inout("DevLog2Hard", indat);
 
 			outdat >> requestBuffer;
-			DEBUG_STREAM << "Interlock::UploadConfig() DevLog2Hard returned offset : 0x" << std::hex <<  requestBuffer[0] << std::dec << endl;
+			DEBUG_STREAM << "Interlock::UploadConfig() DevLog2Hard returned offset : 0x" << std::hex <<  requestBuffer[0] << std::dec << std::endl;
 
 			processedConfiguration[i].channelProcImgOffset = requestBuffer[0]; //Channel number for WcComm Add Channel is in fact offset
 			unsigned short type = requestBuffer[1];
@@ -785,16 +785,16 @@ void WagoInterlock::upload_config()
 				requestBuffer.push_back(processedConfiguration[i].type);
 			}
 
-			DEBUG_STREAM << "Interlock::UploadConfig() Sending DevWcComm request to add interlock channel" << endl;
-			DEBUG_STREAM << "requestBuffer[0] = " << requestBuffer[0] << endl;
-			DEBUG_STREAM << "requestBuffer[1] = " << requestBuffer[1] << endl;
-			DEBUG_STREAM << "requestBuffer[2] = " << requestBuffer[2] << endl;
-			DEBUG_STREAM << "requestBuffer[3] = " << requestBuffer[3] << endl;
+			DEBUG_STREAM << "Interlock::UploadConfig() Sending DevWcComm request to add interlock channel" << std::endl;
+			DEBUG_STREAM << "requestBuffer[0] = " << requestBuffer[0] << std::endl;
+			DEBUG_STREAM << "requestBuffer[1] = " << requestBuffer[1] << std::endl;
+			DEBUG_STREAM << "requestBuffer[2] = " << requestBuffer[2] << std::endl;
+			DEBUG_STREAM << "requestBuffer[3] = " << requestBuffer[3] << std::endl;
 			if((type & 'W') == 'W')	//this is not binnary threshold values required
 			{
-				DEBUG_STREAM << "requestBuffer[4] = " << requestBuffer[4] << endl;
-				DEBUG_STREAM << "requestBuffer[5] = " << requestBuffer[5] << endl;
-				DEBUG_STREAM << "requestBuffer[6] = " << requestBuffer[6] << endl;
+				DEBUG_STREAM << "requestBuffer[4] = " << requestBuffer[4] << std::endl;
+				DEBUG_STREAM << "requestBuffer[5] = " << requestBuffer[5] << std::endl;
+				DEBUG_STREAM << "requestBuffer[6] = " << requestBuffer[6] << std::endl;
 			}
 			indat <<  requestBuffer;
 			wagoDeviceProxyObj->command_inout("DevWcComm", indat);
@@ -815,7 +815,7 @@ void WagoInterlock::upload_config()
 //--------------------------------------------------------
 /**
  *	Command Reset related method
- *	Description: Resets the instance controller (in case of sticky channels)
+ * Description:  Resets the instance controller (in case of sticky channels)
  *
  */
 //--------------------------------------------------------
@@ -825,8 +825,8 @@ void WagoInterlock::reset()
 	/*----- PROTECTED REGION ID(WagoInterlock::reset) ENABLED START -----*/
 	
 	Tango::DeviceData indat, outdat;
-	vector<short> requestBuffer;
-	INFO_STREAM << "Interlock::Reset()  - interlockInstance: " << interlockInstance << endl;
+	std::vector<short> requestBuffer;
+	INFO_STREAM << "Interlock::Reset()  - interlockInstance: " << interlockInstance << std::endl;
 	requestBuffer.resize(2);
 	requestBuffer[0] = ILCK_RESET;
 	requestBuffer[1] = interlockInstance;
@@ -839,8 +839,8 @@ void WagoInterlock::reset()
 }
 //--------------------------------------------------------
 /**
- *	Method     : WagoInterlock::add_dynamic_commands()
- *	Description: Create the dynamic commands if any
+ *	Method      : WagoInterlock::add_dynamic_commands()
+ * Description:  Create the dynamic commands if any
  *                for specified device.
  */
 //--------------------------------------------------------
@@ -870,8 +870,8 @@ int WagoInterlock::CreateDeviceProxy()
 	{
 		Tango::Except::print_exception(ex);
 
-		ERROR_STREAM << "Interlock::CreateDeviceProxy() error during creation of device proxy to Wago device server."<<endl;
-		ERROR_STREAM << "Setting state to UNKNOWN" <<endl;
+		ERROR_STREAM << "Interlock::CreateDeviceProxy() error during creation of device proxy to Wago device server."<< std::endl;
+		ERROR_STREAM << "Setting state to UNKNOWN" << std::endl;
 		this->lastException = ex;
 		this->set_state(Tango::UNKNOWN);
 		wagoDeviceProxyObj = NULL;
@@ -902,7 +902,7 @@ bool WagoInterlock::is_read_attribute_allowed(Tango::AttReqType ty)
 int WagoInterlock::FindInterlock()
 {
 	Tango::DeviceData indat, outdat;
-	vector<short> requestBuffer;
+	std::vector<short> requestBuffer;
 
 	requestBuffer.resize(2);
 	requestBuffer[0] = CMD_ACTIVE;
@@ -914,7 +914,7 @@ int WagoInterlock::FindInterlock()
 		outdat >> requestBuffer;
 	}catch(Tango::DevFailed &ex)
 	{
-		ERROR_STREAM << "WagoInterlock::FindInterlock() Error getting number of interlocks in device" << endl;
+		ERROR_STREAM << "WagoInterlock::FindInterlock() Error getting number of interlocks in device" << std::endl;
 		Tango::Except::re_throw_exception(ex,
 				"Communication error in init stage",
 				"Error getting number fo interlocks in device",
@@ -922,7 +922,7 @@ int WagoInterlock::FindInterlock()
 	}
 
 	int numOfInstancesToCheck = requestBuffer[2];
-	DEBUG_STREAM <<  "Interlock::FindInterlock() from response numOfInstancesToCheck: " << numOfInstancesToCheck << endl;
+	DEBUG_STREAM <<  "Interlock::FindInterlock() from response numOfInstancesToCheck: " << numOfInstancesToCheck << std::endl;
 
 	int instance = -1;
 	for(int i = 1; i<= numOfInstancesToCheck; i++) // instances are numbered starting from 1 in controller.
@@ -943,18 +943,18 @@ int WagoInterlock::FindInterlock()
 			continue;
 
 		std::string icName = UnpackString(requestBuffer);
-		DEBUG_STREAM << "Interlock::FindInterlock() interlock: " << icName << " instance: " << i << endl;
+		DEBUG_STREAM << "Interlock::FindInterlock() interlock: " << icName << " instance: " << i << std::endl;
 
 		if(this->name == icName)
 		{
-			INFO_STREAM << "Interlock::FindInterlock() Found interlock  id:" << i << endl;
+			INFO_STREAM << "Interlock::FindInterlock() Found interlock  id:" << i << std::endl;
 			instance = i;
 		}
 	}
 
 	if(instance == -1)
 	{
-		INFO_STREAM << "Interlock::FindInterlock() none interlock instance found" << endl;
+		INFO_STREAM << "Interlock::FindInterlock() none interlock instance found" << std::endl;
 	}
 		
 	return instance;
@@ -967,22 +967,22 @@ int WagoInterlock::FindInterlock()
  * \param mFalags interlock flags.
  * \param cConf	vector holding configuration of interlock channels.
  */
-void WagoInterlock::ValidateIlckConfig(unsigned short &outChan, unsigned short &mFlags, vector<channel_t> &cConf)
+void WagoInterlock::ValidateIlckConfig(unsigned short &outChan, unsigned short &mFlags, std::vector<channel_t> &cConf)
 {
 	if(outChan != this->outputChannel)
 	{
 		this->configOK = false;
-		ERROR_STREAM << "Interlock::ValidateIlckConfig output channel does not match" << endl;
+		ERROR_STREAM << "Interlock::ValidateIlckConfig output channel does not match" << std::endl;
 		Tango::Except::throw_exception("Server outRelay property does not match to internal configuration",
 				"output channel does not match",
 				"Interlock::ValidateIlckConfig()");
 	}
 
-	DEBUG_STREAM << "Interlock::ValidateIlckConfig() (mFlags & IL_MODE_MASK): " << std::hex << (mFlags & IL_MODE_MASK) << " this->modeFlags: " << std::hex <<  this->modeFlags << std::dec << endl;
+	DEBUG_STREAM << "Interlock::ValidateIlckConfig() (mFlags & IL_MODE_MASK): " << std::hex << (mFlags & IL_MODE_MASK) << " this->modeFlags: " << std::hex <<  this->modeFlags << std::dec << std::endl;
 	if((mFlags & IL_MODE_MASK) != (this->modeFlags& IL_MODE_MASK))
 	{
 		this->configOK = false;
-		ERROR_STREAM << "Interlock::ValidateIlckConfig interlock flags does not match" << endl;
+		ERROR_STREAM << "Interlock::ValidateIlckConfig interlock flags does not match" << std::endl;
 		Tango::Except::throw_exception("Server flags property does not match to internal configuration",
 				"interlock flags does not match",
 				"Interlock::ValidateIlckConfig()");
@@ -992,7 +992,7 @@ void WagoInterlock::ValidateIlckConfig(unsigned short &outChan, unsigned short &
 	{
 
 		this->configOK = false;
-		ERROR_STREAM << "Interlock::ValidateIlckConfig() Number of interlock channels des not match with device" << endl;
+		ERROR_STREAM << "Interlock::ValidateIlckConfig() Number of interlock channels des not match with device" << std::endl;
 		Tango::Except::throw_exception("Config property != embedded configuration",
 				"Number of interlock channels des not match with device",
 				"Interlock::ValidateIlckConfig()");
@@ -1003,22 +1003,22 @@ void WagoInterlock::ValidateIlckConfig(unsigned short &outChan, unsigned short &
 		if( (cConf[i].flags & IL_MODE_MASK) != processedConfiguration[i].flags)
 		{
 			this->configOK = false;
-			ostringstream ss;
+			std::stringstream ss;
 			ss << i;
-			ERROR_STREAM << "Interlock::ValidateIlckConfig() channel " << i <<  "channel config flags does not match" << endl;
+			ERROR_STREAM << "Interlock::ValidateIlckConfig() channel " << i <<  "channel config flags does not match" << std::endl;
 			ERROR_STREAM << "flags in device: 0x" << std::hex << cConf[i].flags << " "<<  std::dec;
-			ERROR_STREAM << "flags in config: 0x" << std::hex << processedConfiguration[i].flags << std::dec << endl;
+			ERROR_STREAM << "flags in config: 0x" << std::hex << processedConfiguration[i].flags << std::dec << std::endl;
 			Tango::Except::throw_exception("channel " + ss.str() + "config flags does not match",
 						"",
 						"Interlock::ValidateIlckConfig()");
 		}
 
-		DEBUG_STREAM << "Interlock::ValidateIlckConfig channel offset got from device: " << std::hex << cConf[i].channelProcImgOffset << std::dec << endl;
-		DEBUG_STREAM << "Interlock::ValidateIlckConfig channel offset calculated from config: " << std::hex << processedConfiguration[i].channelProcImgOffset << std::dec << endl;
+		DEBUG_STREAM << "Interlock::ValidateIlckConfig channel offset got from device: " << std::hex << cConf[i].channelProcImgOffset << std::dec << std::endl;
+		DEBUG_STREAM << "Interlock::ValidateIlckConfig channel offset calculated from config: " << std::hex << processedConfiguration[i].channelProcImgOffset << std::dec << std::endl;
 		if(cConf[i].channelProcImgOffset != processedConfiguration[i].channelProcImgOffset)
 		{
 			this->configOK = false;
-			ERROR_STREAM << "Interlock::ValidateIlckConfig " << processedConfiguration[i].attributeName  << " channel does not match" << endl;
+			ERROR_STREAM << "Interlock::ValidateIlckConfig " << processedConfiguration[i].attributeName  << " channel does not match" << std::endl;
 			Tango::Except::throw_exception("Config property != embedded configuration",
 					processedConfiguration[i].attributeName + " channel does not match",
 					"Interlock::ValidateIlckConfig()");
@@ -1029,7 +1029,7 @@ void WagoInterlock::ValidateIlckConfig(unsigned short &outChan, unsigned short &
 			if(cConf[i].threshold_low != processedConfiguration[i].threshold_low)
 			{
 				this->configOK = false;
-				ERROR_STREAM << "Interlock::ValidateIlckConfig " << processedConfiguration[i].attributeName  << " threshold low does not match" << endl;
+				ERROR_STREAM << "Interlock::ValidateIlckConfig " << processedConfiguration[i].attributeName  << " threshold low does not match" << std::endl;
 				Tango::Except::throw_exception("Config property != embedded configuration",
 						"Wrong "+ processedConfiguration[i].attributeName + " threshold low level",
 						"Interlock::ValidateIlckConfig()");
@@ -1038,7 +1038,7 @@ void WagoInterlock::ValidateIlckConfig(unsigned short &outChan, unsigned short &
 			if(cConf[i].threshold_high != processedConfiguration[i].threshold_high)
 			{
 				this->configOK = false;
-				ERROR_STREAM << "Interlock::ValidateIlckConfig " << processedConfiguration[i].attributeName  << " threshold high does not match" << endl;
+				ERROR_STREAM << "Interlock::ValidateIlckConfig " << processedConfiguration[i].attributeName  << " threshold high does not match" << std::endl;
 				Tango::Except::throw_exception("Config property != embedded configuration",
 						"Wrong "+ processedConfiguration[i].attributeName + " threshold high level",
 						"Interlock::ValidateIlckConfig()");
@@ -1047,7 +1047,7 @@ void WagoInterlock::ValidateIlckConfig(unsigned short &outChan, unsigned short &
 			if(cConf[i].type != processedConfiguration[i].type)
 			{
 				this->configOK = false;
-				ERROR_STREAM << "Interlock::ValidateIlckConfig " << processedConfiguration[i].attributeName  << " type does not match" << endl;
+				ERROR_STREAM << "Interlock::ValidateIlckConfig " << processedConfiguration[i].attributeName  << " type does not match" << std::endl;
 				Tango::Except::throw_exception("Config property != embedded configuration",
 						"Wrong "+ processedConfiguration[i].attributeName + " type",
 						"Interlock::ValidateIlckConfig()");
@@ -1056,7 +1056,7 @@ void WagoInterlock::ValidateIlckConfig(unsigned short &outChan, unsigned short &
 		}
 	}
 
-	INFO_STREAM << "Interlock::ValidateIlckConfig Config is valid" << endl;
+	INFO_STREAM << "Interlock::ValidateIlckConfig Config is valid" << std::endl;
 	this->configOK = true;
 }
 
@@ -1067,18 +1067,18 @@ void WagoInterlock::ValidateIlckConfig(unsigned short &outChan, unsigned short &
  * \param cConf		a place holder for interlock channels configuration.
  *
  */
-void WagoInterlock::RetriveIclkConfig(unsigned short &outChan, unsigned short &mFlags, vector<channel_t> &cConf)
+void WagoInterlock::RetriveIclkConfig(unsigned short &outChan, unsigned short &mFlags, std::vector<channel_t> &cConf)
 {
 	channel_t tmp;
 
 	cConf.clear();
 	Tango::DeviceData indat, outdat;
-	vector<short> requestBuffer;
+	std::vector<short> requestBuffer;
 
 	requestBuffer.resize(2);
 	requestBuffer[0] = ILCK_GETCONF;
 	requestBuffer[1] = interlockInstance;
-	DEBUG_STREAM << "Interlock::RetriveIclkConfig() interlockInstance" << interlockInstance  <<  endl;
+	DEBUG_STREAM << "Interlock::RetriveIclkConfig() interlockInstance" << interlockInstance  <<  std::endl;
 
 	try{
 		indat <<  requestBuffer;
@@ -1086,7 +1086,7 @@ void WagoInterlock::RetriveIclkConfig(unsigned short &outChan, unsigned short &m
 		outdat >> requestBuffer;
 	}catch(Tango::DevFailed &ex)
 	{
-		ERROR_STREAM << "WagoInterlock::RetriveIclkConfig() Error while retreiving interlock configuration" << endl;
+		ERROR_STREAM << "WagoInterlock::RetriveIclkConfig() Error while retreiving interlock configuration" << std::endl;
 		Tango::Except::re_throw_exception(ex,
 				"Error while updating interlock status",
 				"Error while retrieving interlock configuration",
@@ -1097,7 +1097,7 @@ void WagoInterlock::RetriveIclkConfig(unsigned short &outChan, unsigned short &m
 	outChan = requestBuffer[0];
 	mFlags = requestBuffer[1];
 	int numOfChannels = requestBuffer[2];
-	DEBUG_STREAM << "Interlock::RetriveIclkConfig() retrived number of channels = " << numOfChannels << endl;
+	DEBUG_STREAM << "Interlock::RetriveIclkConfig() retrived number of channels = " << numOfChannels << std::endl;
 
 	for(int i = 1; i<= numOfChannels; i++) // instances are numbered starting from 1 in controller.
 	{
@@ -1112,7 +1112,7 @@ void WagoInterlock::RetriveIclkConfig(unsigned short &outChan, unsigned short &m
 			outdat >> requestBuffer;
 		}catch(Tango::DevFailed &ex)
 		{
-			ERROR_STREAM << "WagoInterlock::RetriveIclkConfig() Error while retreiving configuration for interlock channel " << i << endl;
+			ERROR_STREAM << "WagoInterlock::RetriveIclkConfig() Error while retreiving configuration for interlock channel " << i << std::endl;
 			Tango::Except::re_throw_exception(ex,
 					"Error while updating interlock status",
 					"Error while retrieving configuration for interlock channel",
@@ -1146,14 +1146,14 @@ void WagoInterlock::ParseConfiguration()
 
 	for(unsigned int i = 0; i < config.size(); i++)
 	{
-		string tmp = config[i];
+		std::string tmp = config[i];
 		tmp.erase(std::remove(tmp.begin(), tmp.end(), ' '), tmp.end()); // remove whitespaces from line
-		vector<string> fields = string2vector(tmp, ",");
+		std::vector<std::string> fields = string2vector(tmp, ",");
 
-		vector<unsigned short> addr =  ParseName( fields[0], buffer.name);
+		std::vector<unsigned short> addr =  ParseName( fields[0], buffer.name);
 		if(!addr.size())
 		{
-			ERROR_STREAM <<	"Interlock::ParseConfiguration() invalid input channel name syntax: "<< fields[0] << endl;
+			ERROR_STREAM <<	"Interlock::ParseConfiguration() invalid input channel name syntax: "<< fields[0] << std::endl;
 			Tango::Except::throw_exception("Error in server property: config. ",
 					fields[0] + ": invalid input channel name syntax",
 					"Interlock::ParseConfiguration()");
@@ -1166,7 +1166,7 @@ void WagoInterlock::ParseConfiguration()
 			buffer.attributeName = fields[0];
 		}else
 		{
-			ostringstream iss;
+			std::stringstream iss;
 			iss << buffer.logicalChannel;
 			buffer.attributeName = buffer.name + "[" + iss.str() + "]";
 		}
@@ -1185,7 +1185,7 @@ void WagoInterlock::ParseConfiguration()
 				buffer.type != ILCK_TYPE_OB	)
 		{
 			processedConfiguration.clear();
-			ERROR_STREAM <<	"Interlock::ParseConfiguration() Channel " << buffer.name << " has invalid type " << fields[1] << endl;
+			ERROR_STREAM <<	"Interlock::ParseConfiguration() Channel " << buffer.name << " has invalid type " << fields[1] << std::endl;
 			Tango::Except::throw_exception("Error in server property: config",
 					"Channel" + buffer.name + " has invalid type " + fields[1],
 					"Interlock::ParseConfiguration()");
@@ -1197,7 +1197,7 @@ void WagoInterlock::ParseConfiguration()
 			if(fields.size() < 4)
 			{
 				processedConfiguration.clear();
-				ERROR_STREAM << "Interlock::ParseConfiguration() Channel " << buffer.name << " - threshold levels are required "<< endl;
+				ERROR_STREAM << "Interlock::ParseConfiguration() Channel " << buffer.name << " - threshold levels are required "<< std::endl;
 				Tango::Except::throw_exception("Error in server property: config",
 						"Interlock channel " + buffer.name + " - threshold levels are required ",
 						"Interlock::ParseConfiguration()");
@@ -1229,7 +1229,7 @@ void WagoInterlock::ParseConfiguration()
 			{
 				for(unsigned int j = addr[0]+1; j <= addr[2]; j++)
 				{
-					ostringstream iss;
+					std::stringstream iss;
 					buffer.logicalChannel = j;
 					iss << j;
 					buffer.attributeName = buffer.name + "[" + iss.str() + "]";
@@ -1239,7 +1239,7 @@ void WagoInterlock::ParseConfiguration()
 			}
 		}catch(Tango::DevFailed &ex)
 		{
-			ERROR_STREAM << "Interlock::ParseConfiguration() Channel " << buffer.attributeName << " - attribute not found in wago server "<< endl;
+			ERROR_STREAM << "Interlock::ParseConfiguration() Channel " << buffer.attributeName << " - attribute not found in wago server "<< std::endl;
 			Tango::Except::re_throw_exception(ex,
 					"Error in server property: config",
 					"Interlock channel " + buffer.attributeName + " - could not find attribute in wago server ",
@@ -1253,10 +1253,10 @@ void WagoInterlock::ParseConfiguration()
  *
  *	\param outRelayAttribName	name of attribute in wago server representing interlock ouput relay.
  */
-void WagoInterlock::PrepareRelayOutput(string outRelayAttribName)
+void WagoInterlock::PrepareRelayOutput(std::string outRelayAttribName)
 {
 	Tango::AttributeInfoList *wAttrInfo;
-	vector<string> tmpNamList;
+	std::vector<std::string> tmpNamList;
 
 	tmpNamList.push_back(outRelayAttribName);
 	outRelayWagoAttrib = NULL;
@@ -1285,14 +1285,14 @@ void WagoInterlock::PrepareWagoAttributeObjs()
 {
 	Tango::Attr *new_attr;
 
-	vector<string> *wAttrNameList = wagoDeviceProxyObj->get_attribute_list();
+	std::vector<std::string> *wAttrNameList = wagoDeviceProxyObj->get_attribute_list();
 	Tango::AttributeInfoList *wAttrInfo = wagoDeviceProxyObj->get_attribute_config(*wAttrNameList);
 
-	cout << " ProcessedConfiguration size: " << this->processedConfiguration.size() << endl;
+	std::cout << " ProcessedConfiguration size: " << this->processedConfiguration.size() << std::endl;
 	for(unsigned int i = 0 ; i < this->processedConfiguration.size(); i++ )
 	{
-		DEBUG_STREAM << "Interlock::add_dynamic_attributes() searching for attribute named " << processedConfiguration[i].name << endl;
-//		cout << "Interlock::add_dynamic_attributes() searching for attribute named " << processedConfiguration[i].name << endl;
+		DEBUG_STREAM << "Interlock::add_dynamic_attributes() searching for attribute named " << processedConfiguration[i].name << std::endl;
+//		std::cout << "Interlock::add_dynamic_attributes() searching for attribute named " << processedConfiguration[i].name << std::endl;
 
 		Tango::AttributeInfo *inf = NULL;
 
@@ -1307,7 +1307,7 @@ void WagoInterlock::PrepareWagoAttributeObjs()
 
 		if(!inf)
 		{
-			ERROR_STREAM << "Interlock::add_dynamic_attributes() attribute: " << processedConfiguration[i].name <<  "not found on wago server"<< endl;
+			ERROR_STREAM << "Interlock::add_dynamic_attributes() attribute: " << processedConfiguration[i].name <<  "not found on wago server"<< std::endl;
 			return;
 		}
 
@@ -1325,11 +1325,11 @@ void WagoInterlock::PrepareWagoAttributeObjs()
 		if(new_attr == NULL)
  		{
 			int dimension =   inf->max_dim_x;
-			INFO_STREAM << "Interlock::add_dynamic_attributes()  - WagoAttribute" << processedConfiguration[i].name << endl;
+			INFO_STREAM << "Interlock::add_dynamic_attributes()  - WagoAttribute" << processedConfiguration[i].name << std::endl;
 			new_attr = new WagoAttribute(processedConfiguration[i].name, dimension);
 			channelAttributes.push_back(new_attr);
 		}
-		cout << " Create attribute " << new_attr->getName() << endl;
+		std::cout << " Create attribute " << new_attr->getName() << std::endl;
 		wagoAttrMapping_t attrMapBuf;
 		attrMapBuf.wAttr = new_attr;
 		attrMapBuf.position = processedConfiguration[i].logicalChannel;
@@ -1355,7 +1355,7 @@ Tango::DevState WagoInterlock::GetWagoSrvState()
 		return state;
 	}catch(const Tango::DevFailed &ex)
 	{
-		ERROR_STREAM << "Interlock::GetWagoSrvState() - catched exception while reading state of Wago server" << endl;
+		ERROR_STREAM << "Interlock::GetWagoSrvState() - catched exception while reading state of Wago server" << std::endl;
 		this->lastException = AddToException(ex,"Error while device polling", "Catched exception while reading state of Wago server", "Interlock::GetWagoSrvState()");
 		return Tango::UNKNOWN;
 	}
@@ -1397,10 +1397,10 @@ void WagoInterlock::StatusUpdate()
 {
 	unsigned short outChan;
 	unsigned short mFlags;
-	vector<channel_t> cConf;
+	std::vector<channel_t> cConf;
 
-	stringstream ss;
-	ss << "Interlock instance: " << interlockInstance << endl;
+	std::stringstream ss;
+	ss << "Interlock instance: " << interlockInstance << std::endl;
 
 	try{
 		if(wagoDeviceProxyObj && (this->interlockInstance != -1))
@@ -1409,8 +1409,8 @@ void WagoInterlock::StatusUpdate()
 			ValidateIlckConfig(outChan, mFlags, cConf);
 			this->modeFlags = mFlags;
 
-			ss << FlagsBin2Txt(mFlags) << endl;
-			ss << "Interlock channel: " << outChan << " on " << cConf.size() << " input channels" << endl;
+			ss << FlagsBin2Txt(mFlags) << std::endl;
+			ss << "Interlock channel: " << outChan << " on " << cConf.size() << " input channels" << std::endl;
 			for(unsigned int i = 0; i < cConf.size(); i++)
 			{
 				if(i < processedConfiguration.size())
@@ -1422,7 +1422,7 @@ void WagoInterlock::StatusUpdate()
 				ss << "-> " << FlagsBin2Txt(cConf[i].flags);
 				if( !(cConf[i].flags & IL_ALARM) && !(cConf[i].flags & IL_TRIP) )
 					ss << " OK";
-				ss << endl;
+				ss << std::endl;
 
 
 			}
@@ -1432,23 +1432,23 @@ void WagoInterlock::StatusUpdate()
 	{
 		lastException = AddToException(ex,"Error while device status update", "Cannot initialize","Interlock::StatusUpdate()");
 		configOK = false;
-		ERROR_STREAM << "Interlock::dev_status() StatusUpdate catched exception" << endl;
+		ERROR_STREAM << "Interlock::dev_status() StatusUpdate catched exception" << std::endl;
 	}
 
 	if(lastException.errors.length() && (get_state() != Tango::ON))
 	{
 		ss << "configuration mismatch, try UploadConfig\n";
-		ss << "================================" << endl;
+		ss << "================================" << std::endl;
 		//ss << "Last Exception:\n";
 		for (unsigned short i = 0; i< lastException.errors.length(); i++)
 		{
 			//ss << "\t" << lastException.errors[i].origin.in();
-			//ss << endl;
+			//ss << std::endl;
 			ss << lastException.errors[i].desc.in();
-			ss << endl;
+			ss << std::endl;
 			ss << lastException.errors[i].reason.in();
-			ss << endl;
-			ss << "================================" << endl;
+			ss << std::endl;
+			ss << "================================" << std::endl;
 		}
 		ss << "\n";
 	}
@@ -1466,7 +1466,7 @@ void WagoInterlock::StatusUpdate()
 unsigned short WagoInterlock::GetAttrAffsetOffset(std::string wagoAttributeName, unsigned short logicalChannel)
 {
 	Tango::DeviceData indat, outdat;
-	vector<short> requestBuffer;
+	std::vector<short> requestBuffer;
 	unsigned short channelProcImgOffset;
 
 	try{
@@ -1474,7 +1474,7 @@ unsigned short WagoInterlock::GetAttrAffsetOffset(std::string wagoAttributeName,
 		outdat = wagoDeviceProxyObj->command_inout("DevName2Key", indat);
 	}catch(Tango::DevFailed &ex)
 	{
-		ERROR_STREAM << "WagoInterlock::WriteChannelOffset could not find attribute " << wagoAttributeName << " in wago server" << endl;
+		ERROR_STREAM << "WagoInterlock::WriteChannelOffset could not find attribute " << wagoAttributeName << " in wago server" << std::endl;
 		Tango::Except::throw_exception("Communication error in init stage",
 				"Could not find attribute " + wagoAttributeName + " in wago server",
 				"WagoInterlock::WriteChannelOffset()");
@@ -1482,7 +1482,7 @@ unsigned short WagoInterlock::GetAttrAffsetOffset(std::string wagoAttributeName,
 
 	short devKey;
 	outdat >> devKey;
-	DEBUG_STREAM << "WagoInterlock::WriteChannelOffset() DevName2Key returned key : " <<  devKey << endl;
+	DEBUG_STREAM << "WagoInterlock::WriteChannelOffset() DevName2Key returned key : " <<  devKey << std::endl;
 	requestBuffer.resize(2);
 	requestBuffer[0] = devKey;
 	requestBuffer[1] = logicalChannel;
@@ -1492,16 +1492,16 @@ unsigned short WagoInterlock::GetAttrAffsetOffset(std::string wagoAttributeName,
 		outdat = wagoDeviceProxyObj->command_inout("DevLog2Hard", indat);
 	}catch(Tango::DevFailed &ex)
 	{
-		ostringstream ss;
+		std::stringstream ss;
 		ss << logicalChannel;
-		ERROR_STREAM << "WagoInterlock::WriteChannelOffset could not find logicalChannel " << ss.str()  << " of attribute " << wagoAttributeName << " in wago server" << endl;
+		ERROR_STREAM << "WagoInterlock::WriteChannelOffset could not find logicalChannel " << ss.str()  << " of attribute " << wagoAttributeName << " in wago server" << std::endl;
 		Tango::Except::throw_exception("Communication error in init stage",
 				"Could not find logical channel " + ss.str() + " of attribute " + wagoAttributeName + " in wago server",
 				"WagoInterlock::WriteChannelOffset()");
 	}
 
 	outdat >> requestBuffer;
-	DEBUG_STREAM << "WagoInterlock::WriteChannelOffset() DevLog2Hard returned offset : 0x" << std::hex <<  requestBuffer[0] << std::dec << endl;
+	DEBUG_STREAM << "WagoInterlock::WriteChannelOffset() DevLog2Hard returned offset : 0x" << std::hex <<  requestBuffer[0] << std::dec << std::endl;
 
 	channelProcImgOffset = requestBuffer[0]; //Channel number for WcComm Add Channel is in fact offset
 
@@ -1513,7 +1513,7 @@ unsigned short WagoInterlock::GetAttrAffsetOffset(std::string wagoAttributeName,
  */
 void WagoInterlock::read_attr(Tango::Attribute &att)
 {
-	map<string, wagoAttrMapping_t>::iterator it =  attributeMapping.find(att.get_name());
+	std::map<std::string, wagoAttrMapping_t>::iterator it =  attributeMapping.find(att.get_name());
 	if( it != attributeMapping.end())
 	{
 		att.set_value((it->second).wAttr->at_ptr((it->second).position));

@@ -92,8 +92,8 @@ namespace Wago_ns
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::Wago()
- *	Description: Constructors for a Tango device
+ *	Method      : Wago::Wago()
+ * Description:  Constructors for a Tango device
  *                implementing the classWago
  */
 //--------------------------------------------------------
@@ -132,8 +132,8 @@ Wago::~Wago()
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::delete_device()
- *	Description: will be called at device destruction or at init command
+ *	Method      : Wago::delete_device()
+ * Description:  will be called at device destruction or at init command
  */
 //--------------------------------------------------------
 void Wago::delete_device()
@@ -159,8 +159,8 @@ void Wago::delete_device()
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::init_device()
- *	Description: will be called at device initialization.
+ *	Method      : Wago::init_device()
+ * Description:  will be called at device initialization.
  */
 //--------------------------------------------------------
 void Wago::init_device()
@@ -225,8 +225,8 @@ void Wago::init_device()
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::get_device_property()
- *	Description: Read database to initialize property data members.
+ *	Method      : Wago::get_device_property()
+ * Description:  Read database to initialize property data members.
  */
 //--------------------------------------------------------
 void Wago::get_device_property()
@@ -301,8 +301,8 @@ void Wago::get_device_property()
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::always_executed_hook()
- *	Description: method always executed before any command is executed
+ *	Method      : Wago::always_executed_hook()
+ * Description:  method always executed before any command is executed
  */
 //--------------------------------------------------------
 void Wago::always_executed_hook()
@@ -317,8 +317,8 @@ void Wago::always_executed_hook()
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::read_attr_hardware()
- *	Description: Hardware acquisition for attributes
+ *	Method      : Wago::read_attr_hardware()
+ * Description:  Hardware acquisition for attributes
  */
 //--------------------------------------------------------
 void Wago::read_attr_hardware(TANGO_UNUSED(std::vector<long> &attr_list))
@@ -334,8 +334,8 @@ void Wago::read_attr_hardware(TANGO_UNUSED(std::vector<long> &attr_list))
 
 //--------------------------------------------------------
 /**
- *	Method     : Wago::add_dynamic_attributes()
- *	Description: Create the dynamic attributes if any
+ *	Method      : Wago::add_dynamic_attributes()
+ * Description:  Create the dynamic attributes if any
  *                for specified device.
  */
 //--------------------------------------------------------
@@ -395,7 +395,7 @@ void Wago::add_dynamic_attributes()
 //--------------------------------------------------------
 /**
  *	Command State related method
- *	Description: This command gets the device state (stored in its device_state data member) and returns it to the caller.
+ * Description:  This command gets the device state (stored in its device_state data member) and returns it to the caller.
  *
  *	@returns Device state
  */
@@ -417,7 +417,7 @@ Tango::DevState Wago::dev_state()
 //--------------------------------------------------------
 /**
  *	Command Status related method
- *	Description: This command gets the device status (stored in its device_status data member) and returns it to the caller.
+ * Description:  This command gets the device status (stored in its device_status data member) and returns it to the caller.
  *
  *	@returns Device status
  */
@@ -454,7 +454,7 @@ Tango::ConstDevString Wago::dev_status()
 //--------------------------------------------------------
 /**
  *	Command DevReadNoCachePhys related method
- *	Description: Read all physical values of the specified logical device and 
+ * Description:  Read all physical values of the specified logical device and 
  *               //              return the values as a float array. Physical value are
  *               //              calculated from module registers according to a predefined
  *               //              algorithm deduced from the module type in the catalogue.
@@ -522,7 +522,7 @@ void Wago::dev_write_phys(const Tango::DevVarFloatArray *argin)
 //--------------------------------------------------------
 /**
  *	Command DevReadPhys related method
- *	Description: Read physical values of LD
+ * Description:  Read physical values of LD
  *
  *	@param argin Logical device key
  *	@returns Placeholder for obtained values
@@ -551,7 +551,7 @@ Tango::DevVarFloatArray *Wago::dev_read_phys(Tango::DevShort argin)
 //--------------------------------------------------------
 /**
  *	Command DevWriteDigi related method
- *	Description: Write words and bits to output module registers.
+ * Description:  Write words and bits to output module registers.
  *
  *	@param argin Logical device key, then pairs of channel,value.
  */
@@ -579,7 +579,7 @@ void Wago::dev_write_digi(const Tango::DevVarShortArray *argin)
 //--------------------------------------------------------
 /**
  *	Command DevReadDigi related method
- *	Description: Read all input and output word and bits of the specified logical 
+ * Description:  Read all input and output word and bits of the specified logical 
  *               device and return the values as a short array (short per bit). 
  *               Read from the cache.
  *
@@ -609,7 +609,7 @@ Tango::DevVarShortArray *Wago::dev_read_digi(Tango::DevShort argin)
 //--------------------------------------------------------
 /**
  *	Command DevReadNoCacheDigi related method
- *	Description: Read all input and output word and bits of the specified logical 
+ * Description:  Read all input and output word and bits of the specified logical 
  *               device and return the values as a short array (short per bit). 
  *               Read from the cache.
  *
@@ -643,7 +643,7 @@ Tango::DevVarShortArray *Wago::dev_read_no_cache_digi(Tango::DevShort argin)
 //--------------------------------------------------------
 /**
  *	Command DevGetKeys related method
- *	Description: Return all the numerical keys known by the server.
+ * Description:  Return all the numerical keys known by the server.
  *
  *	@returns Numerical keys
  */
@@ -672,7 +672,7 @@ Tango::DevVarShortArray *Wago::dev_get_keys()
 //--------------------------------------------------------
 /**
  *	Command DevKey2Name related method
- *	Description: Return the logical device name associated to a numerical keys 
+ * Description:  Return the logical device name associated to a numerical keys 
  *               name.
  *
  *	@param argin Numerical key
@@ -697,7 +697,7 @@ Tango::DevString Wago::dev_key2_name(Tango::DevShort argin)
 //--------------------------------------------------------
 /**
  *	Command DevLog2Hard related method
- *	Description: Return hardware information of a logical device/logical channel.
+ * Description:  Return hardware information of a logical device/logical channel.
  *
  *	@param argin [0] : logical device key
  *	[1] : logical channel
@@ -735,7 +735,7 @@ Tango::DevVarShortArray *Wago::dev_log2_hard(const Tango::DevVarShortArray *argi
 //--------------------------------------------------------
 /**
  *	Command DevHard2Log related method
- *	Description: Returns the logical device/logical channel of a memory location 
+ * Description:  Returns the logical device/logical channel of a memory location 
  *               on wago controller
  *
  *	@param argin [0] : MSB=I/O LSB=Bit/Word (ex: 0x4957 = (`I`<<8)+`W`)
@@ -771,7 +771,7 @@ Tango::DevVarShortArray *Wago::dev_hard2_log(const Tango::DevVarShortArray *argi
 //--------------------------------------------------------
 /**
  *	Command DevName2Key related method
- *	Description: Return the logical device name associated to a numerical keys name.
+ * Description:  Return the logical device name associated to a numerical keys name.
  *
  *	@param argin Logical device name
  *	@returns Numerical key
@@ -792,7 +792,7 @@ Tango::DevShort Wago::dev_name2_key(Tango::DevString argin)
 //--------------------------------------------------------
 /**
  *	Command DevWcComm related method
- *	Description: Executes a command in the wago controller programm. The communication is done using the ISG protocol.
+ * Description:  Executes a command in the wago controller programm. The communication is done using the ISG protocol.
  *
  *	@param argin [0] : code of command to execute (ex: 0x010c for ILCK_RESET)
  *	[1] : 1st parameter
@@ -829,8 +829,8 @@ Tango::DevVarShortArray *Wago::dev_wc_comm(const Tango::DevVarShortArray *argin)
 }
 //--------------------------------------------------------
 /**
- *	Method     : Wago::add_dynamic_commands()
- *	Description: Create the dynamic commands if any
+ *	Method      : Wago::add_dynamic_commands()
+ * Description:  Create the dynamic commands if any
  *                for specified device.
  */
 //--------------------------------------------------------

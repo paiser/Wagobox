@@ -34,7 +34,7 @@ typedef struct _configInfo{
         //!WAGO series number (typically 750)
 	unsigned short seriesCode; 
 
-        //!WAGO order number (typically 842 or 881)
+        //!WAGO order number (typically 842 or 881 or 862)
 	unsigned short couplerControllerCode; 
 
         //!Firmware version (256 * major + minor) e.g.: V2.5 = 0x0205

@@ -14,7 +14,7 @@ namespace WagoInterlock_ns
  * \param nam	name of the corresponding wago server attribute.
  * \param dX	dimmension of corresponding wago server attribute (0 for scalar attribute).
  */
-WagoAttribute::WagoAttribute(string nam, int dX ):
+WagoAttribute::WagoAttribute(std::string nam, int dX ):
 		dimX(dX),
 		name(nam)
 {
@@ -45,7 +45,7 @@ void WagoAttribute::readAttribute(Tango::DeviceProxy* wagoDeviceProxyObj)
 		dAttr >> (*buff);
 	}else
 	{
-		vector<float> tmpBuffer;
+		std::vector<float> tmpBuffer;
 		dAttr >> tmpBuffer;
 
 		int retBuffSize = tmpBuffer.size();

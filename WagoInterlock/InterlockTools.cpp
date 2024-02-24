@@ -7,10 +7,12 @@
 
 #include "InterlockTools.h"
 
+extern std::vector<std::string> string2vector(std::string &str, const char* tokens);
+/*
 #ifdef WAGO_SRV_INCLUDED
-extern vector<string> string2vector(string &str, const char* tokens);
+extern std::vector<std::string> string2vector(std::string &str, const char* tokens);
 #else
-vector<string> string2vector(string &str, const char* tokens)
+std::vector<std::string> string2vector(std::string &str, const char* tokens)
 {
 	std::vector<std::string> fields;
 	std::stringstream ss(str);
@@ -23,6 +25,8 @@ vector<string> string2vector(string &str, const char* tokens)
 	return fields;
 }
 #endif
+*/
+
 
 /*!Process name of interlock or channel. Name can be specified with logical names with subarray syntax.
  * ex Temp - attribute related to attribute called Temp.
@@ -36,11 +40,11 @@ vector<string> string2vector(string &str, const char* tokens)
  * 					if second element is present in vector it indicates that thre were multiple attributes defined in name(name[first:last]) this element
  * 					indicates position of last value. If vector is empty there was syntax error in given name.
  */
-vector<unsigned short> ParseName(string rngname, string& name)
+std::vector<unsigned short> ParseName(std::string rngname, std::string& name)
 {
 	unsigned short tmp;
-	vector<unsigned short> ct;
-	vector<string> nameV = string2vector(rngname, "[");
+	std::vector<unsigned short> ct;
+	std::vector<std::string> nameV = string2vector(rngname, "[");
 	if(nameV.size() > 1)
 	{
 
@@ -50,14 +54,14 @@ vector<unsigned short> ParseName(string rngname, string& name)
 			//Invalid channel range syntax return empty ct.
 			return ct;
 		}
-		string channCountStr(nameV[1].substr(0,nameV[1].size() - 1 ));
-		vector<string> countV = string2vector(channCountStr, ":");
-		istringstream iss(countV[0]);
+		std::string channCountStr(nameV[1].substr(0,nameV[1].size() - 1 ));
+		std::vector<std::string> countV = string2vector(channCountStr, ":");
+		std::istringstream iss(countV[0]);
 		iss >> tmp;
 		ct.push_back(tmp);
 		if(countV.size() > 1 )
 		{
-			istringstream iss2(countV[1]);
+			std::istringstream iss2(countV[1]);
 			iss2 >> tmp;
 			ct.push_back(tmp);
 		}else if(countV.size() > 2)
@@ -83,9 +87,9 @@ vector<unsigned short> ParseName(string rngname, string& name)
  *\param str	string for conversion.
  *\return	conversion result as vector of short values.
  */
-vector<unsigned short> PackString(string str)
+std::vector<unsigned short> PackString(std::string str)
 {
-	vector<unsigned short> outVect;
+	std::vector<unsigned short> outVect;
 	outVect.resize((str.size()/2) + 1, 0x0);
 
 	unsigned int j = 0;
@@ -110,7 +114,7 @@ vector<unsigned short> PackString(string str)
  *\param pStr	isg coded string to be converted.
  *\return	converted string.
  */
-string UnpackString(vector<short> pStr)
+std::string UnpackString(std::vector<short> pStr)
 {
 	std::string unpStr;
 	for(unsigned j = 0; j < pStr.size(); j++) //unpack characters to string
@@ -135,11 +139,11 @@ string UnpackString(vector<short> pStr)
  * \param txtFlags	string of interlock/channel flags for configuration.
  * \return binary value with raised corresponding flag bits.
  */
-unsigned short FlagsTxt2Bin(string txtFlags)
+unsigned short FlagsTxt2Bin(std::string txtFlags)
 {
 	unsigned short flags = 0x0;
 
-	string flg = txtFlags;
+	std::string flg = txtFlags;
 	std::transform(flg.begin(), flg.end(), flg.begin(), ::tolower);
 
 	if(flg == "digital")
@@ -165,9 +169,9 @@ unsigned short FlagsTxt2Bin(string txtFlags)
  * \param flags binary value holding flags.
  * \return string of names of raised flags.
  */
-string FlagsBin2Txt(unsigned short flags)
+std::string FlagsBin2Txt(unsigned short flags)
 {
-	stringstream ss;
+	std::stringstream ss;
 
 	ss << ((flags & IL_DIGITAL) ? "IL_DIGITAL " : "") ;
 	ss << ((flags & IL_OUTPUT) ? "IL_OUTPUT " : "") ;
@@ -236,9 +240,9 @@ float DoScaling(unsigned short input, unsigned short type)
  * \return exception with modified chain.
  */
 Tango::DevFailed AddToException(Tango::DevFailed ex,
-				   string reason,
-				   string desc,
-				   string origin)
+				   std::string reason,
+				   std::string desc,
+				   std::string origin)
 {
 	long nb_err = ex.errors.length();
 	ex.errors.length(nb_err + 1);
@@ -259,9 +263,9 @@ Tango::DevFailed AddToException(Tango::DevFailed ex,
  *
  * \return generated exception object.
  */
-Tango::DevFailed CreateException(string reason,
-				   string desc,
-				   string origin)
+Tango::DevFailed CreateException(std::string reason,
+				   std::string desc,
+				   std::string origin)
 {
 	Tango::DevErrorList errors(1);
 

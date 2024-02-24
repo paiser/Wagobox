@@ -383,12 +383,15 @@ class WagoClass : public Tango::DeviceClass
 		//  750-414,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``
 		//  750-415,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``
 		//  750-422,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``
+		//  750-432,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``
+		//  750-9999/400-004,    4, 0, 0, 0, 4, ``none``,      ``4 Channel Digital Input``
 		//  750-430,    8, 0, 0, 0, 8, ``none``,      ``8 Channel Digital Input``
 		//  750-436,    8, 0, 0, 0, 8, ``none``,      ``8 Channel Digital Input``
 		//  750-485,    0, 0, 2, 0, 2, ``fs4-20_13``, ``2 Channel 4/20mA Input``
 		//  750-501,    0, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``
 		//  750-502,    0, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``
 		//  750-504,    0, 4, 0, 0, 4, ``none``,      ``4 Channel Digital Output``
+		//  750-9999/500-004,    0, 4, 0, 0, 4, ``none``,      ``4 Channel Digital Output``
 		//  750-506,    2, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``
 		//  750-507,    2, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``
 		//  750-508,    2, 2, 0, 0, 2, ``none``,      ``2 Channel Digital Output``

@@ -21,7 +21,7 @@ set(CMAKE_SKIP_RPATH TRUE)
 if (DEFINED ENV{MAKE_ENV})
     set(MAKE_ENV $ENV{MAKE_ENV})
 else()
-    set(MAKE_ENV /segfs/tango/cppserver/env)
+    set(MAKE_ENV /usr/share/pogo/preferences)
 endif()
 #
 # Project definitions
@@ -32,7 +32,13 @@ project(Wago)
 # optional compiler flags
 #
 set(CXXFLAGS_USER -g)
-
+# EP
+set(CMAKE_THREAD_LIBS_INIT "-lpthread")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+set(CMAKE_HAVE_THREADS_LIBRARY 1)
+set(CMAKE_USE_WIN32_THREADS_INIT 0)
+set(CMAKE_USE_PTHREADS_INIT 1)
+set(THREADS_PREFER_PTHREAD_FLAG ON)
 
 #
 # Get global information
@@ -62,7 +68,7 @@ set(WAGO_SRC  ${WAGO}.cpp
 #
 # User additional include, link folders/libraries and source files
 #
-set(USER_INCL_DIR )
+set(USER_INCL_DIR /usr/include/tango)
 set(USER_LIB_DIR )
 set(USER_LIBS )
 set(USER_SRC_FILES )

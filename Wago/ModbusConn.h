@@ -38,13 +38,13 @@ class ModbusConn: public ModbusAbstract, public Tango::LogAdapter
 public:
 	ModbusConn(Tango::DeviceProxy* modbus_obj, Tango::DeviceImpl* wagoInstance, DeviceState* devSt);
 
-	virtual int ReadDigitalInputs(unsigned int addr, unsigned int numOfInputs, vector<unsigned short>& dataBuffer);
-	virtual int ReadInputRegisters(unsigned int addr, unsigned int numOfRegisters, vector<unsigned short>& dataBuffer);
-	virtual int ReadHoldingRegisters(unsigned int addr, unsigned int numOfRegisters, vector<unsigned short>& dataBuffer);
-	virtual int ReadMultipleCoilsStatus(unsigned int addr,unsigned int numOfCoils, vector<unsigned short>& dataBuffer);
-	virtual void ForceMultipleCoils(unsigned int addr, vector<unsigned short>& values);
+	virtual int ReadDigitalInputs(unsigned int addr, unsigned int numOfInputs, std::vector<unsigned short>& dataBuffer);
+	virtual int ReadInputRegisters(unsigned int addr, unsigned int numOfRegisters, std::vector<unsigned short>& dataBuffer);
+	virtual int ReadHoldingRegisters(unsigned int addr, unsigned int numOfRegisters, std::vector<unsigned short>& dataBuffer);
+	virtual int ReadMultipleCoilsStatus(unsigned int addr,unsigned int numOfCoils, std::vector<unsigned short>& dataBuffer);
+	virtual void ForceMultipleCoils(unsigned int addr, std::vector<unsigned short>& values);
 	virtual void PresetSingleRegister(unsigned int addr, unsigned short value);
-	virtual void PresetMultipleRegisters(unsigned int addr, vector<unsigned short>& values);
+	virtual void PresetMultipleRegisters(unsigned int addr, std::vector<unsigned short>& values);
 	virtual bool ModbusStateCheck();
 	virtual void RaiseLastModbusException();
 	virtual void InconsistentImageFault(std::string desc);

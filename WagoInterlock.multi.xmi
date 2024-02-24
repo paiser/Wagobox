@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pogoDsl:PogoSystem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:pogoDsl="http://www.esrf.fr/tango/pogo/PogoDsl">
-  <multiClasses pogoRevision="9.7" name="WagoInterlock" sourcePath="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock" description="Tango server for interlock devices based on wago 750 series controllers.&#xA;Modbus and Wago classes are included within this package." filestogenerate="XMI   file,Code files,CMakeLists,Protected Regions">
-    <classes classname="Serial" sourcePath="../../protocols/SerialLine.git/src">
+  <multiClasses pogoRevision="9.8" name="WagoInterlock" sourcePath="./" description="Tango server for interlock devices based on wago 750 series controllers.&#xA;Modbus and Wago classes are included within this package." filestogenerate="XMI   file,Code files,Makefile,CMakeLists,Protected Regions">
+    <classes classname="Serial" sourcePath="../SerialLine/src">
       <inheritances classname="Device_4Impl" sourcePath=""/>
       <parentClasses>Modbus</parentClasses>
     </classes>
-    <classes classname="Modbus" sourcePath="../../protocols/Modbus.verdier/src">
+    <classes classname="Modbus" sourcePath="../Modbus/src">
       <inheritances classname="Device_Impl" sourcePath=""/>
       <parentClasses>Wago</parentClasses>
       <additionalFiles name="ModbusCore" path="/mntdirect/_segfs/tango/cppserver/protocols/Modbus/src/ModbusCore.cpp"/>
@@ -14,22 +14,13 @@
     <classes classname="Wago" sourcePath="./Wago">
       <inheritances classname="Device_Impl" sourcePath=""/>
       <parentClasses>WagoInterlock</parentClasses>
-      <additionalFiles name="ModbusConn" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/ModbusConn.cpp"/>
-      <additionalFiles name="BufferHolder" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/BufferHolder.cpp"/>
-      <additionalFiles name="Configurator" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/Configurator.cpp"/>
-      <additionalFiles name="LogicalDevice" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/LogicalDevice.cpp"/>
-      <additionalFiles name="Module" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/Module.cpp"/>
-      <additionalFiles name="ModuleDB" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/ModuleDB.cpp"/>
-      <additionalFiles name="PhysValueTransformer" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/PhysValueTransformer.cpp"/>
-      <additionalFiles name="Services" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/Services.cpp"/>
-      <additionalFiles name="Tools" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/Tools.cpp"/>
-      <additionalFiles name="WagoDevice" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/Wago/core_src/WagoDevice.cpp"/>
+      <additionalFiles name="ModbusConn" path="/root/Tango/wago/Wago/ModbusConn.cpp"/>
     </classes>
     <classes classname="WagoInterlock" sourcePath="./WagoInterlock">
       <inheritances classname="Device_Impl" sourcePath=""/>
-      <additionalFiles name="Attributes" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/WagoInterlock/Attributes.cpp"/>
-      <additionalFiles name="InterlockTools" path="/mnt/multipath-shares/segfs/tango/cppserver/instrumentation/WagoInterlock/WagoInterlock/InterlockTools.cpp"/>
+      <additionalFiles name="Attributes" path="/root/Tango/wago/WagoInterlock/Attributes.cpp"/>
+      <additionalFiles name="InterlockTools" path="/root/Tango/wago/WagoInterlock/InterlockTools.cpp"/>
     </classes>
-    <preferences makefileHome="/segfs/tango/cppserver/env"/>
+    <preferences makefileHome="/usr/share/pogo/preferences"/>
   </multiClasses>
 </pogoDsl:PogoSystem>
